@@ -1,1 +1,1 @@
-// export { ... } from '...';
+export { authAPI } from './authAPI';

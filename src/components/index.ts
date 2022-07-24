@@ -1,3 +1,2 @@
-// export { ... } from './common';
-export { Example } from './example/Example';
-export { CustomInputWith, CustomInputWithout } from './customInput';
+export { Header } from './header/Header';
+export { Links } from './links/Links';
