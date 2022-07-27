@@ -1,0 +1,13 @@
+.wrapper {
+    width: 413px;
+
+    margin: 60px auto;
+    padding: 30px;
+
+    border-radius: 2px;
+
+    text-align: center;
+
+    background: #FFFFFF;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}

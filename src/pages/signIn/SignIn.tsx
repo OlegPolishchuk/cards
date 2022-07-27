@@ -7,7 +7,6 @@ import {
     FormControl,
     FormControlLabel,
     FormGroup,
-    FormHelperText,
     Grid,
     IconButton,
     TextField,
@@ -15,7 +14,7 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-import classes from './SignIn.module.css';
+import s from './SignIn.module.css';
 
 import { StyledButton } from 'components/header/styles';
 import { ReturnComponentType } from 'types';
@@ -40,11 +39,11 @@ export const SignIn = (): ReturnComponentType => {
     return (
         <Grid container justifyContent="center">
             <Grid item justifyContent="center">
-                <div className={classes.formWrapper}>
+                <div className={s.wrapper}>
                     <Typography variant="h4" component="div">
                         Sign in
                     </Typography>
-                    <form className={classes.form}>
+                    <form className={s.form}>
                         <FormControl fullWidth>
                             <FormGroup>
                                 <TextField
@@ -88,7 +87,6 @@ export const SignIn = (): ReturnComponentType => {
                             </FormGroup>
                         </FormControl>
                     </form>
-                    <FormHelperText>{`Don't have an account?`}</FormHelperText>
                     <NavLink to="/registration">Sign Up</NavLink>
                 </div>
             </Grid>
