@@ -16,7 +16,7 @@ import { NavLink } from 'react-router-dom';
 
 import s from './SignIn.module.css';
 
-import { StyledButton } from 'components/header/styles';
+import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { ReturnComponentType } from 'types';
 
 export const SignIn = (): ReturnComponentType => {
@@ -76,18 +76,15 @@ export const SignIn = (): ReturnComponentType => {
                                 >
                                     Forgot password?
                                 </NavLink>
-                                <StyledButton
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    style={{ marginTop: '60px' }}
-                                >
-                                    Sign In
-                                </StyledButton>
                             </FormGroup>
                         </FormControl>
+                        <FormBottomText
+                            btnTitle="Sign In"
+                            tooltipText={"Don't have an account ?"}
+                            redirectUrl="registration"
+                            redirectLinkText="Sign Up"
+                        />
                     </form>
-                    <NavLink to="/registration">Sign Up</NavLink>
                 </div>
             </Grid>
         </Grid>
