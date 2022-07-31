@@ -12,8 +12,9 @@ import {
 } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import s from './SignUp.module.css';
+
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
-import s from 'pages/signIn/SignIn.module.css';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -38,7 +39,11 @@ export const SignUp = (): ReturnComponentType => {
             <VisibilityOffIcon />
         </IconButton>
     );
-    const { register, handleSubmit } = useForm<FormType>();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormType>({ mode: 'onBlur' });
 
     const onSubmit: SubmitHandler<FormType> = data => console.log(data);
 
@@ -56,8 +61,11 @@ export const SignUp = (): ReturnComponentType => {
                                     variant="standard"
                                     label="Email"
                                     margin="normal"
-                                    {...register('email')}
+                                    {...(register('email'), { require })}
                                 />
+                                {errors.email && (
+                                    <p className={s.error}>Email is required</p>
+                                )}
                                 <TextField
                                     variant="standard"
                                     type={`${visibility ? 'text' : 'password'}`}
@@ -66,7 +74,9 @@ export const SignUp = (): ReturnComponentType => {
                                     InputProps={{
                                         endAdornment: visible,
                                     }}
+                                    {...(register('password'), { require })}
                                 />
+                                {errors.password && <p>Password is required</p>}
                                 <TextField
                                     {...register('confirmPassword')}
                                     variant="standard"
