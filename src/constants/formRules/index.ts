@@ -1,2 +1,1 @@
-export { EMAIL_RULES } from './EmailRule';
-export { PASSWORD_RULES } from './passwordRules';
+export { EMAIL_REG_EXP } from './EmailRule';

@@ -15,6 +15,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import s from './SignUp.module.css';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
+import { EMAIL_REG_EXP } from 'constants/formRules/EmailRule';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -25,6 +26,7 @@ type FormType = {
 
 export const SignUp = (): ReturnComponentType => {
     const [visibility, setVisibility] = useState(false);
+    const [passError, setPassError] = useState('');
 
     const toggleVisibility = (flag: boolean): void => {
         setVisibility(flag);
@@ -45,7 +47,13 @@ export const SignUp = (): ReturnComponentType => {
         formState: { errors },
     } = useForm<FormType>({ mode: 'onBlur' });
 
-    const onSubmit: SubmitHandler<FormType> = data => console.log(data);
+    const onSubmit: SubmitHandler<FormType> = data => {
+        if (data.password === data.confirmPassword) {
+            console.log(data);
+        } else {
+            setPassError('passwords do not match');
+        }
+    };
 
     return (
         <Grid container justifyContent="center">
@@ -61,10 +69,18 @@ export const SignUp = (): ReturnComponentType => {
                                     variant="standard"
                                     label="Email"
                                     margin="normal"
-                                    {...(register('email'), { require })}
+                                    {...register('email', {
+                                        required: true,
+                                        pattern: {
+                                            value: EMAIL_REG_EXP,
+                                            message: 'Not valid email',
+                                        },
+                                    })}
                                 />
-                                {errors.email && (
-                                    <p className={s.error}>Email is required</p>
+                                {errors?.email && (
+                                    <p className={s.error}>
+                                        {errors.email.message || 'Required'}
+                                    </p>
                                 )}
                                 <TextField
                                     variant="standard"
@@ -74,9 +90,19 @@ export const SignUp = (): ReturnComponentType => {
                                     InputProps={{
                                         endAdornment: visible,
                                     }}
-                                    {...(register('password'), { require })}
+                                    {...register('password', {
+                                        required: true,
+                                        minLength: {
+                                            value: 8,
+                                            message: 'Min length is 8',
+                                        },
+                                    })}
                                 />
-                                {errors.password && <p>Password is required</p>}
+                                {errors?.password && (
+                                    <p className={s.error}>
+                                        {errors?.password.message || 'Required'}
+                                    </p>
+                                )}
                                 <TextField
                                     {...register('confirmPassword')}
                                     variant="standard"
@@ -87,6 +113,7 @@ export const SignUp = (): ReturnComponentType => {
                                         endAdornment: visible,
                                     }}
                                 />
+                                {passError && <p className={s.error}>{passError}</p>}
                             </FormGroup>
                         </FormControl>
                         <FormBottomText

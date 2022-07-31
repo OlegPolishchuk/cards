@@ -1,1 +1,1 @@
-export { PASSWORD_RULES, EMAIL_RULES } from './formRules';
+export { EMAIL_REG_EXP } from './formRules';
