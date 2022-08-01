@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import s from './SignUp.module.css';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
-import { EMAIL_REG_EXP } from 'constants/formRules/EmailRule';
+import { EMAIL_REG_EXP } from 'constants/formRules';
 import { ReturnComponentType } from 'types';
 
 type FormType = {

@@ -6,18 +6,24 @@ import {
     Checkbox,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Grid,
     IconButton,
     TextField,
     Typography,
 } from '@mui/material';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import s from './SignIn.module.css';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
+import { EMAIL_REG_EXP } from 'constants/formRules';
 import { ReturnComponentType } from 'types';
+
+type FormType = {
+    email: string;
+    password: string;
+};
 
 export const SignIn = (): ReturnComponentType => {
     const [visibility, setVisibility] = useState(false);
@@ -36,6 +42,16 @@ export const SignIn = (): ReturnComponentType => {
         </IconButton>
     );
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormType>({ mode: 'onBlur' });
+
+    const onSubmit: SubmitHandler<FormType> = data => {
+        console.log(data);
+    };
+
     return (
         <Grid container justifyContent="center">
             <Grid item justifyContent="center">
@@ -43,41 +59,57 @@ export const SignIn = (): ReturnComponentType => {
                     <Typography variant="h4" component="div">
                         Sign in
                     </Typography>
-                    <form className={s.form}>
+                    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
                         <FormControl fullWidth>
-                            <FormGroup>
-                                <TextField
-                                    variant="standard"
-                                    label="Email"
-                                    margin="normal"
-                                />
-                                <TextField
-                                    variant="standard"
-                                    type={`${visibility ? 'text' : 'password'}`}
-                                    label="Password"
-                                    margin="normal"
-                                    InputProps={{
-                                        endAdornment: visible,
-                                    }}
-                                />
-                                <FormControlLabel
-                                    label="Remember me"
-                                    checked
-                                    control={<Checkbox />}
-                                />
-                                <NavLink
-                                    style={{
-                                        textDecoration: 'none',
-                                        color: 'inherit',
-                                        textAlign: 'right',
-                                        marginTop: '9px',
-                                    }}
-                                    to="/enter_new_password"
-                                >
-                                    Forgot password?
-                                </NavLink>
-                            </FormGroup>
+                            <TextField
+                                variant="standard"
+                                label="Email"
+                                margin="normal"
+                                {...register('email', {
+                                    required: true,
+                                    pattern: {
+                                        value: EMAIL_REG_EXP,
+                                        message: 'Not valid email',
+                                    },
+                                })}
+                            />
+                            <p className={s.error}>
+                                {errors?.email && (errors.email.message || 'Required')}
+                            </p>
                         </FormControl>
+                        <FormControl fullWidth>
+                            <TextField
+                                variant="standard"
+                                type={`${visibility ? 'text' : 'password'}`}
+                                label="Password"
+                                margin="normal"
+                                InputProps={{
+                                    endAdornment: visible,
+                                }}
+                                {...register('password', {
+                                    required: true,
+                                    minLength: {
+                                        value: 8,
+                                        message: 'Min length is 8',
+                                    },
+                                })}
+                            />
+                            <p className={s.error}>
+                                {errors?.password &&
+                                    (errors.password.message || 'Required')}
+                            </p>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <FormControlLabel
+                                label="Remember me"
+                                checked
+                                control={<Checkbox />}
+                            />
+                        </FormControl>
+                        <NavLink className={s.forgotPassLink} to="/enter_new_password">
+                            Forgot password?
+                        </NavLink>
+
                         <FormBottomText
                             btnTitle="Sign In"
                             tooltipText={"Don't have an account ?"}
