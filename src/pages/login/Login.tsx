@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     Checkbox,
@@ -11,11 +11,12 @@ import {
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
-import s from './SignIn.module.css';
-
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
+import { useAppDispatch } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
+import s from 'pages/login/Login.module.css';
+import { loginUser } from 'store/middlewares/loginUser';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -24,7 +25,10 @@ type FormType = {
 };
 
 export const SignIn = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
     const [visible, visibility] = useVisibility(false);
+    const [rememberMe, setRememberMe] = useState(false);
     const inputType = visibility ? 'text' : 'password';
 
     const {
@@ -34,7 +38,13 @@ export const SignIn = (): ReturnComponentType => {
     } = useForm<FormType>({ mode: 'onBlur' });
 
     const onSubmit: SubmitHandler<FormType> = data => {
-        console.log(data);
+        dispatch(
+            loginUser({
+                email: data.email,
+                password: data.password,
+                rememberMe,
+            }),
+        );
     };
 
     return (
@@ -87,7 +97,8 @@ export const SignIn = (): ReturnComponentType => {
                         <FormControl fullWidth>
                             <FormControlLabel
                                 label="Remember me"
-                                checked
+                                checked={rememberMe}
+                                onChange={() => setRememberMe(!rememberMe)}
                                 control={<Checkbox />}
                             />
                         </FormControl>

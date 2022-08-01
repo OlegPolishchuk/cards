@@ -14,6 +14,9 @@ export type AddedUserType = {
     created: string;
     updated: string;
     __v: number;
+    token: string;
+    tokenDeathTime: number;
+    avatar: null | string;
 };
 
 export type RegisterUserErrorType = {
@@ -22,8 +25,3 @@ export type RegisterUserErrorType = {
     isEmailValid: boolean;
     isPassValid: boolean;
 };
-
-// export type RegisterUserType = {
-//     addedUser?: AddedUserType;
-//     error?: RegisterUserErrorType;
-// };

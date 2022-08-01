@@ -1,17 +1,22 @@
 import axios, { AxiosError } from 'axios';
 
 import { authAPI } from 'api';
-import { RegisterUserErrorType, UserDataType } from 'api/types';
+import { RegisterUserErrorType } from 'api/types';
 import { REQUEST_STATUS } from 'enums';
 import { setStatusAC } from 'store/actions/setStatus';
+import { setUser } from 'store/actions/setUser';
+import { LoginUserType } from 'store/middlewares/types';
 import { AppThunkType } from 'store/types';
 
-export const registerUser =
-    ({ email, password }: UserDataType): AppThunkType =>
+export const loginUser =
+    ({ email, password, rememberMe }: LoginUserType): AppThunkType =>
     async dispatch => {
         try {
             dispatch(setStatusAC(REQUEST_STATUS.LOADING));
-            await authAPI.register({ email, password });
+            const response = await authAPI.login(email, password, rememberMe);
+
+            console.log(response.data);
+            dispatch(setUser(response.data));
         } catch (err) {
             const error = err as AxiosError | RegisterUserErrorType;
 
