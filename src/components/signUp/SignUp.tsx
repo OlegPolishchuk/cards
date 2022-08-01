@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { FormControl, Grid, IconButton, TextField, Typography } from '@mui/material';
+import { FormControl, Grid, TextField, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import s from './SignUp.module.css';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
+import { useVisibility } from 'hooks/useVisibility/useVisibility';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -18,22 +17,10 @@ type FormType = {
 };
 
 export const SignUp = (): ReturnComponentType => {
-    const [visibility, setVisibility] = useState(false);
+    const [visible, visibility] = useVisibility(false);
     const [passError, setPassError] = useState('');
+    const inputType = visibility ? 'text' : 'password';
 
-    const toggleVisibility = (flag: boolean): void => {
-        setVisibility(flag);
-    };
-
-    const visible = visibility ? (
-        <IconButton aria-label="visibility" onClick={() => toggleVisibility(false)}>
-            <VisibilityIcon />
-        </IconButton>
-    ) : (
-        <IconButton aria-label="visibilityOff" onClick={() => toggleVisibility(true)}>
-            <VisibilityOffIcon />
-        </IconButton>
-    );
     const {
         register,
         handleSubmit,
@@ -76,7 +63,7 @@ export const SignUp = (): ReturnComponentType => {
                         <FormControl fullWidth className={s.inputBox}>
                             <TextField
                                 variant="standard"
-                                type={`${visibility ? 'text' : 'password'}`}
+                                type={inputType}
                                 label="Password"
                                 margin="normal"
                                 InputProps={{
@@ -99,7 +86,7 @@ export const SignUp = (): ReturnComponentType => {
                             <TextField
                                 {...register('confirmPassword')}
                                 variant="standard"
-                                type={`${visibility ? 'text' : 'password'}`}
+                                type={inputType}
                                 label="Confirm Password"
                                 margin="normal"
                                 InputProps={{

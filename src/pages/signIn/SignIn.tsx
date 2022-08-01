@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
     Checkbox,
     FormControl,
     FormControlLabel,
     Grid,
-    IconButton,
     TextField,
     Typography,
 } from '@mui/material';
@@ -18,6 +15,7 @@ import s from './SignIn.module.css';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
+import { useVisibility } from 'hooks/useVisibility/useVisibility';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -26,21 +24,8 @@ type FormType = {
 };
 
 export const SignIn = (): ReturnComponentType => {
-    const [visibility, setVisibility] = useState(false);
-
-    const toggleVisibility = (flag: boolean): void => {
-        setVisibility(flag);
-    };
-
-    const visible = visibility ? (
-        <IconButton aria-label="visibility" onClick={() => toggleVisibility(false)}>
-            <VisibilityIcon />
-        </IconButton>
-    ) : (
-        <IconButton aria-label="visibilityOff" onClick={() => toggleVisibility(true)}>
-            <VisibilityOffIcon />
-        </IconButton>
-    );
+    const [visible, visibility] = useVisibility(false);
+    const inputType = visibility ? 'text' : 'password';
 
     const {
         register,
@@ -80,7 +65,7 @@ export const SignIn = (): ReturnComponentType => {
                         <FormControl fullWidth>
                             <TextField
                                 variant="standard"
-                                type={`${visibility ? 'text' : 'password'}`}
+                                type={inputType}
                                 label="Password"
                                 margin="normal"
                                 InputProps={{
