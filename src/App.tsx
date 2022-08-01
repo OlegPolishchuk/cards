@@ -4,17 +4,24 @@ import { Container } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { Header, Links } from 'components';
+import { Progress } from 'components/circularProgress/Progress';
+import { REQUEST_STATUS } from 'enums';
+import { useTypedSelector } from 'hooks';
 import {
     ForgotPassword,
-    SignIn,
     NotFound,
     PasswordRecovery,
     Profile,
     Registration,
+    SignIn,
 } from 'pages';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
+    const status = useTypedSelector(state => state.app.status);
+
+    console.log(status);
+
     return (
         <BrowserRouter>
             <Header />
@@ -30,6 +37,7 @@ const App = (): ReturnComponentType => {
                 </Routes>
             </Container>
             <Links />
+            {status === REQUEST_STATUS.LOADING && <Progress />}
         </BrowserRouter>
     );
 };

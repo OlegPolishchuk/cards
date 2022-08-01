@@ -2,14 +2,16 @@ import axios, { AxiosError } from 'axios';
 
 import { authAPI } from 'api';
 import { RegisterUserErrorType, UserDataType } from 'api/types';
+import { REQUEST_STATUS } from 'enums';
+import { setStatusAC } from 'store/actions/app';
 import { AppThunkType } from 'store/types';
 
 export const registerUser =
     ({ email, password }: UserDataType): AppThunkType =>
-    async () => {
+    async dispatch => {
         try {
+            dispatch(setStatusAC(REQUEST_STATUS.LOADING));
             await authAPI.register({ email, password });
-            window.location.href = 'login';
         } catch (err) {
             const error = err as AxiosError | RegisterUserErrorType;
 
@@ -18,5 +20,7 @@ export const registerUser =
             } else {
                 console.warn(error.error);
             }
+        } finally {
+            dispatch(setStatusAC(REQUEST_STATUS.IDLE));
         }
     };

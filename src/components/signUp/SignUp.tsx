@@ -7,7 +7,9 @@ import s from './SignUp.module.css';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
+import { useAppDispatch } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
+import { registerUser } from 'store/middlewares/registerUser';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -17,6 +19,8 @@ type FormType = {
 };
 
 export const SignUp = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
     const [visible, visibility] = useVisibility(false);
     const [passError, setPassError] = useState('');
     const inputType = visibility ? 'text' : 'password';
@@ -29,7 +33,7 @@ export const SignUp = (): ReturnComponentType => {
 
     const onSubmit: SubmitHandler<FormType> = data => {
         if (data.password === data.confirmPassword) {
-            console.log(data);
+            dispatch(registerUser({ email: data.email, password: data.password }));
         } else {
             setPassError('passwords do not match');
         }
