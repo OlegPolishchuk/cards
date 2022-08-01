@@ -81,7 +81,7 @@ export const SignIn = (): ReturnComponentType => {
                         <FormBottomText
                             btnTitle="Sign In"
                             tooltipText={"Don't have an account ?"}
-                            redirectUrl="registration"
+                            redirectUrl="/registration"
                             redirectLinkText="Sign Up"
                         />
                     </form>
