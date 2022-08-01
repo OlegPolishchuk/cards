@@ -13,7 +13,7 @@ export const appReducer = (
     action: AppActionsType,
 ): AppStateType => {
     switch (action.type) {
-        case 'APP_SET_STATUS':
+        case 'app/SET_STATUS':
             return { ...state, ...action.payload };
         default:
             return state;
