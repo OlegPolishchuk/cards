@@ -1,2 +1,2 @@
 // export const SET_USERS = '@@/user-reducer_SET_USERS';
-export {};
+export const SET_APP_STATUS = 'app/SET_STATUS';
