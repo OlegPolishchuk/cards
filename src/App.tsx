@@ -20,8 +20,6 @@ import { ReturnComponentType } from 'types';
 const App = (): ReturnComponentType => {
     const status = useTypedSelector(state => state.app.status);
 
-    console.log(status);
-
     return (
         <BrowserRouter>
             <Header />

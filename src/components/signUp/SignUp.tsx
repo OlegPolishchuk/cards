@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { FormControl, Grid, TextField, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import s from './SignUp.module.css';
 
@@ -21,6 +22,8 @@ type FormType = {
 export const SignUp = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
+    const navigate = useNavigate();
+
     const [visible, visibility] = useVisibility(false);
     const [passError, setPassError] = useState('');
     const inputType = visibility ? 'text' : 'password';
@@ -28,12 +31,15 @@ export const SignUp = (): ReturnComponentType => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<FormType>({ mode: 'onBlur' });
 
     const onSubmit: SubmitHandler<FormType> = data => {
         if (data.password === data.confirmPassword) {
             dispatch(registerUser({ email: data.email, password: data.password }));
+            reset();
+            navigate('/login');
         } else {
             setPassError('passwords do not match');
         }
