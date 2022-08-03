@@ -10,8 +10,8 @@ import { useTypedSelector } from 'hooks';
 import { ReturnComponentType } from 'types';
 
 export const UserDescription = (): ReturnComponentType => {
-    const userName = useTypedSelector(state => state.auth.name);
-    const userEmail = useTypedSelector(state => state.auth.email);
+    const userName = useTypedSelector(state => state.auth.userData.name);
+    const userEmail = useTypedSelector(state => state.auth.userData.email);
 
     const [edit, setEdit] = useState(false);
 

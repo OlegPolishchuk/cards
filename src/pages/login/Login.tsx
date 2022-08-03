@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
     Checkbox,
@@ -13,7 +13,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
 import s from 'pages/login/Login.module.css';
 import { loginUser } from 'store/middlewares/loginUser';
@@ -28,6 +28,8 @@ export const SignIn = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
+
+    const isUserAuth = useTypedSelector(state => state.auth.isUserAuth);
 
     const [visible, visibility] = useVisibility(false);
     const [rememberMe, setRememberMe] = useState(false);
@@ -47,8 +49,18 @@ export const SignIn = (): ReturnComponentType => {
                 rememberMe,
             }),
         );
-        navigate('/profile');
+        // if (isUserAuth) {
+        //     console.log(isUserAuth);
+        //     navigate('/profile');
+        // }
     };
+
+    useEffect(() => {
+        if (isUserAuth) {
+            console.log(isUserAuth);
+            navigate('/profile');
+        }
+    }, [isUserAuth]);
 
     return (
         <Grid container justifyContent="center">

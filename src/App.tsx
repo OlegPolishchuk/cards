@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { Header, Links } from 'components';
 import { Progress } from 'components/circularProgress/Progress';
+import { SnackBar } from 'components/snackBar/SnackBar';
 import { REQUEST_STATUS } from 'enums';
 import { useTypedSelector } from 'hooks';
 import {
@@ -35,6 +36,7 @@ const App = (): ReturnComponentType => {
                 </Routes>
             </Container>
             <Links />
+            <SnackBar />
             {status === REQUEST_STATUS.LOADING && <Progress />}
         </BrowserRouter>
     );

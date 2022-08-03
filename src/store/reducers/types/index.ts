@@ -1,2 +1,2 @@
-export type { UserType } from './authReducerType';
+export type { AuthReducerType } from './authReducerType';
 export type { AppStateType } from './AppReducerType';

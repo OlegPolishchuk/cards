@@ -1,0 +1,16 @@
+export const pureUser = {
+    _id: '',
+    email: '',
+    name: '',
+    avatar: '',
+    publicCardPacksCount: 0,
+    created: '',
+    updated: '',
+    isAdmin: false,
+    verified: false,
+    rememberMe: false,
+    token: '',
+    tokenDeathTime: 0,
+    __v: 0,
+    error: '',
+};
