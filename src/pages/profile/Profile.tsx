@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Box, Container } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Box, Button, Container } from '@mui/material';
 
 import s from './Profile.module.css';
 
@@ -20,6 +21,9 @@ export const Profile = (): ReturnComponentType => {
                 <Title title="Personal information" />
                 <UserPhoto variant="standard" isEdit callback={editUserPhotoHandler} />
                 <UserDescription />
+                <Button variant="outlined" startIcon={<LogoutIcon />}>
+                    Logout
+                </Button>
             </Box>
         </Container>
     );
