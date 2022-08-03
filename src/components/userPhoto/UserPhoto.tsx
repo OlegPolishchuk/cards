@@ -19,6 +19,7 @@ export const UserPhoto = ({
     const width = variant === 'small' ? '36px' : '96px';
     const height = variant === 'small' ? '36px' : '96px';
     const cursor = variant === 'small' ? 'pointer' : '';
+    const marginTop = variant === 'small' ? '0' : '30px';
 
     return (
         <div
@@ -28,6 +29,7 @@ export const UserPhoto = ({
                 width,
                 height,
                 cursor,
+                marginTop,
             }}
         >
             {isEdit && (

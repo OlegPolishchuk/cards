@@ -11,6 +11,7 @@ import { UserDescription } from 'components/userDescription/UserDescription';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { logout } from 'store/middlewares/logout';
+import { selectIsUserAuth } from 'store/selectors/selectIsUserAuth/selectIsUserAuth';
 import { ReturnComponentType } from 'types';
 
 export const Profile = (): ReturnComponentType => {
@@ -18,7 +19,7 @@ export const Profile = (): ReturnComponentType => {
 
     const navigate = useNavigate();
 
-    const isUserAuth = useTypedSelector(state => state.auth.isUserAuth);
+    const isUserAuth = useTypedSelector(selectIsUserAuth);
 
     const editUserPhotoHandler = (): void => {
         console.log('some action');

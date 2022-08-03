@@ -19,7 +19,7 @@ export const Progress: FC = (): ReturnComponentType => {
                 alignItems: 'center',
             }}
         >
-            <CircularProgress />
+            <CircularProgress size={100} />
         </div>
     );
 };
