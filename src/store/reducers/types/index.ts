@@ -1,1 +1,2 @@
-export type { InitialStateType } from './authReducerType';
+export type { UserType } from './authReducerType';
+export type { AppStateType } from './AppReducerType';

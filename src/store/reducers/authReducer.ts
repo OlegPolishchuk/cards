@@ -1,15 +1,28 @@
 import { AuthActionsType } from 'store/actions/types';
-import { InitialStateType } from 'store/reducers/types';
+import { UserType } from 'store/reducers/types';
 
-const initialState = {};
+const initialState = {
+    _id: '',
+    email: '',
+    name: '',
+    avatar: '',
+    publicCardPacksCount: 0,
+    created: '',
+    updated: '',
+    isAdmin: false,
+    verified: false,
+    rememberMe: false,
+
+    error: '',
+};
 
 export const authReducer = (
-    state: InitialStateType = initialState,
+    state: UserType = initialState,
     action: AuthActionsType,
-): InitialStateType => {
+): UserType => {
     switch (action.type) {
         case 'login/SET_USER':
-            return { ...state, ...action.payload };
+            return { ...action.payload };
         default:
             return state;
     }
