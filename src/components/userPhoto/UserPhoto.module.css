@@ -1,0 +1,33 @@
+.container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    margin-top: 30px;
+
+    position: relative;
+}
+
+.addPhotoBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background: #808080;
+    color: #fff;
+
+    text-align: center;
+    vertical-align: center;
+    line-height: 47px;
+    cursor: pointer;
+    transition: all .2s ease;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.addPhotoBtn:hover {
+    background: #fff;
+    color: #808080;
+    border: 1px solid #808080;
+}

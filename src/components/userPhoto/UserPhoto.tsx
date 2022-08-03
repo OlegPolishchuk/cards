@@ -1,17 +1,19 @@
 import React from 'react';
 
+import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+
 import IconUserPhoto from '../../assets/images/userPhoto.png';
 
-import { ReturnComponentType } from 'types';
+import s from './UserPhoto.module.css';
 
-export type UserPhotoType = {
-    photo?: string;
-    variant: 'small' | 'standard';
-};
+import { UserPhotoType } from 'components/userPhoto/type';
+import { ReturnComponentType } from 'types';
 
 export const UserPhoto = ({
     photo = '',
     variant,
+    isEdit = false,
+    callback,
 }: UserPhotoType): ReturnComponentType => {
     const userPhoto = photo || IconUserPhoto;
     const width = variant === 'small' ? '36px' : '96px';
@@ -20,15 +22,19 @@ export const UserPhoto = ({
 
     return (
         <div
+            className={s.container}
             style={{
-                background: `url(${userPhoto})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
+                backgroundImage: `url(${userPhoto})`,
                 width,
                 height,
-                borderRadius: '50%',
                 cursor,
             }}
-        />
+        >
+            {isEdit && (
+                <button type="button" className={s.addPhotoBtn} onClick={callback}>
+                    <AddAPhotoOutlinedIcon />
+                </button>
+            )}
+        </div>
     );
 };

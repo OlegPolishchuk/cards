@@ -1,0 +1,26 @@
+.editableName {
+    margin-top: 20px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+}
+
+.name {
+    margin-right: 15px;
+    font-size: 22px;
+}
+
+.editBtn {
+    cursor: pointer;
+    transition: color .2s ease;
+
+    position: absolute;
+    right: 0;
+    top: 4px;
+}
+
+.editBtn:hover {
+    color: #808080;
+}
