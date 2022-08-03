@@ -49,15 +49,10 @@ export const SignIn = (): ReturnComponentType => {
                 rememberMe,
             }),
         );
-        // if (isUserAuth) {
-        //     console.log(isUserAuth);
-        //     navigate('/profile');
-        // }
     };
 
     useEffect(() => {
         if (isUserAuth) {
-            console.log(isUserAuth);
             navigate('/profile');
         }
     }, [isUserAuth]);

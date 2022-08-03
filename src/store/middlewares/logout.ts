@@ -1,11 +1,13 @@
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 
 import { authAPI } from 'api';
-import { AddedUserType, RegisterUserErrorType } from 'api/types';
+import { AddedUserType } from 'api/types';
 import { REQUEST_STATUS } from 'enums';
+import { setIsUserAuth } from 'store/actions';
 import { setStatusAC } from 'store/actions/setStatus';
 import { setUser } from 'store/actions/setUser';
 import { AppThunkType } from 'store/types';
+import { errorHandler } from 'utils/errorHandler';
 import { pureUser } from 'utils/pureUser';
 
 export const logout = (): AppThunkType => async dispatch => {
@@ -14,15 +16,10 @@ export const logout = (): AppThunkType => async dispatch => {
     try {
         dispatch(setStatusAC(REQUEST_STATUS.LOADING));
         await authAPI.logout();
+        dispatch(setIsUserAuth(false));
         dispatch(setUser(user));
-    } catch (err) {
-        const error = err as AxiosError | RegisterUserErrorType;
-
-        if (axios.isAxiosError(error)) {
-            console.warn(error.message);
-        } else {
-            console.warn(error.error);
-        }
+    } catch (e) {
+        errorHandler(e as Error | AxiosError, dispatch);
     } finally {
         dispatch(setStatusAC(REQUEST_STATUS.IDLE));
     }
