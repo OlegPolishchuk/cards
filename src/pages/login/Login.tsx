@@ -9,7 +9,7 @@ import {
     Typography,
 } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
@@ -26,6 +26,8 @@ type FormType = {
 
 export const SignIn = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
+
+    const navigate = useNavigate();
 
     const [visible, visibility] = useVisibility(false);
     const [rememberMe, setRememberMe] = useState(false);
@@ -45,6 +47,7 @@ export const SignIn = (): ReturnComponentType => {
                 rememberMe,
             }),
         );
+        navigate('/profile');
     };
 
     return (
