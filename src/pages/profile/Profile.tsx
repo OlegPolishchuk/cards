@@ -11,6 +11,7 @@ import { UserDescription } from 'components/userDescription/UserDescription';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { logout } from 'store/middlewares/auth/logout';
+import { updateUser } from 'store/middlewares/auth/updateUser';
 import { selectIsUserAuth } from 'store/selectors/selectIsUserAuth/selectIsUserAuth';
 import { ReturnComponentType } from 'types';
 
@@ -20,8 +21,17 @@ export const Profile = (): ReturnComponentType => {
     const navigate = useNavigate();
 
     const isUserAuth = useTypedSelector(selectIsUserAuth);
+    const userName = useTypedSelector(state => state.auth.userData.name);
+    const userEmail = useTypedSelector(state => state.auth.userData.email);
 
-    console.log(`isUserAuth from profile => ${isUserAuth}`);
+    const editUserNameHandler = (newUSerName: string): void => {
+        const newUserData = {
+            userName: newUSerName,
+            userPhoto: '', // заглушка. Позже доделать добавление фото
+        };
+
+        dispatch(updateUser(newUserData));
+    };
 
     const editUserPhotoHandler = (): void => {
         console.log('some action');
@@ -42,7 +52,11 @@ export const Profile = (): ReturnComponentType => {
             <Box className={s.wrapper}>
                 <Title title="Personal information" />
                 <UserPhoto variant="standard" isEdit callback={editUserPhotoHandler} />
-                <UserDescription />
+                <UserDescription
+                    userName={userName}
+                    userEmail={userEmail}
+                    callback={editUserNameHandler}
+                />
                 <Button
                     variant="outlined"
                     startIcon={<LogoutIcon />}

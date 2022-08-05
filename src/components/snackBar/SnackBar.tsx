@@ -15,8 +15,6 @@ export const SnackBar = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
     const error = useTypedSelector(state => state.auth.error);
 
-    console.log(error);
-
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
         if (reason === 'clickaway') {
             return;

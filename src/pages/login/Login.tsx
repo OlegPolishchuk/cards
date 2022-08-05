@@ -52,7 +52,6 @@ export const SignIn = (): ReturnComponentType => {
     };
 
     useEffect(() => {
-        console.log(`isUserAuth => ${isUserAuth}`);
         if (isUserAuth) {
             navigate('/profile');
         }
