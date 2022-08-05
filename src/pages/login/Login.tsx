@@ -16,7 +16,7 @@ import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
 import s from 'pages/login/Login.module.css';
-import { loginUser } from 'store/middlewares/loginUser';
+import { loginUser } from 'store/middlewares/auth/loginUser';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -52,6 +52,7 @@ export const SignIn = (): ReturnComponentType => {
     };
 
     useEffect(() => {
+        console.log(`isUserAuth => ${isUserAuth}`);
         if (isUserAuth) {
             navigate('/profile');
         }

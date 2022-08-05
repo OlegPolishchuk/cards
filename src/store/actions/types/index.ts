@@ -3,3 +3,4 @@ export type { AppActionsType } from './AppActionsType';
 export type { AuthActionsType } from './AuthActionsType';
 export type { SetAuthErrorType } from './SetAuthErrorType';
 export type { SetIsUserAuthType } from './SetIsUserAuthType';
+export type { SetInitializedType } from './SetInitializedType';

@@ -10,7 +10,7 @@ import { Title } from 'components/title/Title';
 import { UserDescription } from 'components/userDescription/UserDescription';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';
 import { useAppDispatch, useTypedSelector } from 'hooks';
-import { logout } from 'store/middlewares/logout';
+import { logout } from 'store/middlewares/auth/logout';
 import { selectIsUserAuth } from 'store/selectors/selectIsUserAuth/selectIsUserAuth';
 import { ReturnComponentType } from 'types';
 
@@ -20,6 +20,8 @@ export const Profile = (): ReturnComponentType => {
     const navigate = useNavigate();
 
     const isUserAuth = useTypedSelector(selectIsUserAuth);
+
+    console.log(`isUserAuth from profile => ${isUserAuth}`);
 
     const editUserPhotoHandler = (): void => {
         console.log('some action');

@@ -10,7 +10,7 @@ import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
-import { registerUser } from 'store/middlewares/registerUser';
+import { registerUser } from 'store/middlewares/auth/registerUser';
 import { ReturnComponentType } from 'types';
 
 type FormType = {

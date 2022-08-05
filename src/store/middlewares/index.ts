@@ -1,3 +1,3 @@
-export { logout } from './logout';
-export { loginUser } from './loginUser';
-export { registerUser } from './registerUser';
+export { logout } from 'store/middlewares/auth/logout';
+export { loginUser } from 'store/middlewares/auth/loginUser';
+export { registerUser } from 'store/middlewares/auth/registerUser';

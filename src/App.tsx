@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Container } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { Header, Links } from 'components';
 import { Progress } from 'components/circularProgress/Progress';
 import { SnackBar } from 'components/snackBar/SnackBar';
 import { REQUEST_STATUS } from 'enums';
-import { useTypedSelector } from 'hooks';
+import { useAppDispatch, useTypedSelector } from 'hooks';
 import {
     ForgotPassword,
     NotFound,
@@ -16,10 +16,16 @@ import {
     Registration,
     SignIn,
 } from 'pages';
+import { initializeApp } from 'store/middlewares/app/initializeApp';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
     const status = useTypedSelector(state => state.app.status);
+
+    useEffect(() => {
+        dispatch(initializeApp());
+    }, []);
 
     return (
         <BrowserRouter>
