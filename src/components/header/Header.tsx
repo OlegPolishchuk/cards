@@ -3,10 +3,10 @@ import React from 'react';
 import { Box, Container } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-import s from './Header.module.css';
 import { StyledAppBar, StyledButton, StyledToolbar } from './styles';
 
 import logo from 'assets/images/logo.svg';
+import s from 'components/header/Header.module.scss';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';
 import { useTypedSelector } from 'hooks';
 import { selectIsUserAuth, selectUserName } from 'store/selectors';

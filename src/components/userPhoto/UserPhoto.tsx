@@ -4,9 +4,8 @@ import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 
 import IconUserPhoto from '../../assets/images/userPhoto.png';
 
-import s from './UserPhoto.module.css';
-
 import { UserPhotoType } from 'components/userPhoto/type';
+import s from 'components/userPhoto/UserPhoto.module.scss';
 import { ReturnComponentType } from 'types';
 
 export const UserPhoto = ({

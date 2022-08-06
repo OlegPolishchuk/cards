@@ -2,8 +2,7 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import s from './FormBottomText.module.css';
-
+import s from 'components/formBottomText/FormBottomText.module.scss';
 import { StyledButton } from 'components/header/styles';
 import { ReturnComponentType } from 'types';
 

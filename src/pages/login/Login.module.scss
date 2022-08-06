@@ -1,0 +1,20 @@
+@import 'src/common/style/mixins';
+
+.wrapper {
+    @include auth-wrapper();
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.error {
+  @include error-text();
+}
+
+
+.forgotPassLink {
+    align-self: flex-end;
+    color: inherit;
+}

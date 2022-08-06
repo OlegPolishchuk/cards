@@ -4,9 +4,8 @@ import { FormControl, Grid, TextField, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import s from './SignUp.module.css';
-
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
+import s from 'components/signUp/SignUp.module.scss';
 import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';

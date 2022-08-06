@@ -1,0 +1,9 @@
+@import 'src/common/style/mixins';
+
+.error {
+ @include error-text();
+}
+
+.wrapper {
+    @include auth-wrapper();
+}

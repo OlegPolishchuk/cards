@@ -4,12 +4,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Button, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import s from './Profile.module.css';
-
 import { Title } from 'components/title/Title';
 import { UserDescription } from 'components/userDescription/UserDescription';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';
 import { useAppDispatch, useTypedSelector } from 'hooks';
+import s from 'pages/profile/Profile.module.scss';
 import { logout } from 'store/middlewares/auth/logout';
 import { updateUser } from 'store/middlewares/auth/updateUser';
 import { selectIsUserAuth } from 'store/selectors/selectIsUserAuth/selectIsUserAuth';

@@ -2,8 +2,7 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import classes from './Links.module.css';
-
+import classes from 'components/links/Links.module.scss';
 import { ReturnComponentType } from 'types';
 
 export const Links = (): ReturnComponentType => {

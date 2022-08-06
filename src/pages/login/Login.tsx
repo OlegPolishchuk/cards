@@ -15,7 +15,7 @@ import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
-import s from 'pages/login/Login.module.css';
+import s from 'pages/login/Login.module.scss';
 import { loginUser } from 'store/middlewares/auth/loginUser';
 import { ReturnComponentType } from 'types';
 

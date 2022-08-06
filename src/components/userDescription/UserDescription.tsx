@@ -4,9 +4,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import { TextField } from '@mui/material';
 
-import s from './UserDescription.module.css';
-
 import { UserDescriptionType } from 'components/userDescription/type';
+import s from 'components/userDescription/UserDescription.module.scss';
 import { ReturnComponentType } from 'types';
 
 export const UserDescription = ({
