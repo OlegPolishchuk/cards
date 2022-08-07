@@ -2,4 +2,6 @@ export type {
     AddedUserType,
     RegisterUserErrorType,
     UserDataType,
-} from './registerUserTypes';
+} from 'api/auth/types/RegisterUserTypes';
+
+export type { UpdatedUserType } from 'api/auth/types/UpdatetUserType';

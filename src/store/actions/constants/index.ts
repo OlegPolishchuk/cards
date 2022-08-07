@@ -4,3 +4,5 @@ export const SET_USER = 'login/SET_USER';
 export const SET_AUTH_ERROR = 'auth/SET_AUTH_ERROR';
 export const SET_IS_USER_AUTH = 'auth/SET_IS_USER_AUTH';
 export const SET_INITIALIZED = 'app/SET_INITIALIZED';
+export const SET_IS_EMAIL_SEND = 'auth/SET_IS_EMAIL_SEND';
+export const SET_USER_EMAIL_FOR_CHECK = 'auth/SET_USER_EMAIL_FOR_CHECK';

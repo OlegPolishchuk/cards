@@ -17,9 +17,10 @@ const initialState = {
         token: '',
         tokenDeathTime: 0,
     },
-
+    userEmailFoCheck: '',
     error: '',
     isUserAuth: false,
+    isEmailSend: false,
 };
 
 export const authReducer = (
@@ -33,6 +34,13 @@ export const authReducer = (
             return { ...state, isUserAuth: action.payload.isUserAuth };
         case 'auth/SET_AUTH_ERROR':
             return { ...state, error: action.payload.error };
+        case 'auth/SET_IS_EMAIL_SEND':
+            return { ...state, isEmailSend: action.payload.isEmailSend };
+        case 'auth/SET_USER_EMAIL_FOR_CHECK':
+            return {
+                ...state,
+                ...action.payload,
+            };
         default:
             return state;
     }

@@ -1,0 +1,17 @@
+@import "src/common/style/mixins";
+
+.wrapper {
+  @include auth-wrapper();
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 380px;
+
+
+  .tooltip {
+    opacity: .6;
+    margin-top: 20px;
+  }
+}

@@ -1,7 +1,6 @@
-import { instance } from './config';
-
+import { UpdatedUserType } from 'api/auth/types/UpdatetUserType';
+import { instance } from 'api/config';
 import { AddedUserType, RegisterUserErrorType, UserDataType } from 'api/types';
-import { UpdatedUserType } from 'api/types/UpdatetUserType';
 
 export const authAPI = {
     login: async (email: string, password: string, rememberMe: boolean) => {
@@ -23,6 +22,15 @@ export const authAPI = {
         return instance.put<UpdatedUserType>('auth/me', {
             name,
             avatar,
+        });
+    },
+    forgotPassword: (email: string) => {
+        return instance.post('auth/forgot', {
+            email,
+            message: `<div style='background-color: lime; padding: 15px'>
+                          password recovery link: <a href='http://localhost:3000/password_recovery/$token$'>link</a>
+                      </div>`,
+            from: 'test-front-admin <hvi17@yandex.ru>',
         });
     },
 };

@@ -8,13 +8,22 @@ import { ReturnComponentType } from 'types';
 
 type PropsType = {
     btnTitle: string;
-    redirectUrl: string;
-    tooltipText: string;
-    redirectLinkText: string;
+    redirectUrl?: string;
+    tooltipText?: string;
+    redirectLinkText?: string;
+    callback?: () => void;
 };
 
 export const FormBottomText = (props: PropsType): ReturnComponentType => {
-    const { btnTitle, redirectUrl, tooltipText, redirectLinkText } = props;
+    const { btnTitle, redirectUrl, tooltipText, redirectLinkText, callback } = props;
+
+    const finalRedirectUrl = redirectUrl || '';
+
+    const btnHandler = (): void => {
+        if (callback) {
+            callback();
+        }
+    };
 
     return (
         <>
@@ -23,11 +32,12 @@ export const FormBottomText = (props: PropsType): ReturnComponentType => {
                 variant="contained"
                 color="primary"
                 style={{ marginTop: '60px' }}
+                onClick={btnHandler}
             >
                 {btnTitle}
             </StyledButton>
             <p className={s.tooltip}>{tooltipText}</p>
-            <NavLink to={redirectUrl} className={s.link}>
+            <NavLink to={finalRedirectUrl} className={s.link}>
                 {redirectLinkText}
             </NavLink>
         </>
