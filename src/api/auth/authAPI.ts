@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { UpdatedUserType } from 'api/auth/types/UpdatetUserType';
 import { instance } from 'api/config';
 import { AddedUserType, RegisterUserErrorType, UserDataType } from 'api/types';
@@ -25,12 +27,16 @@ export const authAPI = {
         });
     },
     forgotPassword: (email: string) => {
-        return instance.post('auth/forgot', {
-            email,
-            message: `<div style='background-color: lime; padding: 15px'>
-                          password recovery link: <a href='http://localhost:3000/password_recovery/$token$'>link</a>
+        return axios.post<{ info: string; error: string }>(
+            'https://neko-back.herokuapp.com/2.0/auth/forgot',
+            {
+                email,
+                from: 'test-front-admin <hvi17@yandex.ru>',
+                message: `<div style='background-color: lime; padding: 15px'>
+                          password recovery link: <a href='http://localhost:3000/#/password_recovery/$token$'>link</a>
                       </div>`,
-            from: 'test-front-admin <hvi17@yandex.ru>',
-        });
+            },
+            { withCredentials: true },
+        );
     },
 };
