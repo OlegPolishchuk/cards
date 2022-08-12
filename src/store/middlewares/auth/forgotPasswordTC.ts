@@ -6,7 +6,7 @@ import { setIsEmailSendAC, setStatusAC, setUserEmailForCheckAC } from 'store/act
 import { AppThunkType } from 'store/types';
 import { errorHandler } from 'utils/errorHandler';
 
-export const forgotPassword =
+export const forgotPasswordTC =
     (email: string): AppThunkType =>
     async dispatch => {
         try {

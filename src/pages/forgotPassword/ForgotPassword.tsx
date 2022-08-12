@@ -9,7 +9,7 @@ import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { Title } from 'components/title/Title';
 import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch, useTypedSelector } from 'hooks';
-import { forgotPassword } from 'store/middlewares/auth/forgotPassword';
+import { forgotPasswordTC } from 'store/middlewares/auth/forgotPasswordTC';
 import { selectIsEmailSend } from 'store/selectors/selectIsEmailSend/selectIsEmailSend';
 import { ReturnComponentType } from 'types';
 
@@ -39,7 +39,7 @@ export const ForgotPassword = (): ReturnComponentType => {
 
     const sendHandler = (): void => {
         if (validEmail || checkMail(value, EMAIL_REG_EXP)) {
-            dispatch(forgotPassword(value));
+            dispatch(forgotPasswordTC(value));
         } else {
             setError(true);
             setLabel('Invalid email');

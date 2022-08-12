@@ -2,18 +2,18 @@ import { AxiosError } from 'axios';
 
 import { authAPI } from 'api';
 import { REQUEST_STATUS } from 'enums';
-import { setInitializedAC, setIsUserAuth, setStatusAC, setUser } from 'store/actions';
+import { setInitializedAC, setIsUserAuthAC, setStatusAC, setUserAC } from 'store/actions';
 import { AppThunkType } from 'store/types';
 import { errorHandler } from 'utils/errorHandler';
 
-export const initializeApp = (): AppThunkType => async (dispatch, getState) => {
+export const initializeAppTC = (): AppThunkType => async (dispatch, getState) => {
     try {
         const response = await authAPI.getMe();
 
         dispatch(setStatusAC(REQUEST_STATUS.LOADING));
 
-        dispatch(setUser(response.data));
-        dispatch(setIsUserAuth(true));
+        dispatch(setUserAC(response.data));
+        dispatch(setIsUserAuthAC(true));
     } catch (e) {
         const { isUserAuth } = getState().auth;
 

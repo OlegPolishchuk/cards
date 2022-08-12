@@ -9,8 +9,8 @@ import { UserDescription } from 'components/userDescription/UserDescription';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import s from 'pages/profile/Profile.module.scss';
-import { logout } from 'store/middlewares/auth/logout';
-import { updateUser } from 'store/middlewares/auth/updateUser';
+import { logoutTC } from 'store/middlewares/auth/logoutTC';
+import { updateUserTC } from 'store/middlewares/auth/updateUserTC';
 import { selectIsUserAuth } from 'store/selectors/selectIsUserAuth/selectIsUserAuth';
 import { ReturnComponentType } from 'types';
 
@@ -29,7 +29,7 @@ export const Profile = (): ReturnComponentType => {
             userPhoto: '', // заглушка. Позже доделать добавление фото
         };
 
-        dispatch(updateUser(newUserData));
+        dispatch(updateUserTC(newUserData));
     };
 
     const editUserPhotoHandler = (): void => {
@@ -37,7 +37,7 @@ export const Profile = (): ReturnComponentType => {
     };
 
     const logoutHandler = (): void => {
-        dispatch(logout());
+        dispatch(logoutTC());
     };
 
     useEffect(() => {

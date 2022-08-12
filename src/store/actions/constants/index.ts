@@ -6,3 +6,5 @@ export const SET_IS_USER_AUTH = 'auth/SET_IS_USER_AUTH';
 export const SET_INITIALIZED = 'app/SET_INITIALIZED';
 export const SET_IS_EMAIL_SEND = 'auth/SET_IS_EMAIL_SEND';
 export const SET_USER_EMAIL_FOR_CHECK = 'auth/SET_USER_EMAIL_FOR_CHECK';
+export const SET_NEW_PASSWORD = 'auth/SET_NEW_PASSWORD';
+export const SET_IS_PASSWORD_CHANGED = 'auth/SET_IS_PASSWORD_CHANGED';

@@ -2,7 +2,12 @@ import axios from 'axios';
 
 import { UpdatedUserType } from 'api/auth/types/UpdatetUserType';
 import { instance } from 'api/config';
-import { AddedUserType, RegisterUserErrorType, UserDataType } from 'api/types';
+import {
+    AddedUserType,
+    RegisterUserErrorType,
+    SetNewPasswordType,
+    UserDataType,
+} from 'api/types';
 
 export const authAPI = {
     login: async (email: string, password: string, rememberMe: boolean) => {
@@ -38,5 +43,11 @@ export const authAPI = {
             },
             { withCredentials: true },
         );
+    },
+    setNewPassword: (password: string, token: string) => {
+        return instance.post<SetNewPasswordType>('auth/set-new-password', {
+            password,
+            resetPasswordToken: token,
+        });
     },
 };

@@ -3,21 +3,21 @@ import { AxiosError } from 'axios';
 import { authAPI } from 'api';
 import { AddedUserType } from 'api/types';
 import { REQUEST_STATUS } from 'enums';
-import { setIsUserAuth } from 'store/actions';
-import { setStatusAC } from 'store/actions/setStatus';
-import { setUser } from 'store/actions/setUser';
+import { setIsUserAuthAC } from 'store/actions';
+import { setStatusAC } from 'store/actions/setStatusAC';
+import { setUserAC } from 'store/actions/setUserAC';
 import { AppThunkType } from 'store/types';
 import { errorHandler } from 'utils/errorHandler';
 import { pureUser } from 'utils/pureUser';
 
-export const logout = (): AppThunkType => async dispatch => {
+export const logoutTC = (): AppThunkType => async dispatch => {
     const user: AddedUserType = pureUser;
 
     try {
         dispatch(setStatusAC(REQUEST_STATUS.LOADING));
         await authAPI.logout();
-        dispatch(setIsUserAuth(false));
-        dispatch(setUser(user));
+        dispatch(setIsUserAuthAC(false));
+        dispatch(setUserAC(user));
     } catch (e) {
         errorHandler(e as Error | AxiosError, dispatch);
     } finally {

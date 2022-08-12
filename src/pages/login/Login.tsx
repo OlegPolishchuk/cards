@@ -16,7 +16,7 @@ import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
 import s from 'pages/login/Login.module.scss';
-import { loginUser } from 'store/middlewares/auth/loginUser';
+import { loginUserTC } from 'store/middlewares/auth/loginUserTC';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -38,17 +38,19 @@ export const SignIn = (): ReturnComponentType => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<FormType>({ mode: 'onBlur' });
 
     const onSubmit: SubmitHandler<FormType> = data => {
         dispatch(
-            loginUser({
+            loginUserTC({
                 email: data.email,
                 password: data.password,
                 rememberMe,
             }),
         );
+        reset();
     };
 
     useEffect(() => {

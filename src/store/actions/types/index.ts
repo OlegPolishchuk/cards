@@ -6,3 +6,5 @@ export type { SetIsUserAuthType } from './SetIsUserAuthType';
 export type { SetInitializedType } from './SetInitializedType';
 export type { IsEmailSendType } from './IsEmailSendType';
 export type { SetUserEmailForCheckType } from './SetUserEmailForCheckType';
+export type { SetNewPasswordType } from './SetNewPasswordType';
+export type { SetIsPasswordChangedType } from './SetIsPasswordChangedType';

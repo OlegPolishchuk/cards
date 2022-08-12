@@ -9,7 +9,7 @@ import s from 'components/signUp/SignUp.module.scss';
 import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
-import { registerUser } from 'store/middlewares/auth/registerUser';
+import { registerUserTC } from 'store/middlewares/auth/registerUserTC';
 import { ReturnComponentType } from 'types';
 
 type FormType = {
@@ -36,7 +36,7 @@ export const SignUp = (): ReturnComponentType => {
 
     const onSubmit: SubmitHandler<FormType> = data => {
         if (data.password === data.confirmPassword) {
-            dispatch(registerUser({ email: data.email, password: data.password }));
+            dispatch(registerUserTC({ email: data.email, password: data.password }));
             reset();
             navigate('/login');
         } else {

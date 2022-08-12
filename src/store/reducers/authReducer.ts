@@ -20,7 +20,9 @@ const initialState = {
     userEmailFoCheck: '',
     error: '',
     isUserAuth: false,
-    isEmailSend: false,
+    isEmailSent: false,
+    info: '',
+    isPasswordChanged: false,
 };
 
 export const authReducer = (
@@ -35,11 +37,21 @@ export const authReducer = (
         case 'auth/SET_AUTH_ERROR':
             return { ...state, error: action.payload.error };
         case 'auth/SET_IS_EMAIL_SEND':
-            return { ...state, isEmailSend: action.payload.isEmailSend };
+            return { ...state, isEmailSent: action.payload.isEmailSend };
         case 'auth/SET_USER_EMAIL_FOR_CHECK':
             return {
                 ...state,
                 ...action.payload,
+            };
+        case 'auth/SET_NEW_PASSWORD':
+            return {
+                ...state,
+                info: action.payload.info,
+            };
+        case 'auth/SET_IS_PASSWORD_CHANGED':
+            return {
+                ...state,
+                isPasswordChanged: action.payload.isPasswordChanged,
             };
         default:
             return state;

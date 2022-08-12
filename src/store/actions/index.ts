@@ -1,7 +1,8 @@
 export { setAuthErrorAC } from './setAuthErrorAC';
-export { setUser } from './setUser';
-export { setStatusAC } from './setStatus';
-export { setIsUserAuth } from './setIsUserAuth';
-export { setInitializedAC } from './setInitialized';
+export { setUserAC } from 'store/actions/setUserAC';
+export { setStatusAC } from 'store/actions/setStatusAC';
+export { setIsUserAuthAC } from 'store/actions/setIsUserAuthAC';
+export { setInitializedAC } from 'store/actions/setInitializedAC';
 export { setIsEmailSendAC } from './setIsEmailSendAC';
-export { setUserEmailForCheckAC } from './setUserEmailForCheck';
+export { setUserEmailForCheckAC } from 'store/actions/setUserEmailForCheckAC';
+export { setNewPasswordAC } from './setNewPasswordAC';

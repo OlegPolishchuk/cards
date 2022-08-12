@@ -3,10 +3,10 @@ import axios, { AxiosError } from 'axios';
 import { authAPI } from 'api';
 import { RegisterUserErrorType, UserDataType } from 'api/types';
 import { REQUEST_STATUS } from 'enums';
-import { setStatusAC } from 'store/actions/setStatus';
+import { setStatusAC } from 'store/actions/setStatusAC';
 import { AppThunkType } from 'store/types';
 
-export const registerUser =
+export const registerUserTC =
     ({ email, password }: UserDataType): AppThunkType =>
     async dispatch => {
         try {

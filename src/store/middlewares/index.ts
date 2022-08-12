@@ -1,3 +1,7 @@
-export { logout } from 'store/middlewares/auth/logout';
-export { loginUser } from 'store/middlewares/auth/loginUser';
-export { registerUser } from 'store/middlewares/auth/registerUser';
+export { logoutTC } from 'store/middlewares/auth/logoutTC';
+export { loginUserTC } from 'store/middlewares/auth/loginUserTC';
+export { registerUserTC } from 'store/middlewares/auth/registerUserTC';
+export { initializeAppTC } from 'store/middlewares/app/initializeAppTC';
+export { forgotPasswordTC } from './auth/forgotPasswordTC';
+export { updateUserTC } from './auth/updateUserTC';
+export { setNewPasswordTC } from './auth/setNewPasswordTC';

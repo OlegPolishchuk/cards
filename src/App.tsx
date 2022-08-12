@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { Container } from '@mui/material';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { Header, Links } from 'components';
 import { Progress } from 'components/circularProgress/Progress';
@@ -10,7 +10,7 @@ import { SnackBar } from 'components/snackBar/SnackBar';
 import { REQUEST_STATUS } from 'enums';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { ForgotPassword, NotFound, Profile, Registration, SignIn } from 'pages';
-import { initializeApp } from 'store/middlewares/app/initializeApp';
+import { initializeAppTC } from 'store/middlewares/app/initializeAppTC';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
@@ -18,11 +18,11 @@ const App = (): ReturnComponentType => {
     const status = useTypedSelector(state => state.app.status);
 
     useEffect(() => {
-        dispatch(initializeApp());
+        dispatch(initializeAppTC());
     }, []);
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Header />
             <Container fixed>
                 <Routes>
@@ -38,7 +38,7 @@ const App = (): ReturnComponentType => {
             <Links />
             <SnackBar />
             {status === REQUEST_STATUS.LOADING && <Progress />}
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
