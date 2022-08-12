@@ -7,13 +7,14 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
-import { appReducer, authReducer } from 'store/reducers';
+import { appReducer, authReducer, packReducer } from 'store/reducers';
 
 const composedEnhancers = compose(applyMiddleware(thunk), devToolsEnhancer());
 
 const rootReducer = combineReducers({
     app: appReducer,
     auth: authReducer,
+    packs: packReducer,
 });
 
 export const store = createStore(rootReducer, undefined, composedEnhancers);

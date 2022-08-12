@@ -1,0 +1,18 @@
+import { PackType } from 'store/reducers/types';
+
+export type createNewPackType = {
+    name: string;
+    deckCover: string;
+    isPrivate: boolean;
+};
+
+export type GetCardsResponseType = {
+    cardPacks: PackType[];
+    page: number;
+    pageCount: number;
+    cardPacksTotalCount: number;
+    minCardsCount: number;
+    maxCardsCount: number;
+    token: string;
+    tokenDeathTime: number;
+};

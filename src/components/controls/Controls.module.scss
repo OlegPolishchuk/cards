@@ -1,0 +1,38 @@
+.controls {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 50px;
+
+  .search {
+    min-width: 300px;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+
+  min-width: 400px;
+
+  .btn {
+    min-width: 120px;
+    border-radius: 5px;
+  }
+}
+
+.sliderContainer {
+  display: flex;
+  justify-content: space-between;
+
+  min-width: 300px;
+
+  .sliderValue {
+    display: block;
+    height: 36px;
+
+    margin: 0 10px;
+
+    border: 1px solid #D9d9d9
+  }
+}

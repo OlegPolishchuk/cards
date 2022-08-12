@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
     Checkbox,
@@ -9,7 +9,7 @@ import {
     Typography,
 } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
 import { FormBottomText } from 'components/formBottomText/FormBottomText';
 import { EMAIL_REG_EXP } from 'constants/formRules';
@@ -26,8 +26,6 @@ type FormType = {
 
 export const SignIn = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
-
-    const navigate = useNavigate();
 
     const isUserAuth = useTypedSelector(state => state.auth.isUserAuth);
 
@@ -53,11 +51,9 @@ export const SignIn = (): ReturnComponentType => {
         reset();
     };
 
-    useEffect(() => {
-        if (isUserAuth) {
-            navigate('/profile');
-        }
-    }, [isUserAuth]);
+    if (isUserAuth) {
+        return <Navigate to="/profile" />;
+    }
 
     return (
         <Grid container justifyContent="center">

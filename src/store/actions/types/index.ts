@@ -8,3 +8,5 @@ export type { IsEmailSendType } from './IsEmailSendType';
 export type { SetUserEmailForCheckType } from './SetUserEmailForCheckType';
 export type { SetNewPasswordType } from './SetNewPasswordType';
 export type { SetIsPasswordChangedType } from './SetIsPasswordChangedType';
+export type { SetPacksType } from './SetPacksType';
+export type { PacksActionType } from './PacksActionType';

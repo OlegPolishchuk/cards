@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Button, Container } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { BreadCrumbs } from 'components/breadCrumbs/BreadCrumbs';
 import { Title } from 'components/title/Title';
@@ -17,8 +17,6 @@ import { ReturnComponentType } from 'types';
 
 export const Profile = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
-
-    const navigate = useNavigate();
 
     const isUserAuth = useTypedSelector(selectIsUserAuth);
     const userName = useTypedSelector(state => state.auth.userData.name);
@@ -41,11 +39,9 @@ export const Profile = (): ReturnComponentType => {
         dispatch(logoutTC());
     };
 
-    useEffect(() => {
-        if (!isUserAuth) {
-            navigate('/login');
-        }
-    });
+    if (!isUserAuth) {
+        return <Navigate to="/login" />;
+    }
 
     return (
         <>

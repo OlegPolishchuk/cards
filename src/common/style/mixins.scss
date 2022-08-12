@@ -26,3 +26,10 @@
   line-height: 14px;
   min-height: 14px;
 }
+
+@mixin main-wrapper() {
+  display: flex;
+  flex-direction: column;
+
+  padding: 40px 25px;
+}
