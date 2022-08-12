@@ -10,6 +10,7 @@ import { SnackBar } from 'components/snackBar/SnackBar';
 import { REQUEST_STATUS } from 'enums';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { ForgotPassword, NotFound, Profile, Registration, SignIn } from 'pages';
+import { Packs } from 'pages/packs/Packs';
 import { initializeAppTC } from 'store/middlewares/app/initializeAppTC';
 import { ReturnComponentType } from 'types';
 
@@ -32,6 +33,7 @@ const App = (): ReturnComponentType => {
                     <Route path="profile" element={<Profile />} />
                     <Route path="password_recovery/:token" element={<SetNewPassword />} />
                     <Route path="enter_new_password" element={<ForgotPassword />} />
+                    <Route path="packs" element={<Packs />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Container>

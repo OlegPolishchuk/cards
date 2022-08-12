@@ -64,7 +64,7 @@ export const SetNewPassword = (): ReturnComponentType => {
         return () => {
             clearInterval(intervalID);
         };
-    }, [isPasswordChanged, time]);
+    }, [isPasswordChanged, time, navigate]);
 
     if (isPasswordChanged) {
         return (

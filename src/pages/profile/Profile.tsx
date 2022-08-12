@@ -4,6 +4,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Button, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+import { BreadCrumbs } from 'components/breadCrumbs/BreadCrumbs';
 import { Title } from 'components/title/Title';
 import { UserDescription } from 'components/userDescription/UserDescription';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';
@@ -47,23 +48,30 @@ export const Profile = (): ReturnComponentType => {
     });
 
     return (
-        <Container maxWidth="sm">
-            <Box className={s.wrapper}>
-                <Title title="Personal information" />
-                <UserPhoto variant="standard" isEdit callback={editUserPhotoHandler} />
-                <UserDescription
-                    userName={userName}
-                    userEmail={userEmail}
-                    callback={editUserNameHandler}
-                />
-                <Button
-                    variant="outlined"
-                    startIcon={<LogoutIcon />}
-                    onClick={logoutHandler}
-                >
-                    Logout
-                </Button>
-            </Box>
-        </Container>
+        <>
+            <BreadCrumbs linkTo="packs" spanText="Back to Packs list" />
+            <Container maxWidth="sm">
+                <Box className={s.wrapper}>
+                    <Title title="Personal information" />
+                    <UserPhoto
+                        variant="standard"
+                        isEdit
+                        callback={editUserPhotoHandler}
+                    />
+                    <UserDescription
+                        userName={userName}
+                        userEmail={userEmail}
+                        callback={editUserNameHandler}
+                    />
+                    <Button
+                        variant="outlined"
+                        startIcon={<LogoutIcon />}
+                        onClick={logoutHandler}
+                    >
+                        Logout
+                    </Button>
+                </Box>
+            </Container>
+        </>
     );
 };
