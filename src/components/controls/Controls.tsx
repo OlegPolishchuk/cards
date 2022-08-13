@@ -24,7 +24,6 @@ export const Controls = (): ReturnComponentType => {
     };
 
     useEffect(() => {
-        console.log(debouncedValue);
         dispatch(setPacksNameAC(debouncedValue));
         searchParams.set('packName', debouncedValue);
 

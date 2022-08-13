@@ -12,3 +12,4 @@ export type { SetPacksType } from './SetPacksType';
 export type { PacksActionType } from './PacksActionType';
 export type { SetPacksSearchParamsType } from './SetPacksSearchParamsType';
 export type { SetPacksNameType } from './SetPacksNameType';
+export type { SetPackTableDataType } from './SetPackTableDataType';

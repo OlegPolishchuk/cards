@@ -11,3 +11,4 @@ export const SET_IS_PASSWORD_CHANGED = 'auth/SET_IS_PASSWORD_CHANGED';
 export const SET_PACKS = 'pack/SET_PACKS';
 export const SET_PACKS_SEARCH_PARAMS = 'packs/SET_SEARCH_PARAMS';
 export const SET_PACKS_NAME = 'packs/SET_PACKS_NAME';
+export const SET_PACKS_TABLE_DATA = 'packs/SET_PACKS_TABLE_DATA';

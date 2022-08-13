@@ -4,3 +4,5 @@ export type CommonTableType = {
     headerTitles: string[];
     packs: PackType[];
 };
+
+export type OrderDirectionType = 'asc' | 'desc';
