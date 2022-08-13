@@ -1,3 +1,6 @@
 export { EMAIL_REG_EXP } from './formRules';
-export { PackTableHeadTitles } from './PackTableHeadTitles/PackTableHeadTitles';
-export { MAX_CARD_COUNT } from './maxCardCount/maxCardCount';
+export { PackTableHeadTitles } from 'constants/packsSearchParams/packTableHeadTitles/packTableHeadTitles';
+export { MAX_CARD_COUNT } from './packsSearchParams/maxCardCount/maxCardCount';
+export { DEFAULT_PAGE_COUNT } from './packsSearchParams/defaultPageCount/defaultPageCount';
+export { MIN_NUMBER_OF_PAGE } from './packsSearchParams/minNumberOfPage/minNumberOfPage';
+export { USE_DEBOUNCE_TIMER } from './useDebounceTimer/useDebounceTymer';

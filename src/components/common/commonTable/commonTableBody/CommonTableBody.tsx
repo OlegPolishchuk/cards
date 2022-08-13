@@ -13,7 +13,7 @@ export const CommonTableBody = ({ rows }: CommonTableBodyType): ReturnComponentT
     return (
         <TableBody>
             {rows.map(row => (
-                <TableRow key={row.name} hover className={s.row}>
+                <TableRow key={`${row.name}${row.created}`} hover className={s.row}>
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.cardsCount}</TableCell>
                     <TableCell>{row.updated}</TableCell>

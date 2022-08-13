@@ -1,4 +1,8 @@
-import { SET_PACKS } from 'store/actions/constants';
+import {
+    SET_PACKS,
+    SET_PACKS_NAME,
+    SET_PACKS_SEARCH_PARAMS,
+} from 'store/actions/constants';
 import { PacksActionType } from 'store/actions/types';
 import { PackReducerType } from 'store/reducers/types/PackReducerType';
 
@@ -27,6 +31,16 @@ export const packReducer = (
             return {
                 ...state,
                 cardPacks: action.payload.packs,
+            };
+        case SET_PACKS_SEARCH_PARAMS:
+            return {
+                ...state,
+                ...action.payload.params,
+            };
+        case SET_PACKS_NAME:
+            return {
+                ...state,
+                packName: action.payload.packName,
             };
         default:
             return state;

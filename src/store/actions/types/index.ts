@@ -10,3 +10,5 @@ export type { SetNewPasswordType } from './SetNewPasswordType';
 export type { SetIsPasswordChangedType } from './SetIsPasswordChangedType';
 export type { SetPacksType } from './SetPacksType';
 export type { PacksActionType } from './PacksActionType';
+export type { SetPacksSearchParamsType } from './SetPacksSearchParamsType';
+export type { SetPacksNameType } from './SetPacksNameType';

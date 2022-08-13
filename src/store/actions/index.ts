@@ -6,3 +6,5 @@ export { setInitializedAC } from 'store/actions/setInitializedAC';
 export { setIsEmailSendAC } from './setIsEmailSendAC';
 export { setUserEmailForCheckAC } from 'store/actions/setUserEmailForCheckAC';
 export { setNewPasswordAC } from './setNewPasswordAC';
+export { setPacksSearchParamsAC } from './setPacksSearchParamsAC';
+export { setPacksNameAC } from './setPacksNameAC';

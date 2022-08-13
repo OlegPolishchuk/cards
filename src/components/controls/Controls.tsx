@@ -1,29 +1,54 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { Slider, TextField } from '@mui/material';
+import { Button, ButtonGroup, Slider, TextField } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
 
 import s from './Controls.module.scss';
 
-import { StyledButton } from 'components/header/styles';
+import { USE_DEBOUNCE_TIMER } from 'constants/useDebounceTimer/useDebounceTymer';
+import { useAppDispatch } from 'hooks';
+import { useDebounce } from 'hooks/useDebounce/useDebounce';
+import { setPacksNameAC } from 'store/actions';
 import { ReturnComponentType } from 'types';
 
 export const Controls = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [value, setValue] = useState(searchParams.get('packName') || '');
+    const debouncedValue = useDebounce<string>(value, USE_DEBOUNCE_TIMER);
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        setValue(e.target.value);
+    };
+
+    useEffect(() => {
+        console.log(debouncedValue);
+        dispatch(setPacksNameAC(debouncedValue));
+        searchParams.set('packName', debouncedValue);
+
+        setSearchParams(searchParams);
+    }, [debouncedValue]);
+
     return (
         <div className={s.controls}>
             <TextField
+                value={value}
                 label="Search"
                 variant="outlined"
                 size="small"
                 className={s.search}
+                onChange={handleChange}
             />
-            <div className={s.btnContainer}>
-                <StyledButton variant="contained" color="primary" className={s.btn}>
+            <ButtonGroup className={s.btnContainer}>
+                <Button variant="outlined" className={s.btn}>
                     My
-                </StyledButton>
-                <StyledButton variant="contained" color="primary" className={s.btn}>
+                </Button>
+                <Button variant="outlined" className={s.btn}>
                     All
-                </StyledButton>
-            </div>
+                </Button>
+            </ButtonGroup>
             <div className={s.sliderContainer}>
                 <span className={s.sliderValue} />
                 <Slider />

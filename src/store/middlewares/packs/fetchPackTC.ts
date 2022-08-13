@@ -7,7 +7,7 @@ import { setPacksAC } from 'store/actions/setPacksAC';
 import { AppThunkType } from 'store/types';
 import { errorHandler } from 'utils/errorHandler';
 
-export const setAllPacksTC = (): AppThunkType => async (dispatch, getState) => {
+export const fetchPackTC = (): AppThunkType => async (dispatch, getState) => {
     try {
         dispatch(setStatusAC(REQUEST_STATUS.LOADING));
 
@@ -24,9 +24,9 @@ export const setAllPacksTC = (): AppThunkType => async (dispatch, getState) => {
             min,
             max,
             page,
-            user_id,
             pageCount,
             packName,
+            user_id,
         });
 
         dispatch(setPacksAC(response.data.cardPacks));

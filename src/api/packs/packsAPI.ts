@@ -9,8 +9,8 @@ export const packsAPI = {
         page,
         sortPacks,
         pageCount,
-        user_id,
         max,
+        user_id,
     }: PacksSearchParamsType) => {
         return instance.get<GetCardsResponseType>('cards/pack', {
             params: {
