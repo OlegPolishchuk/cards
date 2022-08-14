@@ -11,6 +11,7 @@ import { setSortPacksAC } from 'store/actions';
 import { setPacksTableDataAC } from 'store/actions/setPacksTableDataAC';
 import { PacksSortType } from 'store/reducers/types';
 import { PackTableDataType } from 'store/reducers/types/PackTableDataType';
+import { selectPacksTableData } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 export const CommonTableHead = (): ReturnComponentType => {
@@ -18,9 +19,7 @@ export const CommonTableHead = (): ReturnComponentType => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const td = useTypedSelector(state => state.packs.tableData);
-
-    console.log(td);
+    const td = useTypedSelector(selectPacksTableData);
 
     const handleClick = (td: PackTableDataType): void => {
         const { isSorted, id, direction, search } = td;

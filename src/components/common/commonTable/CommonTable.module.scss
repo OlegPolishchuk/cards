@@ -4,6 +4,10 @@
 
   .tableHead {
     background: #EFEFEF;
+
+    th {
+      font-weight: bold;
+    }
   }
 
   .icon {
@@ -24,6 +28,8 @@
 
     td {
       max-width: 400px;
+      text-overflow: ellipsis;
+
     }
   }
 }
