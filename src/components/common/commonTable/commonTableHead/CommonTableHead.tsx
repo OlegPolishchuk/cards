@@ -20,9 +20,11 @@ export const CommonTableHead = (): ReturnComponentType => {
 
     const td = useTypedSelector(state => state.packs.tableData);
 
+    console.log(td);
+
     const handleClick = (td: PackTableDataType): void => {
         const { isSorted, id, direction, search } = td;
-        const searchIndex = direction === 'asc' ? '0' : '1';
+        const searchIndex = direction === 'asc' ? '1' : '0';
 
         const searchTitle = `${searchIndex}${search}` as PacksSortType;
 

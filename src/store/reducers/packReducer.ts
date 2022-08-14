@@ -28,7 +28,7 @@ const initialState: PackReducerType = {
         {
             id: 3,
             title: 'Last Updated',
-            search: 'updates',
+            search: 'updated',
             isSorted: true,
             direction: 'asc',
         },
