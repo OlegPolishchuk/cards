@@ -20,6 +20,8 @@ export const Controls = (): ReturnComponentType => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
+    const [activeBtnAll, setActiveBtnAll] = useState(true);
+
     const [value, setValue] = useState(searchParams.get('packName') || '');
     const debouncedValue = useDebounce<string>(value, USE_DEBOUNCE_TIMER);
 
@@ -30,6 +32,7 @@ export const Controls = (): ReturnComponentType => {
     const handleSortMy = (): void => {
         dispatch(setPacksUserIdAC(user_id));
         searchParams.set('user_id', user_id);
+        setActiveBtnAll(false);
 
         setSearchParams(searchParams);
     };
@@ -37,6 +40,7 @@ export const Controls = (): ReturnComponentType => {
     const handleSortAll = (): void => {
         dispatch(setPacksUserIdAC(''));
         searchParams.set('user_id', '');
+        setActiveBtnAll(true);
 
         setSearchParams(searchParams);
     };
@@ -59,10 +63,18 @@ export const Controls = (): ReturnComponentType => {
                 onChange={handleChange}
             />
             <ButtonGroup className={s.btnContainer}>
-                <Button variant="outlined" className={s.btn} onClick={handleSortMy}>
+                <Button
+                    variant={activeBtnAll ? 'outlined' : 'contained'}
+                    className={s.btn}
+                    onClick={handleSortMy}
+                >
                     My
                 </Button>
-                <Button variant="outlined" className={s.btn} onClick={handleSortAll}>
+                <Button
+                    variant={activeBtnAll ? 'contained' : 'outlined'}
+                    className={s.btn}
+                    onClick={handleSortAll}
+                >
                     All
                 </Button>
             </ButtonGroup>
