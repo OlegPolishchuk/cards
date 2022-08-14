@@ -8,3 +8,4 @@ export { setUserEmailForCheckAC } from 'store/actions/setUserEmailForCheckAC';
 export { setNewPasswordAC } from './setNewPasswordAC';
 export { setPacksSearchParamsAC } from './setPacksSearchParamsAC';
 export { setPacksNameAC } from './setPacksNameAC';
+export { setSortPacksAC } from './setSortPacksAC';

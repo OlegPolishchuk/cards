@@ -17,7 +17,7 @@ export const CommonTableBody = ({ rows }: CommonTableBodyType): ReturnComponentT
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.cardsCount}</TableCell>
                     <TableCell>{row.updated}</TableCell>
-                    <TableCell>{row.created}</TableCell>
+                    <TableCell>{row.user_name}</TableCell>
                     <TableCell>
                         <EditOutlinedIcon className={s.icon} />
                         <DeleteOutlineOutlinedIcon className={s.icon} />

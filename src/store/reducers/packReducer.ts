@@ -3,6 +3,7 @@ import {
     SET_PACKS_NAME,
     SET_PACKS_SEARCH_PARAMS,
     SET_PACKS_TABLE_DATA,
+    SET_SORT_PACKS,
 } from 'store/actions/constants';
 import { PacksActionType } from 'store/actions/types';
 import { PackReducerType } from 'store/reducers/types/PackReducerType';
@@ -22,11 +23,23 @@ const initialState: PackReducerType = {
     sortPacks: '0updated',
     user_id: '',
     tableData: [
-        { id: 1, title: 'Name', isSorted: true, direction: 'asc' },
-        { id: 2, title: 'Cards', isSorted: true, direction: 'asc' },
-        { id: 3, title: 'Last Updated', isSorted: true, direction: 'asc' },
-        { id: 4, title: 'Created by', isSorted: true, direction: 'asc' },
-        { id: 5, title: 'Actions', isSorted: false, direction: 'asc' },
+        { id: 1, title: 'Name', search: 'name', isSorted: true, direction: 'asc' },
+        { id: 2, title: 'Cards', search: 'cardsCount', isSorted: true, direction: 'asc' },
+        {
+            id: 3,
+            title: 'Last Updated',
+            search: 'updates',
+            isSorted: true,
+            direction: 'asc',
+        },
+        {
+            id: 4,
+            title: 'Created by',
+            search: 'created',
+            isSorted: true,
+            direction: 'asc',
+        },
+        { id: 5, title: 'Actions', search: null, isSorted: false, direction: 'asc' },
     ],
 };
 
@@ -58,6 +71,11 @@ export const packReducer = (
                         ? { ...el, direction: action.payload.direction }
                         : el,
                 ),
+            };
+        case SET_SORT_PACKS:
+            return {
+                ...state,
+                sortPacks: action.payload.sortPacks,
             };
         default:
             return state;

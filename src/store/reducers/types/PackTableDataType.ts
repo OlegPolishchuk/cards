@@ -5,4 +5,5 @@ export type PackTableDataType = {
     title: string;
     isSorted: boolean;
     direction: OrderDirectionType;
+    search: string | null;
 };
