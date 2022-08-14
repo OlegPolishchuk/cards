@@ -1,6 +1,6 @@
 import { PacksSortType } from 'store/reducers/types/PacksSortType';
-import { PackTableDataType } from 'store/reducers/types/PackTableDataType';
 import { PackType } from 'store/reducers/types/PackType';
+import { TableDataType } from 'store/reducers/types/TableDataType';
 
 export type PackReducerType = {
     cardPacks: PackType[];
@@ -16,5 +16,5 @@ export type PackReducerType = {
     max: number;
     sortPacks: PacksSortType;
     user_id: string;
-    tableData: PackTableDataType[];
+    tableData: TableDataType[];
 };

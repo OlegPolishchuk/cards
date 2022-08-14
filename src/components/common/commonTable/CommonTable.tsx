@@ -9,11 +9,14 @@ import { CommonTableHead } from 'components/common/commonTable/commonTableHead/C
 import { CommonTableType } from 'components/common/commonTable/types';
 import { ReturnComponentType } from 'types';
 
-export const CommonTable = ({ packs }: CommonTableType): ReturnComponentType => {
+export const CommonTable = ({
+    packs,
+    tableHeadData,
+}: CommonTableType): ReturnComponentType => {
     return (
         <TableContainer component={Paper} className={s.container}>
             <Table>
-                <CommonTableHead />
+                <CommonTableHead tableHeadData={tableHeadData} />
                 <CommonTableBody rows={packs} />
             </Table>
         </TableContainer>

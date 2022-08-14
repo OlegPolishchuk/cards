@@ -1,5 +1,5 @@
-import { PackTableDataType } from 'store/reducers/types/PackTableDataType';
+import { TableDataType } from 'store/reducers/types/TableDataType';
 import { AppRootState } from 'store/types';
 
-export const selectPacksTableData = (state: AppRootState): PackTableDataType[] =>
+export const selectPacksTableData = (state: AppRootState): TableDataType[] =>
     state.packs.tableData;

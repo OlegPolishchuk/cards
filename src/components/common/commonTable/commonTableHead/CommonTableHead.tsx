@@ -5,23 +5,23 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
 import s from 'components/common/commonTable/CommonTable.module.scss';
+import { CommonTableHeadType } from 'components/common/commonTable/commonTableHead/types';
 import { OrderDirectionType } from 'components/common/commonTable/types';
-import { useAppDispatch, useTypedSelector } from 'hooks';
+import { useAppDispatch } from 'hooks';
 import { setSortPacksAC } from 'store/actions';
 import { setPacksTableDataAC } from 'store/actions/setPacksTableDataAC';
 import { PacksSortType } from 'store/reducers/types';
-import { PackTableDataType } from 'store/reducers/types/PackTableDataType';
-import { selectPacksTableData } from 'store/selectors';
+import { TableDataType } from 'store/reducers/types/TableDataType';
 import { ReturnComponentType } from 'types';
 
-export const CommonTableHead = (): ReturnComponentType => {
+export const CommonTableHead = ({
+    tableHeadData,
+}: CommonTableHeadType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const td = useTypedSelector(selectPacksTableData);
-
-    const handleClick = (td: PackTableDataType): void => {
+    const handleClick = (td: TableDataType): void => {
         const { isSorted, id, direction, search } = td;
         const searchIndex = direction === 'asc' ? '1' : '0';
 
@@ -42,7 +42,7 @@ export const CommonTableHead = (): ReturnComponentType => {
     return (
         <TableHead className={s.tableHead}>
             <TableRow className={s.row}>
-                {td.map(td => (
+                {tableHeadData.map(td => (
                     <TableCell key={`${td.title}123`}>
                         {td.title}
                         {td.isSorted && (

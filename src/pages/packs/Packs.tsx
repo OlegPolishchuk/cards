@@ -10,12 +10,11 @@ import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
 import { DEFAULT_PAGE_COUNT } from 'constants/packsSearchParams/defaultPageCount/defaultPageCount';
 import { MAX_CARD_COUNT } from 'constants/packsSearchParams/maxCardCount/maxCardCount';
-import { PackTableHeadTitles } from 'constants/packsSearchParams/packTableHeadTitles/packTableHeadTitles';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setPacksSearchParamsAC } from 'store/actions';
 import { fetchPackTC } from 'store/middlewares/packs/fetchPackTC';
 import { PacksSortType } from 'store/reducers/types';
-import { selectIsUserAuth, selectPacks } from 'store/selectors';
+import { selectIsUserAuth, selectPacks, selectPacksTableData } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 export const Packs = (): ReturnComponentType => {
@@ -25,6 +24,7 @@ export const Packs = (): ReturnComponentType => {
 
     const packs = useTypedSelector(selectPacks);
     const isUserAuth = useTypedSelector(selectIsUserAuth);
+    const tableHeadData = useTypedSelector(selectPacksTableData);
 
     const packNameParam = searchParams.get('packName') || '';
     const minParam = Number(searchParams.get('min')) || 0;
@@ -76,7 +76,7 @@ export const Packs = (): ReturnComponentType => {
                 </div>
                 <Controls />
                 <div className={s.table}>
-                    <CommonTable headerTitles={PackTableHeadTitles} packs={packs} />
+                    <CommonTable packs={packs} tableHeadData={tableHeadData} />
                 </div>
             </div>
         </section>
