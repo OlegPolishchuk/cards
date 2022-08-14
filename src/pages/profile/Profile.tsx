@@ -4,7 +4,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Button, Container } from '@mui/material';
 import { Navigate } from 'react-router-dom';
 
-import { BreadCrumbs } from 'components/breadCrumbs/BreadCrumbs';
+import { BreadCrumbs } from 'components/common/breadCrumbs/BreadCrumbs';
 import { Title } from 'components/title/Title';
 import { UserDescription } from 'components/userDescription/UserDescription';
 import { UserPhoto } from 'components/userPhoto/UserPhoto';

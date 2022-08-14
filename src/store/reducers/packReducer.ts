@@ -3,6 +3,7 @@ import {
     SET_PACKS_NAME,
     SET_PACKS_SEARCH_PARAMS,
     SET_PACKS_TABLE_DATA,
+    SET_PACKS_USER_ID,
     SET_SORT_PACKS,
 } from 'store/actions/constants';
 import { PacksActionType } from 'store/actions/types';
@@ -76,6 +77,11 @@ export const packReducer = (
             return {
                 ...state,
                 sortPacks: action.payload.sortPacks,
+            };
+        case SET_PACKS_USER_ID:
+            return {
+                ...state,
+                user_id: action.payload.userId,
             };
         default:
             return state;

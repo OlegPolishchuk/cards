@@ -30,6 +30,9 @@
       max-width: 400px;
       text-overflow: ellipsis;
 
+      &:first-child {
+        min-width: 300px;
+      }
     }
   }
 }

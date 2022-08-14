@@ -6,13 +6,17 @@ import { useSearchParams } from 'react-router-dom';
 import s from './Controls.module.scss';
 
 import { USE_DEBOUNCE_TIMER } from 'constants/useDebounceTimer/useDebounceTymer';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useDebounce } from 'hooks/useDebounce/useDebounce';
 import { setPacksNameAC } from 'store/actions';
+import { setPacksUserIdAC } from 'store/actions/setPacksUserID';
+import { selectUserID } from 'store/selectors/selectUserID/selectUserID';
 import { ReturnComponentType } from 'types';
 
 export const Controls = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
+
+    const user_id = useTypedSelector(selectUserID);
 
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -21,6 +25,20 @@ export const Controls = (): ReturnComponentType => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setValue(e.target.value);
+    };
+
+    const handleSortMy = (): void => {
+        dispatch(setPacksUserIdAC(user_id));
+        searchParams.set('user_id', user_id);
+
+        setSearchParams(searchParams);
+    };
+
+    const handleSortAll = (): void => {
+        dispatch(setPacksUserIdAC(''));
+        searchParams.set('user_id', '');
+
+        setSearchParams(searchParams);
     };
 
     useEffect(() => {
@@ -41,10 +59,10 @@ export const Controls = (): ReturnComponentType => {
                 onChange={handleChange}
             />
             <ButtonGroup className={s.btnContainer}>
-                <Button variant="outlined" className={s.btn}>
+                <Button variant="outlined" className={s.btn} onClick={handleSortMy}>
                     My
                 </Button>
-                <Button variant="outlined" className={s.btn}>
+                <Button variant="outlined" className={s.btn} onClick={handleSortAll}>
                     All
                 </Button>
             </ButtonGroup>

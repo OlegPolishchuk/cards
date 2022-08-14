@@ -14,3 +14,4 @@ export type { SetPacksSearchParamsType } from './SetPacksSearchParamsType';
 export type { SetPacksNameType } from './SetPacksNameType';
 export type { SetPackTableDataType } from './SetPackTableDataType';
 export type { SetSortPacksType } from './SetSortPacksType';
+export type { SetPacksUserIdType } from './SetPacksUserIdType';

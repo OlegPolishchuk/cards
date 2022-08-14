@@ -94,6 +94,7 @@
         ]
       }
     ],
+    "no-underscore-dangle": "off",
     "no-use-before-define": "off",
     "no-param-reassign": ["error", {
       "props": true,

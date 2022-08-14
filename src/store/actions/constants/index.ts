@@ -13,3 +13,4 @@ export const SET_PACKS_SEARCH_PARAMS = 'packs/SET_SEARCH_PARAMS';
 export const SET_PACKS_NAME = 'packs/SET_PACKS_NAME';
 export const SET_PACKS_TABLE_DATA = 'packs/SET_PACKS_TABLE_DATA';
 export const SET_SORT_PACKS = 'packs/SET_SORT_PACKS';
+export const SET_PACKS_USER_ID = 'packs/SET_PACKS_USER_ID';

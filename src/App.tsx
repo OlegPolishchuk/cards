@@ -5,8 +5,8 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { Header, Links } from 'components';
 import { Progress } from 'components/circularProgress/Progress';
+import { SnackBar } from 'components/common/snackBar/SnackBar';
 import { SetNewPassword } from 'components/setNewPassword/SetNewPassword';
-import { SnackBar } from 'components/snackBar/SnackBar';
 import { REQUEST_STATUS } from 'enums';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { ForgotPassword, NotFound, Profile, Registration, SignIn } from 'pages';
