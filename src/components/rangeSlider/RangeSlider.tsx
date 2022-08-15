@@ -21,7 +21,7 @@ export const RangeSlider = (): ReturnComponentType => {
     const maxCount = useTypedSelector(selectMaxCardCount);
 
     const [sliderValue, setSliderValue] = useState([minCount, maxCount]);
-    const debouncedValue = useDebounce([sliderValue], USE_DEBOUNCE_TIMER);
+    const debouncedValue = useDebounce(sliderValue, USE_DEBOUNCE_TIMER);
 
     const handleSliderChange = (event: Event, newValue: number | number[]): void => {
         setSliderValue(newValue as number[]);
@@ -32,22 +32,30 @@ export const RangeSlider = (): ReturnComponentType => {
     };
 
     const handleChangeMinCount = (event: ChangeEvent<HTMLInputElement>): void => {
-        setSliderValue(sliderValue => [Number(event.target.value), sliderValue[1]]);
+        if (sliderValue[0] < 0) {
+            setSliderValue(sliderValue => [MIN_CARDS_COUNT, sliderValue[1]]);
+        } else {
+            setSliderValue(sliderValue => [Number(event.target.value), sliderValue[1]]);
+        }
+        console.log(sliderValue);
     };
 
     const handleChangeMaxCount = (event: ChangeEvent<HTMLInputElement>): void => {
+        if (sliderValue[1] > MAX_CARDS_COUNT) {
+            setSliderValue(sliderValue => [sliderValue[0], MAX_CARDS_COUNT]);
+        }
         setSliderValue(sliderValue => [sliderValue[0], Number(event.target.value)]);
     };
 
     useEffect(() => {
         dispatch(setMinCardsCountAC(sliderValue[0]));
         dispatch(setMaxCardsCountAC(sliderValue[1]));
-
         searchParams.set('min', sliderValue[0].toString());
         searchParams.set('max', sliderValue[1].toString());
-
         setSearchParams(searchParams);
     }, [debouncedValue]);
+
+    console.log('slider rendered');
 
     return (
         <div className={s.sliderContainer}>

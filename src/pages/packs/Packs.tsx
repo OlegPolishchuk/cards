@@ -55,6 +55,7 @@ export const Packs = (): ReturnComponentType => {
             dispatch(fetchPackTC());
         }
     }, [
+        dispatch,
         isUserAuth,
         packNameParam,
         minParam,
@@ -64,6 +65,8 @@ export const Packs = (): ReturnComponentType => {
         pageCountParam,
         user_idParam,
     ]);
+
+    console.log('packs rendered');
 
     return (
         <section className={s.packs}>

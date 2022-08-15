@@ -55,6 +55,8 @@ export const SignIn = (): ReturnComponentType => {
         return <Navigate to="/profile" />;
     }
 
+    console.log(`login rendered`);
+
     return (
         <Grid container justifyContent="center">
             <Grid item justifyContent="center">

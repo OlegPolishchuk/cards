@@ -51,7 +51,9 @@ export const Controls = (): ReturnComponentType => {
         searchParams.set('packName', debouncedValue);
 
         setSearchParams(searchParams);
-    }, [debouncedValue]);
+    }, [debouncedValue, searchParams, setSearchParams]);
+
+    // console.log('controls rendered');
 
     return (
         <div className={s.controls}>

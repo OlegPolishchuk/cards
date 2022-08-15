@@ -43,6 +43,8 @@ export const Profile = (): ReturnComponentType => {
         return <Navigate to="/login" />;
     }
 
+    console.log(`profile rendered`);
+
     return (
         <>
             <BreadCrumbs linkTo="packs" spanText="Back to Packs list" />
