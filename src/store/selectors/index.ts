@@ -1,7 +1,9 @@
-export { selectIsUserAuth } from './selectIsUserAuth/selectIsUserAuth';
-export { selectUserName } from './selectUserName/selectUserName';
-export { selectPacks } from './selectPacks/selectPacks';
-export { selectIsPasswordChanged } from './selectIsPasswordChanged/selectIsPasswordChanged';
-export { selectUserEmailForCheck } from './selectUserEmailForCheck/selectUserEmailForCheck';
-export { selectIsEmailSend } from './selectIsEmailSend/selectIsEmailSend';
-export { selectPacksTableData } from './selectPacksTableData/selectPacksTableData';
+export { selectIsUserAuth } from './auth';
+export { selectUserName } from './auth';
+export { selectPacks } from './packs';
+export { selectIsPasswordChanged } from './auth';
+export { selectUserEmailForCheck } from './auth';
+export { selectIsEmailSend } from './auth';
+export { selectPacksTableData } from './packs';
+export { selectMaxCardCount } from './packs';
+export { selectMinCardsCount } from './packs';

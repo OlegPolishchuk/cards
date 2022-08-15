@@ -9,3 +9,5 @@ export { setNewPasswordAC } from './setNewPasswordAC';
 export { setPacksSearchParamsAC } from './setPacksSearchParamsAC';
 export { setPacksNameAC } from './setPacksNameAC';
 export { setSortPacksAC } from './setSortPacksAC';
+export { setMinCardsCountAC } from './setMinCardsCountAC';
+export { setMaxCardsCountAC } from 'store/actions/setMaxCardsCountAC';

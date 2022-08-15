@@ -15,3 +15,5 @@ export type { SetPacksNameType } from './SetPacksNameType';
 export type { SetPackTableDataType } from './SetPackTableDataType';
 export type { SetSortPacksType } from './SetSortPacksType';
 export type { SetPacksUserIdType } from './SetPacksUserIdType';
+export type { SetMinCardsCountType } from './SetMinCardsCountType';
+export type { SetMaxCardsCountType } from './SetMaxCardsCountType';

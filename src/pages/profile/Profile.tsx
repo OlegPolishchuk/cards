@@ -12,7 +12,7 @@ import { useAppDispatch, useTypedSelector } from 'hooks';
 import s from 'pages/profile/Profile.module.scss';
 import { logoutTC } from 'store/middlewares/auth/logoutTC';
 import { updateUserTC } from 'store/middlewares/auth/updateUserTC';
-import { selectIsUserAuth } from 'store/selectors/selectIsUserAuth/selectIsUserAuth';
+import { selectIsUserAuth } from 'store/selectors/auth/selectIsUserAuth/selectIsUserAuth';
 import { ReturnComponentType } from 'types';
 
 export const Profile = (): ReturnComponentType => {

@@ -10,7 +10,7 @@ import { Title } from 'components/title/Title';
 import { EMAIL_REG_EXP } from 'constants/formRules';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { forgotPasswordTC } from 'store/middlewares/auth/forgotPasswordTC';
-import { selectIsEmailSend } from 'store/selectors/selectIsEmailSend/selectIsEmailSend';
+import { selectIsEmailSend } from 'store/selectors/auth/selectIsEmailSend/selectIsEmailSend';
 import { ReturnComponentType } from 'types';
 
 const btnTitle = 'Send instructions';

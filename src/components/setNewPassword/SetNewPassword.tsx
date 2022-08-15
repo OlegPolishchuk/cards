@@ -11,7 +11,7 @@ import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useVisibility } from 'hooks/useVisibility/useVisibility';
 import { setNewPasswordTC } from 'store/middlewares';
-import { selectIsPasswordChanged } from 'store/selectors/selectIsPasswordChanged/selectIsPasswordChanged';
+import { selectIsPasswordChanged } from 'store/selectors/auth/selectIsPasswordChanged/selectIsPasswordChanged';
 import { ReturnComponentType } from 'types';
 
 const TIME_TO_REDIRECT = 5000;

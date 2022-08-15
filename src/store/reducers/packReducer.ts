@@ -1,5 +1,8 @@
+import { MAX_CARDS_COUNT, MIN_CARDS_COUNT } from 'constants/cardsCount/cardsCountSlider';
 import {
     SET_PACKS,
+    SET_PACKS_MAX_CARDS_COUNT,
+    SET_PACKS_MIN_CARDS_COUNT,
     SET_PACKS_NAME,
     SET_PACKS_SEARCH_PARAMS,
     SET_PACKS_TABLE_DATA,
@@ -12,13 +15,13 @@ import { PackReducerType } from 'store/reducers/types/PackReducerType';
 const initialState: PackReducerType = {
     cardPacks: [],
     cardPackTotalCount: 0,
-    maxCardsCount: 0,
-    minCardsCount: 0,
+    maxCardsCount: MAX_CARDS_COUNT,
+    minCardsCount: MIN_CARDS_COUNT,
     page: 1,
     pageCount: 8,
     token: '',
     tokenDeathTime: 0,
-    max: 120,
+    max: 110,
     min: 0,
     packName: '',
     sortPacks: '0updated',
@@ -82,6 +85,16 @@ export const packReducer = (
             return {
                 ...state,
                 user_id: action.payload.userId,
+            };
+        case SET_PACKS_MIN_CARDS_COUNT:
+            return {
+                ...state,
+                min: action.payload.min,
+            };
+        case SET_PACKS_MAX_CARDS_COUNT:
+            return {
+                ...state,
+                max: action.payload.max,
             };
         default:
             return state;

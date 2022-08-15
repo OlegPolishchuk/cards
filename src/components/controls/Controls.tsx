@@ -1,16 +1,17 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { Button, ButtonGroup, Slider, TextField } from '@mui/material';
+import { Button, ButtonGroup, TextField } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
 import s from './Controls.module.scss';
 
+import { RangeSlider } from 'components/rangeSlider/RangeSlider';
 import { USE_DEBOUNCE_TIMER } from 'constants/useDebounceTimer/useDebounceTymer';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useDebounce } from 'hooks/useDebounce/useDebounce';
 import { setPacksNameAC } from 'store/actions';
 import { setPacksUserIdAC } from 'store/actions/setPacksUserID';
-import { selectUserID } from 'store/selectors/selectUserID/selectUserID';
+import { selectUserID } from 'store/selectors/auth/selectUserID/selectUserID';
 import { ReturnComponentType } from 'types';
 
 export const Controls = (): ReturnComponentType => {
@@ -78,11 +79,7 @@ export const Controls = (): ReturnComponentType => {
                     All
                 </Button>
             </ButtonGroup>
-            <div className={s.sliderContainer}>
-                <span className={s.sliderValue} />
-                <Slider />
-                <span className={s.sliderValue} />
-            </div>
+            <RangeSlider />
         </div>
     );
 };

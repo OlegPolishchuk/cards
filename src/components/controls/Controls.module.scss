@@ -27,6 +27,11 @@
 
   min-width: 300px;
 
+  .slider {
+    min-width: 250px;
+    margin: 0 15px;
+  }
+
   .sliderValue {
     display: block;
     height: 36px;
@@ -34,5 +39,14 @@
     margin: 0 10px;
 
     border: 1px solid #D9d9d9
+  }
+
+  .sliderInput {
+      max-width: 50px;
+
+      input {
+        padding: 8.5px;
+
+      }
   }
 }

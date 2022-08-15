@@ -4,7 +4,7 @@ import { Container } from '@mui/material';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { Header, Links } from 'components';
-import { Progress } from 'components/circularProgress/Progress';
+import { Progress } from 'components/common/circularProgress/Progress';
 import { SnackBar } from 'components/common/snackBar/SnackBar';
 import { SetNewPassword } from 'components/setNewPassword/SetNewPassword';
 import { REQUEST_STATUS } from 'enums';

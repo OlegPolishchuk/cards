@@ -9,7 +9,7 @@ import s from './CheckEmail.module.scss';
 import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
 import { useTypedSelector } from 'hooks';
-import { selectUserEmailForCheck } from 'store/selectors/selectUserEmailForCheck/selectUserEmailForCheck';
+import { selectUserEmailForCheck } from 'store/selectors/auth/selectUserEmailForCheck/selectUserEmailForCheck';
 import { ReturnComponentType } from 'types';
 
 export const CheckEmail = (): ReturnComponentType => {
