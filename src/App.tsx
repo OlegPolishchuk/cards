@@ -25,7 +25,7 @@ const App = (): ReturnComponentType => {
     return (
         <HashRouter>
             <Header />
-            <Container fixed>
+            <Container>
                 <Routes>
                     <Route path="/" element={<SignIn />} />
                     <Route path="login" element={<SignIn />} />

@@ -1,12 +1,25 @@
 @import "src/common/style/mixins";
+@import "src/common/style/variables";
 
 .packs {
   @include main-wrapper();
+  @media screen and (max-width: $mediumScreen){
+    padding: 40px 0;
+  }
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: $mediumScreen){
+    flex-direction: column;
+    align-items: center;
+
+    .mainAddBtn {
+      display: none;
+    }
+  }
 }
 
 

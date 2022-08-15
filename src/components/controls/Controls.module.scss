@@ -1,3 +1,5 @@
+@import "src/common/style/variables";
+
 .controls {
   display: flex;
   justify-content: space-between;
@@ -6,6 +8,14 @@
 
   .search {
     min-width: 300px;
+
+    @media screen and (max-width: $largeScreen){
+      min-width: 200px;
+    }
+  }
+
+  @media screen and (max-width: $mediumScreen) {
+    flex-direction: column;
   }
 }
 
@@ -13,11 +23,18 @@
   display: flex;
   justify-content: center;
 
-  min-width: 400px;
+  @media screen and (max-width: $mediumScreen){
+    order: -1;
+    margin-bottom: 30px;
+  }
 
   .btn {
     width: 100px;
     border-radius: 5px;
+
+    @media screen and (max-width: $largeScreen){
+      width: 70px;
+    }
   }
 }
 
@@ -27,9 +44,18 @@
 
   min-width: 300px;
 
+  @media screen and (max-width: $mediumScreen){
+    order: -1;
+    margin-bottom: 30px;
+  }
+
   .slider {
     min-width: 250px;
     margin: 0 15px;
+
+    @media screen and (max-width: $largeScreen){
+      min-width: 200px;
+    }
   }
 
   .sliderValue {

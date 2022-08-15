@@ -70,7 +70,11 @@ export const Packs = (): ReturnComponentType => {
             <div className={s.container}>
                 <div className={s.header}>
                     <Title title="Pack list" />
-                    <StyledButton variant="contained" color="primary">
+                    <StyledButton
+                        className={s.mainAddBtn}
+                        variant="contained"
+                        color="primary"
+                    >
                         Add new pack
                     </StyledButton>
                 </div>
