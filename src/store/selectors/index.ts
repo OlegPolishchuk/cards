@@ -7,3 +7,6 @@ export { selectIsEmailSend } from './auth';
 export { selectPacksTableData } from './packs';
 export { selectMaxCardCount } from './packs';
 export { selectMinCardsCount } from './packs';
+export { selectPacksPage } from './packs';
+export { selectPacksPageCount } from './packs';
+export { selectCardPacksTotalCount } from './packs';

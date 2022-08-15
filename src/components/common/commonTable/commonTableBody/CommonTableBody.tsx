@@ -4,6 +4,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { TableBody, TableCell, TableRow } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import s from 'components/common/commonTable/CommonTable.module.scss';
 import { CommonTableBodyType } from 'components/common/commonTable/commonTableBody/types';
@@ -12,11 +13,16 @@ import { selectUserID } from 'store/selectors/auth';
 import { ReturnComponentType } from 'types';
 
 export const CommonTableBody = ({ rows }: CommonTableBodyType): ReturnComponentType => {
+    const navigate = useNavigate();
+
     const userId = useTypedSelector(selectUserID);
 
-    const handleRowClick = (e: React.MouseEvent<HTMLTableRowElement>): void => {
+    const handleRowClick = (
+        e: React.MouseEvent<HTMLTableRowElement>,
+        pack_id: string,
+    ): void => {
         e.stopPropagation();
-        console.log(e.currentTarget.tagName);
+        navigate(`${pack_id}`);
     };
 
     const handleIconClick = (e: React.MouseEvent<SVGSVGElement>): void => {
@@ -31,7 +37,7 @@ export const CommonTableBody = ({ rows }: CommonTableBodyType): ReturnComponentT
                     key={`${row.name}${row.created}`}
                     hover
                     className={s.row}
-                    onClick={handleRowClick}
+                    onClick={e => handleRowClick(e, row._id)}
                 >
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.cardsCount}</TableCell>

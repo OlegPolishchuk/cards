@@ -34,7 +34,7 @@ const App = (): ReturnComponentType => {
                     <Route path="password_recovery/:token" element={<SetNewPassword />} />
                     <Route path="enter_new_password" element={<ForgotPassword />} />
                     <Route path="packs" element={<Packs />} />
-                    <Route path="cards" element={<div>cards</div>} />
+                    <Route path="packs/:pack_id" element={<div>cards</div>} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Container>

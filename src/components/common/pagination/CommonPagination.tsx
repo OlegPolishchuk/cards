@@ -7,6 +7,11 @@ import s from './CommonPagination.module.scss';
 
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setPacksPageAC } from 'store/actions/setPacksPageAC';
+import {
+    selectCardPacksTotalCount,
+    selectPacksPage,
+    selectPacksPageCount,
+} from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 export const CommonPagination = (): ReturnComponentType => {
@@ -14,11 +19,9 @@ export const CommonPagination = (): ReturnComponentType => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const page = useTypedSelector(state => state.packs.page);
-    const pageCount = useTypedSelector(state => state.packs.pageCount);
-    const cardsPackTotalCount = useTypedSelector(
-        state => state.packs.cardPacksTotalCount,
-    );
+    const page = useTypedSelector(selectPacksPage);
+    const pageCount = useTypedSelector(selectPacksPageCount);
+    const cardsPackTotalCount = useTypedSelector(selectCardPacksTotalCount);
 
     const totalPageCount = useMemo(() => {
         return Math.ceil(cardsPackTotalCount / pageCount);
