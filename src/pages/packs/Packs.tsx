@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import s from './Packs.module.scss';
 
-import { CommonTable } from 'components/common';
+import { CommonPagination, CommonTable } from 'components/common';
 import { Controls } from 'components/controls/Controls';
 import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
@@ -66,8 +66,6 @@ export const Packs = (): ReturnComponentType => {
         user_idParam,
     ]);
 
-    console.log('packs rendered');
-
     return (
         <section className={s.packs}>
             <div className={s.container}>
@@ -85,6 +83,7 @@ export const Packs = (): ReturnComponentType => {
                 <div className={s.table}>
                     <CommonTable packs={packs} tableHeadData={tableHeadData} />
                 </div>
+                <CommonPagination />
             </div>
         </section>
     );

@@ -11,3 +11,4 @@ export { setPacksNameAC } from './setPacksNameAC';
 export { setSortPacksAC } from './setSortPacksAC';
 export { setMinCardsCountAC } from './setMinCardsCountAC';
 export { setMaxCardsCountAC } from 'store/actions/setMaxCardsCountAC';
+export { setCardPacksTotalCountAC } from './setCardPacksTotalCountAC';

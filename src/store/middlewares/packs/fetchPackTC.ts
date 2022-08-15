@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { packsAPI } from 'api/packs/packsAPI';
 import { REQUEST_STATUS } from 'enums';
-import { setStatusAC } from 'store/actions';
+import { setCardPacksTotalCountAC, setStatusAC } from 'store/actions';
 import { setPacksAC } from 'store/actions/setPacksAC';
 import { AppThunkType } from 'store/types';
 import { errorHandler } from 'utils/errorHandler';
@@ -30,6 +30,7 @@ export const fetchPackTC = (): AppThunkType => async (dispatch, getState) => {
         });
 
         dispatch(setPacksAC(response.data.cardPacks));
+        dispatch(setCardPacksTotalCountAC(response.data.cardPacksTotalCount));
     } catch (e) {
         errorHandler(e as Error | AxiosError, dispatch);
     } finally {

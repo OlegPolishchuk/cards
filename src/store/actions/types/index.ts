@@ -17,3 +17,5 @@ export type { SetSortPacksType } from './SetSortPacksType';
 export type { SetPacksUserIdType } from './SetPacksUserIdType';
 export type { SetMinCardsCountType } from './SetMinCardsCountType';
 export type { SetMaxCardsCountType } from './SetMaxCardsCountType';
+export type { SetCardPacksTotalCountType } from 'store/actions/types/SetCardPacksTotalCountType';
+export type { SetPacksPageType } from './SetPacksPageType';

@@ -4,7 +4,7 @@ import { TableDataType } from 'store/reducers/types/TableDataType';
 
 export type PackReducerType = {
     cardPacks: PackType[];
-    cardPackTotalCount: number;
+    cardPacksTotalCount: number;
     maxCardsCount: number;
     minCardsCount: number;
     page: number;

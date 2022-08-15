@@ -53,8 +53,6 @@ export const Controls = (): ReturnComponentType => {
         setSearchParams(searchParams);
     }, [debouncedValue, searchParams, setSearchParams]);
 
-    // console.log('controls rendered');
-
     return (
         <div className={s.controls}>
             <TextField

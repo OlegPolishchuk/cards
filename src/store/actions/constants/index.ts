@@ -1,4 +1,3 @@
-// export const SET_USERS = '@@/user-reducer_SET_USERS';
 export const SET_APP_STATUS = 'app/SET_STATUS';
 export const SET_USER = 'login/SET_USER';
 export const SET_AUTH_ERROR = 'auth/SET_AUTH_ERROR';
@@ -16,3 +15,5 @@ export const SET_SORT_PACKS = 'packs/SET_SORT_PACKS';
 export const SET_PACKS_USER_ID = 'packs/SET_PACKS_USER_ID';
 export const SET_PACKS_MIN_CARDS_COUNT = 'packs/SET_PACK_MIN_CARDS_COUNT';
 export const SET_PACKS_MAX_CARDS_COUNT = 'packs/SET_PACKS_MAX_CARDS_COUNT';
+export const SET_CARD_PACKS_TOTAL_COUNT = 'packs/SET_CARD_PACKS_TOTAL_COUNT';
+export const SET_PACKS_PAGE = 'packs/SET_PACKS_PAGE';

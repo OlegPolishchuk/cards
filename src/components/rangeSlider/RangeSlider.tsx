@@ -37,7 +37,6 @@ export const RangeSlider = (): ReturnComponentType => {
         } else {
             setSliderValue(sliderValue => [Number(event.target.value), sliderValue[1]]);
         }
-        console.log(sliderValue);
     };
 
     const handleChangeMaxCount = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -54,8 +53,6 @@ export const RangeSlider = (): ReturnComponentType => {
         searchParams.set('max', sliderValue[1].toString());
         setSearchParams(searchParams);
     }, [debouncedValue]);
-
-    console.log('slider rendered');
 
     return (
         <div className={s.sliderContainer}>

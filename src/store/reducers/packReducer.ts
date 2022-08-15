@@ -1,9 +1,11 @@
 import { MAX_CARDS_COUNT, MIN_CARDS_COUNT } from 'constants/cardsCount/cardsCountSlider';
 import {
+    SET_CARD_PACKS_TOTAL_COUNT,
     SET_PACKS,
     SET_PACKS_MAX_CARDS_COUNT,
     SET_PACKS_MIN_CARDS_COUNT,
     SET_PACKS_NAME,
+    SET_PACKS_PAGE,
     SET_PACKS_SEARCH_PARAMS,
     SET_PACKS_TABLE_DATA,
     SET_PACKS_USER_ID,
@@ -14,7 +16,7 @@ import { PackReducerType } from 'store/reducers/types/PackReducerType';
 
 const initialState: PackReducerType = {
     cardPacks: [],
-    cardPackTotalCount: 0,
+    cardPacksTotalCount: 0,
     maxCardsCount: MAX_CARDS_COUNT,
     minCardsCount: MIN_CARDS_COUNT,
     page: 1,
@@ -53,20 +55,13 @@ export const packReducer = (
 ): PackReducerType => {
     switch (action.type) {
         case SET_PACKS:
-            return {
-                ...state,
-                cardPacks: action.payload.packs,
-            };
+            return { ...state, cardPacks: action.payload.packs };
+        case SET_CARD_PACKS_TOTAL_COUNT:
+            return { ...state, cardPacksTotalCount: action.payload.cardPacksTotalCount };
         case SET_PACKS_SEARCH_PARAMS:
-            return {
-                ...state,
-                ...action.payload.params,
-            };
+            return { ...state, ...action.payload.params };
         case SET_PACKS_NAME:
-            return {
-                ...state,
-                packName: action.payload.packName,
-            };
+            return { ...state, packName: action.payload.packName };
         case SET_PACKS_TABLE_DATA:
             return {
                 ...state,
@@ -77,25 +72,15 @@ export const packReducer = (
                 ),
             };
         case SET_SORT_PACKS:
-            return {
-                ...state,
-                sortPacks: action.payload.sortPacks,
-            };
+            return { ...state, sortPacks: action.payload.sortPacks };
         case SET_PACKS_USER_ID:
-            return {
-                ...state,
-                user_id: action.payload.userId,
-            };
+            return { ...state, user_id: action.payload.userId };
         case SET_PACKS_MIN_CARDS_COUNT:
-            return {
-                ...state,
-                min: action.payload.min,
-            };
+            return { ...state, min: action.payload.min };
         case SET_PACKS_MAX_CARDS_COUNT:
-            return {
-                ...state,
-                max: action.payload.max,
-            };
+            return { ...state, max: action.payload.max };
+        case SET_PACKS_PAGE:
+            return { ...state, page: action.payload.page };
         default:
             return state;
     }
