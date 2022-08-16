@@ -1,7 +1,12 @@
 import {
+    CARDS_SELECT_VALUE_MIN,
+    CARDS_SELECT_VALUES,
+} from 'constants/cardsSelectValues/cardsSelectValues';
+import {
     SET_CARDS,
     SET_CARDS_PACK_ID,
     SET_CARDS_PAGE,
+    SET_CARDS_PAGE_COUNT,
     SET_CARDS_SEARCH_PARAMS,
 } from 'store/actions/constants';
 import { CardsActionsType } from 'store/actions/types/CardsActionsType';
@@ -13,7 +18,7 @@ const initState: CardsReducerType = {
     maxGrade: 5,
     minGrade: 0,
     page: 1,
-    pageCount: 4,
+    pageCount: CARDS_SELECT_VALUE_MIN,
     packUserId: '',
     cardQuestion: '',
     cardAnswer: '',
@@ -51,6 +56,7 @@ const initState: CardsReducerType = {
         },
         { id: 5, title: 'Actions', search: null, isSorted: false, direction: 'asc' },
     ],
+    cardsSelectValues: CARDS_SELECT_VALUES,
 };
 
 export const cardsReducer = (
@@ -66,6 +72,8 @@ export const cardsReducer = (
             return { ...state, ...action.payload.searchParams };
         case SET_CARDS_PAGE:
             return { ...state, page: action.payload.page };
+        case SET_CARDS_PAGE_COUNT:
+            return { ...state, pageCount: action.payload.pageCount };
         default:
             return state;
     }

@@ -18,6 +18,7 @@ export type CardsReducerType = {
     currentPack: PackType;
 
     tableData: TableDataType[];
+    cardsSelectValues: number[];
 };
 
 export type GetCardsType = {

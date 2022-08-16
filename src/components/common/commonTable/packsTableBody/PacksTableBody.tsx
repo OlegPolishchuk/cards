@@ -6,7 +6,7 @@ import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import s from 'components/common/commonTable/CommonTable.module.scss';
+import s from 'components/common/commonTable/CustomTable.module.scss';
 import { PacksTableBodyType } from 'components/common/commonTable/packsTableBody/types';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCurrentPuckAC } from 'store/actions/setCurrentPuckAC';

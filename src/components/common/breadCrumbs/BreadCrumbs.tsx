@@ -7,14 +7,13 @@ import s from 'components/common/breadCrumbs/BreadCrumbs.module.scss';
 import { BreadCrumbsType } from 'components/common/breadCrumbs/type';
 import { ReturnComponentType } from 'types';
 
-export const BreadCrumbs = ({
-    spanText,
-    linkTo,
-}: BreadCrumbsType): ReturnComponentType => {
-    return (
-        <NavLink to={`/${linkTo}`} className={s.breadcrumbs}>
-            <ArrowBackIcon />
-            <span>{spanText}</span>
-        </NavLink>
-    );
-};
+export const BreadCrumbs = React.memo(
+    ({ spanText, linkTo }: BreadCrumbsType): ReturnComponentType => {
+        return (
+            <NavLink to={`/${linkTo}`} className={s.breadcrumbs}>
+                <ArrowBackIcon />
+                <span>{spanText}</span>
+            </NavLink>
+        );
+    },
+);

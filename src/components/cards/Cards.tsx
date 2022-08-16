@@ -4,11 +4,12 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 import s from './Cards.module.scss';
 
-import { BreadCrumbs, CommonPagination, CommonTable } from 'components/common';
+import { BreadCrumbs, CustomPagination, CustomTable } from 'components/common';
 import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCardsPageAC } from 'store/actions/setCardsPageAC';
+import { setCardsPageCountAC } from 'store/actions/setCardsPageCountAC';
 import { fetchCardsData } from 'store/middlewares/cards/fetchCardsData';
 import {
     selectCards,
@@ -34,11 +35,18 @@ export const Cards = (): ReturnComponentType => {
     const page = useTypedSelector(state => state.cards.page);
     const pageCount = useTypedSelector(state => state.cards.pageCount);
     const cardsTotalCount = useTypedSelector(state => state.cards.cardsTotalCount);
+    const selectValues = useTypedSelector(state => state.cards.cardsSelectValues);
 
     const handlePaginationChange = (value: number): void => {
-        console.log(value);
         dispatch(setCardsPageAC(value));
         searchParams.set('page', value.toString());
+
+        setSearchParams(searchParams);
+    };
+
+    const handleSelectChange = (value: string): void => {
+        dispatch(setCardsPageCountAC(Number(value)));
+        searchParams.set('pageCount', value);
 
         setSearchParams(searchParams);
     };
@@ -65,13 +73,15 @@ export const Cards = (): ReturnComponentType => {
                 </StyledButton>
             </div>
             <div className={s.table}>
-                <CommonTable cards={cards} tableHeadData={tableHeadData} />
+                <CustomTable cards={cards} tableHeadData={tableHeadData} />
             </div>
-            <CommonPagination
+            <CustomPagination
                 page={page}
                 pageCount={pageCount}
                 itemsTotalCount={cardsTotalCount}
-                callback={handlePaginationChange}
+                paginationChangeCallback={handlePaginationChange}
+                selectValues={selectValues}
+                selectChangeCallback={handleSelectChange}
             />
         </section>
     );

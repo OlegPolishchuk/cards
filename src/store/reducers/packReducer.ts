@@ -1,4 +1,5 @@
 import { MAX_CARDS_COUNT, MIN_CARDS_COUNT } from 'constants/cardsCount/cardsCountSlider';
+import { PACKS_SELECT_VALUES } from 'constants/packSelectValues/packSelectValues';
 import {
     SET_CARD_PACKS_TOTAL_COUNT,
     SET_CURRENT_PACK,
@@ -7,6 +8,7 @@ import {
     SET_PACKS_MIN_CARDS_COUNT,
     SET_PACKS_NAME,
     SET_PACKS_PAGE,
+    SET_PACKS_PAGE_COUNT,
     SET_PACKS_SEARCH_PARAMS,
     SET_PACKS_TABLE_DATA,
     SET_PACKS_USER_ID,
@@ -25,8 +27,8 @@ const initialState: PackReducerType = {
     pageCount: 8,
     token: '',
     tokenDeathTime: 0,
-    max: 110,
-    min: 0,
+    max: MAX_CARDS_COUNT,
+    min: MIN_CARDS_COUNT,
     packName: '',
     sortPacks: '0updated',
     user_id: '',
@@ -49,6 +51,7 @@ const initialState: PackReducerType = {
         },
         { id: 5, title: 'Actions', search: null, isSorted: false, direction: 'asc' },
     ],
+    packsSelectValues: PACKS_SELECT_VALUES,
     currentPack: {} as PackType,
 };
 
@@ -86,6 +89,8 @@ export const packReducer = (
             return { ...state, page: action.payload.page };
         case SET_CURRENT_PACK:
             return { ...state, currentPack: action.payload.pack };
+        case SET_PACKS_PAGE_COUNT:
+            return { ...state, pageCount: action.payload.pageCount };
         default:
             return state;
     }

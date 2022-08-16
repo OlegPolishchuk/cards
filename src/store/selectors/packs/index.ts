@@ -6,3 +6,4 @@ export { selectPacksPage } from './selectPacksPage/selectPacksPage';
 export { selectPacksPageCount } from './selectPacksPageCount/selectPacksPageCount';
 export { selectCardPacksTotalCount } from './selectCardPacksTotalCount/selectCardPacksTotalCount';
 export { selectCurrentPuckName } from './selectCurrentPuckName/selectCurrentPuckName';
+export { selectPacksSelectValues } from './selectPacksSelectValues/selectPacksSelectValues';

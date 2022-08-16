@@ -24,3 +24,5 @@ export type { SetCardsPackIdType } from './SetCardsPackIdType';
 export type { SetCurrentPuckType } from './SetCurrentPuckType';
 export type { SetCardsSearchParamsType } from './SetCardsSearchParamsType';
 export type { SetCardsPageType } from './SetCardsPageType';
+export type { SetPacksPageCountType } from './SetPacksPageCountType';
+export type { SetCardsPageCountType } from './SetCardsPageCountType';

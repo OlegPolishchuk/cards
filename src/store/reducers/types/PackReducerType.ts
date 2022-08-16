@@ -18,4 +18,5 @@ export type PackReducerType = {
     user_id: string;
     tableData: TableDataType[];
     currentPack: PackType;
+    packsSelectValues: number[];
 };

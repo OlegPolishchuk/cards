@@ -4,8 +4,8 @@ import { ArrowDropDown } from '@mui/icons-material';
 import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
-import s from 'components/common/commonTable/CommonTable.module.scss';
-import { CommonTableHeadType } from 'components/common/commonTable/commonTableHead/types';
+import s from 'components/common/commonTable/CustomTable.module.scss';
+import { CommonTableHeadType } from 'components/common/commonTable/customTableHead/types';
 import { OrderDirectionType } from 'components/common/commonTable/types';
 import { useAppDispatch } from 'hooks';
 import { setSortPacksAC } from 'store/actions';
@@ -14,7 +14,7 @@ import { PacksSortType } from 'store/reducers/types';
 import { TableDataType } from 'store/reducers/types/TableDataType';
 import { ReturnComponentType } from 'types';
 
-export const CommonTableHead = ({
+export const CustomTableHead = ({
     tableHeadData,
 }: CommonTableHeadType): ReturnComponentType => {
     const dispatch = useAppDispatch();

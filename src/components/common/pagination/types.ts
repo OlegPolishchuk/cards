@@ -2,5 +2,7 @@ export type CommonPaginationType = {
     page: number;
     pageCount: number;
     itemsTotalCount: number;
-    callback: (value: number) => void;
+    selectValues: number[];
+    paginationChangeCallback: (value: number) => void;
+    selectChangeCallback: (value: string) => void;
 };

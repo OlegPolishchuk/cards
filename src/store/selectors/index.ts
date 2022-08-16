@@ -15,6 +15,7 @@ export {
     selectCardPacksTotalCount,
     selectMaxCardCount,
     selectCurrentPuckName,
+    selectPacksSelectValues,
 } from './packs';
 
 export { selectCards, selectCardsTableHeadData } from './cards';

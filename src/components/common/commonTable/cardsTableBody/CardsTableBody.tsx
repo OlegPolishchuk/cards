@@ -6,7 +6,7 @@ import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 
 import { CardsTableBodyType } from 'components/common/commonTable/cardsTableBody/types';
-import s from 'components/common/commonTable/CommonTable.module.scss';
+import s from 'components/common/commonTable/CustomTable.module.scss';
 import { ReturnComponentType } from 'types';
 
 export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentType => {

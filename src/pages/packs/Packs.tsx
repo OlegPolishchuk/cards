@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import s from './Packs.module.scss';
 
-import { CommonPagination, CommonTable } from 'components/common';
+import { CustomPagination, CustomTable } from 'components/common';
 import { Controls } from 'components/controls/Controls';
 import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
@@ -13,6 +13,7 @@ import { MAX_CARD_COUNT } from 'constants/packsSearchParams/maxCardCount/maxCard
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setPacksSearchParamsAC } from 'store/actions';
 import { setPacksPageAC } from 'store/actions/setPacksPageAC';
+import { setPacksPageCountAC } from 'store/actions/setPacksPageCountAC';
 import { fetchPackTC } from 'store/middlewares/packs/fetchPackTC';
 import { PacksSortType } from 'store/reducers/types';
 import {
@@ -21,6 +22,7 @@ import {
     selectPacks,
     selectPacksPage,
     selectPacksPageCount,
+    selectPacksSelectValues,
     selectPacksTableData,
 } from 'store/selectors';
 import { ReturnComponentType } from 'types';
@@ -38,6 +40,8 @@ export const Packs = (): ReturnComponentType => {
     const pageCount = useTypedSelector(selectPacksPageCount);
     const cardsPackTotalCount = useTypedSelector(selectCardPacksTotalCount);
 
+    const selectValues = useTypedSelector(selectPacksSelectValues);
+
     const packNameParam = searchParams.get('packName') || '';
     const minParam = Number(searchParams.get('min')) || 0;
     const maxParam = Number(searchParams.get('max')) || MAX_CARD_COUNT;
@@ -49,6 +53,15 @@ export const Packs = (): ReturnComponentType => {
     const handlePaginationChange = (value: number): void => {
         dispatch(setPacksPageAC(value));
         searchParams.set('page', `${value}`);
+
+        setSearchParams(searchParams);
+    };
+
+    const handleSelectChange = (value: string): void => {
+        const pageCount = Number(value);
+
+        dispatch(setPacksPageCountAC(pageCount));
+        searchParams.set('pageCount', value);
 
         setSearchParams(searchParams);
     };
@@ -100,13 +113,15 @@ export const Packs = (): ReturnComponentType => {
                 </div>
                 <Controls />
                 <div className={s.table}>
-                    <CommonTable packs={packs} tableHeadData={tableHeadData} />
+                    <CustomTable packs={packs} tableHeadData={tableHeadData} />
                 </div>
-                <CommonPagination
+                <CustomPagination
                     page={page}
                     pageCount={pageCount}
                     itemsTotalCount={cardsPackTotalCount}
-                    callback={handlePaginationChange}
+                    paginationChangeCallback={handlePaginationChange}
+                    selectValues={selectValues}
+                    selectChangeCallback={handleSelectChange}
                 />
             </div>
         </section>
