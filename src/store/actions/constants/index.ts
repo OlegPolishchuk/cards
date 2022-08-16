@@ -21,3 +21,5 @@ export const SET_CARDS = 'cards/SET_CARDS';
 export const SET_CARDS_PACK_ID = 'cards/SET_CARDS_PACK_ID';
 export const SET_CURRENT_PACK = 'packs/SET_CURRENT_PACK';
 export const SET_CARDS_SEARCH_PARAMS = 'cards/SET_CARDS_SEARCH_PARAMS';
+export const SET_CARDS_PAGE = 'cards/SET_CARDS_PAGE';
+export const SET_CARDS_PAGE_COUNT = 'cards/SET_CARDS_PAGE_COUNT';

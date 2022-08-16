@@ -1,6 +1,7 @@
 import {
     SET_CARDS,
     SET_CARDS_PACK_ID,
+    SET_CARDS_PAGE,
     SET_CARDS_SEARCH_PARAMS,
 } from 'store/actions/constants';
 import { CardsActionsType } from 'store/actions/types/CardsActionsType';
@@ -63,6 +64,8 @@ export const cardsReducer = (
             return { ...state, cardsPack_id: action.payload.cardsPack_id };
         case SET_CARDS_SEARCH_PARAMS:
             return { ...state, ...action.payload.searchParams };
+        case SET_CARDS_PAGE:
+            return { ...state, page: action.payload.page };
         default:
             return state;
     }

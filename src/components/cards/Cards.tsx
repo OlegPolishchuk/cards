@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import s from './Cards.module.scss';
 
@@ -8,6 +8,7 @@ import { BreadCrumbs, CommonPagination, CommonTable } from 'components/common';
 import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
+import { setCardsPageAC } from 'store/actions/setCardsPageAC';
 import { fetchCardsData } from 'store/middlewares/cards/fetchCardsData';
 import {
     selectCards,
@@ -19,6 +20,8 @@ import { ReturnComponentType } from 'types';
 
 export const Cards = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const { pack_id } = useParams<{ pack_id: string }>();
 
@@ -34,6 +37,10 @@ export const Cards = (): ReturnComponentType => {
 
     const handlePaginationChange = (value: number): void => {
         console.log(value);
+        dispatch(setCardsPageAC(value));
+        searchParams.set('page', value.toString());
+
+        setSearchParams(searchParams);
     };
 
     useEffect(() => {
@@ -42,7 +49,7 @@ export const Cards = (): ReturnComponentType => {
                 dispatch(fetchCardsData(pack_id));
             }
         }
-    }, [isUserAuth, pack_id]);
+    }, [isUserAuth, pack_id, searchParams]);
 
     return (
         <section className={s.cards}>
