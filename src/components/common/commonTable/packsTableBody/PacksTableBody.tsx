@@ -7,14 +7,14 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import s from 'components/common/commonTable/CommonTable.module.scss';
-import { CommonTableBodyType } from 'components/common/commonTable/commonTableBody/types';
+import { PacksTableBodyType } from 'components/common/commonTable/packsTableBody/types';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCurrentPuckAC } from 'store/actions/setCurrentPuckAC';
 import { PackType } from 'store/reducers/types';
 import { selectUserID } from 'store/selectors/auth';
 import { ReturnComponentType } from 'types';
 
-export const CommonTableBody = ({ rows }: CommonTableBodyType): ReturnComponentType => {
+export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();

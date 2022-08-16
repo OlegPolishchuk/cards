@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import s from './Cards.module.scss';
 
-import { BreadCrumbs } from 'components/common';
+import { BreadCrumbs, CommonPagination, CommonTable } from 'components/common';
 import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
@@ -18,7 +18,10 @@ export const Cards = (): ReturnComponentType => {
     const { pack_id } = useParams<{ pack_id: string }>();
 
     const isUserAuth = useTypedSelector(selectIsUserAuth);
-    const packName = useTypedSelector(state => state.cards.currentPack.name);
+    const packName = useTypedSelector(state => state.packs.currentPack.name);
+
+    const cards = useTypedSelector(state => state.cards.cards);
+    const tableHeadData = useTypedSelector(state => state.cards.tableData);
 
     useEffect(() => {
         if (isUserAuth) {
@@ -38,9 +41,13 @@ export const Cards = (): ReturnComponentType => {
                     variant="contained"
                     color="primary"
                 >
-                    Add new pack
+                    Add new card
                 </StyledButton>
             </div>
+            <div className={s.table}>
+                <CommonTable cards={cards} tableHeadData={tableHeadData} />
+            </div>
+            <CommonPagination />
         </section>
     );
 };

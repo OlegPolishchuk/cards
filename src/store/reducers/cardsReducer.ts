@@ -19,6 +19,37 @@ const initState: CardsReducerType = {
     cardsPack_id: '',
     sortCards: '',
     currentPack: {} as PackType,
+    tableData: [
+        {
+            id: 1,
+            title: 'Question',
+            isSorted: true,
+            direction: 'asc',
+            search: 'cardQuestion',
+        },
+        {
+            id: 2,
+            title: 'Answer',
+            isSorted: false,
+            direction: 'asc',
+            search: 'cardAnswer',
+        },
+        {
+            id: 3,
+            title: 'Last updated',
+            isSorted: true,
+            direction: 'asc',
+            search: 'updated',
+        },
+        {
+            id: 4,
+            title: 'Grade',
+            isSorted: true,
+            direction: 'asc',
+            search: 'grade',
+        },
+        { id: 5, title: 'Actions', search: null, isSorted: false, direction: 'asc' },
+    ],
 };
 
 export const cardsReducer = (

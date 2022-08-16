@@ -1,5 +1,5 @@
 import { PackType } from 'store/reducers/types';
 
-export type CommonTableBodyType = {
+export type PacksTableBodyType = {
     rows: PackType[];
 };

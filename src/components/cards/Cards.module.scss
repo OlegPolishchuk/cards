@@ -3,6 +3,7 @@
 
 .cards {
   @include main-wrapper();
+
   @media screen and (max-width: $mediumScreen){
     padding: 40px 0;
   }
@@ -10,6 +11,8 @@
   .header {
     display: flex;
     justify-content: space-between;
+
+    margin-top: 30px;
 
     @media screen and (max-width: $mediumScreen){
       flex-direction: column;

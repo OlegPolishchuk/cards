@@ -1,5 +1,6 @@
 import { CardType } from 'store/reducers/types/CardType';
 import { PackType } from 'store/reducers/types/PackType';
+import { TableDataType } from 'store/reducers/types/TableDataType';
 
 export type CardsReducerType = {
     cards: CardType[];
@@ -15,6 +16,8 @@ export type CardsReducerType = {
     cardsPack_id: string;
     sortCards: string;
     currentPack: PackType;
+
+    tableData: TableDataType[];
 };
 
 export type GetCardsType = {
