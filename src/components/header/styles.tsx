@@ -15,6 +15,7 @@ export const StyledButton = styled(Button, {})`
 
 export const StyledAppBar = styled(AppBar, {})`
     background-color: #fcfcfc;
+    padding: 0 40px;
     box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 `;
@@ -22,5 +23,6 @@ export const StyledAppBar = styled(AppBar, {})`
 export const StyledToolbar = styled(Toolbar, {})`
     display: flex;
     justify-content: space-between;
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
 `;

@@ -19,3 +19,8 @@
 .userDescrLink:hover .userName {
     color: #808080;
 }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}

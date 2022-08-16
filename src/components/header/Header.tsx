@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-import { StyledAppBar, StyledButton, StyledToolbar } from './styles';
+import { StyledAppBar, StyledButton } from './styles';
 
 import logo from 'assets/images/logo.svg';
 import s from 'components/header/Header.module.scss';
@@ -19,19 +19,17 @@ export const Header = (): ReturnComponentType => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <StyledAppBar position="static">
-                <Container>
-                    <StyledToolbar>
-                        <img src={logo} alt="logo" />
-                        {isUserAuth ? (
-                            <NavLink to="/profile" className={s.userDescrLink}>
-                                <span className={s.userName}>{userName}</span>
-                                <UserPhoto variant="small" />
-                            </NavLink>
-                        ) : (
-                            <StyledButton variant="contained">Sign in</StyledButton>
-                        )}
-                    </StyledToolbar>
-                </Container>
+                <div className={s.container}>
+                    <img src={logo} alt="logo" />
+                    {isUserAuth ? (
+                        <NavLink to="/profile" className={s.userDescrLink}>
+                            <span className={s.userName}>{userName}</span>
+                            <UserPhoto variant="small" />
+                        </NavLink>
+                    ) : (
+                        <StyledButton variant="contained">Sign in</StyledButton>
+                    )}
+                </div>
             </StyledAppBar>
         </Box>
     );

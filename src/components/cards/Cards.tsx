@@ -16,6 +16,7 @@ import {
     selectCardsTableHeadData,
     selectCurrentPuckName,
     selectIsUserAuth,
+    selectUserID,
 } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
@@ -31,6 +32,9 @@ export const Cards = (): ReturnComponentType => {
 
     const cards = useTypedSelector(selectCards);
     const tableHeadData = useTypedSelector(selectCardsTableHeadData);
+
+    const userId = useTypedSelector(selectUserID);
+    const packUserId = useTypedSelector(state => state.cards.packUserId);
 
     const page = useTypedSelector(state => state.cards.page);
     const pageCount = useTypedSelector(state => state.cards.pageCount);
@@ -65,9 +69,12 @@ export const Cards = (): ReturnComponentType => {
             <div className={s.header}>
                 <Title title={packName} />
                 <StyledButton
-                    className={s.mainAddBtn}
+                    className={`${s.mainAddBtn} ${
+                        userId === packUserId ? '' : s.disabled
+                    }`}
                     variant="contained"
                     color="primary"
+                    disabled={userId !== packUserId}
                 >
                     Add new card
                 </StyledButton>

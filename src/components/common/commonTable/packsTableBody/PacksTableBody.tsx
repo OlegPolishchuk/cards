@@ -36,6 +36,16 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
         console.log('icon click');
     };
 
+    if (rows.length === 0) {
+        return (
+            <TableBody>
+                <TableRow>
+                    <TableCell>There is no packs yet</TableCell>
+                </TableRow>
+            </TableBody>
+        );
+    }
+
     return (
         <TableBody>
             {rows.map(row => (
