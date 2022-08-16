@@ -9,7 +9,12 @@ import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { fetchCardsData } from 'store/middlewares/cards/fetchCardsData';
-import { selectIsUserAuth } from 'store/selectors';
+import {
+    selectCards,
+    selectCardsTableHeadData,
+    selectCurrentPuckName,
+    selectIsUserAuth,
+} from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 export const Cards = (): ReturnComponentType => {
@@ -18,10 +23,18 @@ export const Cards = (): ReturnComponentType => {
     const { pack_id } = useParams<{ pack_id: string }>();
 
     const isUserAuth = useTypedSelector(selectIsUserAuth);
-    const packName = useTypedSelector(state => state.packs.currentPack.name);
+    const packName = useTypedSelector(selectCurrentPuckName);
 
-    const cards = useTypedSelector(state => state.cards.cards);
-    const tableHeadData = useTypedSelector(state => state.cards.tableData);
+    const cards = useTypedSelector(selectCards);
+    const tableHeadData = useTypedSelector(selectCardsTableHeadData);
+
+    const page = useTypedSelector(state => state.cards.page);
+    const pageCount = useTypedSelector(state => state.cards.pageCount);
+    const cardsTotalCount = useTypedSelector(state => state.cards.cardsTotalCount);
+
+    const handlePaginationChange = (value: number): void => {
+        console.log(value);
+    };
 
     useEffect(() => {
         if (isUserAuth) {
@@ -47,7 +60,12 @@ export const Cards = (): ReturnComponentType => {
             <div className={s.table}>
                 <CommonTable cards={cards} tableHeadData={tableHeadData} />
             </div>
-            <CommonPagination />
+            <CommonPagination
+                page={page}
+                pageCount={pageCount}
+                itemsTotalCount={cardsTotalCount}
+                callback={handlePaginationChange}
+            />
         </section>
     );
 };

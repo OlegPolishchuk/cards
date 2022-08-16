@@ -12,19 +12,31 @@ import { DEFAULT_PAGE_COUNT } from 'constants/packsSearchParams/defaultPageCount
 import { MAX_CARD_COUNT } from 'constants/packsSearchParams/maxCardCount/maxCardCount';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setPacksSearchParamsAC } from 'store/actions';
+import { setPacksPageAC } from 'store/actions/setPacksPageAC';
 import { fetchPackTC } from 'store/middlewares/packs/fetchPackTC';
 import { PacksSortType } from 'store/reducers/types';
-import { selectIsUserAuth, selectPacks, selectPacksTableData } from 'store/selectors';
+import {
+    selectCardPacksTotalCount,
+    selectIsUserAuth,
+    selectPacks,
+    selectPacksPage,
+    selectPacksPageCount,
+    selectPacksTableData,
+} from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 export const Packs = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const packs = useTypedSelector(selectPacks);
     const isUserAuth = useTypedSelector(selectIsUserAuth);
     const tableHeadData = useTypedSelector(selectPacksTableData);
+
+    const page = useTypedSelector(selectPacksPage);
+    const pageCount = useTypedSelector(selectPacksPageCount);
+    const cardsPackTotalCount = useTypedSelector(selectCardPacksTotalCount);
 
     const packNameParam = searchParams.get('packName') || '';
     const minParam = Number(searchParams.get('min')) || 0;
@@ -33,6 +45,13 @@ export const Packs = (): ReturnComponentType => {
     const pageParam = Number(searchParams.get('page')) || 1;
     const pageCountParam = Number(searchParams.get('pageCount')) || DEFAULT_PAGE_COUNT;
     const user_idParam = searchParams.get('user_id') || '';
+
+    const handlePaginationChange = (value: number): void => {
+        dispatch(setPacksPageAC(value));
+        searchParams.set('page', `${value}`);
+
+        setSearchParams(searchParams);
+    };
 
     useEffect(() => {
         const searchParams = {
@@ -83,7 +102,12 @@ export const Packs = (): ReturnComponentType => {
                 <div className={s.table}>
                     <CommonTable packs={packs} tableHeadData={tableHeadData} />
                 </div>
-                <CommonPagination />
+                <CommonPagination
+                    page={page}
+                    pageCount={pageCount}
+                    itemsTotalCount={cardsPackTotalCount}
+                    callback={handlePaginationChange}
+                />
             </div>
         </section>
     );
