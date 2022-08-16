@@ -1,4 +1,5 @@
 import { setCardPacksTotalCountAC } from 'store/actions/setCardPacksTotalCountAC';
+import { setCurrentPuckAC } from 'store/actions/setCurrentPuckAC';
 import { setMaxCardsCountAC } from 'store/actions/setMaxCardsCountAC';
 import { setMinCardsCountAC } from 'store/actions/setMinCardsCountAC';
 import { setPacksAC } from 'store/actions/setPacksAC';
@@ -9,7 +10,7 @@ import { setPacksTableDataAC } from 'store/actions/setPacksTableDataAC';
 import { setPacksUserIdAC } from 'store/actions/setPacksUserID';
 import { setSortPacksAC } from 'store/actions/setSortPacksAC';
 
-export type PacksActionType =
+export type PacksActionsType =
     | ReturnType<typeof setPacksAC>
     | ReturnType<typeof setPacksSearchParamsAC>
     | ReturnType<typeof setPacksNameAC>
@@ -19,4 +20,5 @@ export type PacksActionType =
     | ReturnType<typeof setMinCardsCountAC>
     | ReturnType<typeof setMaxCardsCountAC>
     | ReturnType<typeof setCardPacksTotalCountAC>
-    | ReturnType<typeof setPacksPageAC>;
+    | ReturnType<typeof setPacksPageAC>
+    | ReturnType<typeof setCurrentPuckAC>;

@@ -1,5 +1,5 @@
 import { instance } from 'api/config';
-import { createNewPackType, GetCardsResponseType } from 'api/packs/types';
+import { createNewPackType, GetPacksResponseType } from 'api/packs/types';
 import { PacksSearchParamsType } from 'store/reducers/types';
 
 export const packsAPI = {
@@ -12,7 +12,7 @@ export const packsAPI = {
         max,
         user_id,
     }: PacksSearchParamsType) => {
-        return instance.get<GetCardsResponseType>('cards/pack', {
+        return instance.get<GetPacksResponseType>('cards/pack', {
             params: {
                 packName,
                 min,

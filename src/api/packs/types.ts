@@ -6,7 +6,7 @@ export type createNewPackType = {
     isPrivate: boolean;
 };
 
-export type GetCardsResponseType = {
+export type GetPacksResponseType = {
     cardPacks: PackType[];
     page: number;
     pageCount: number;

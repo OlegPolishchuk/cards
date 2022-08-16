@@ -1,6 +1,7 @@
 import { MAX_CARDS_COUNT, MIN_CARDS_COUNT } from 'constants/cardsCount/cardsCountSlider';
 import {
     SET_CARD_PACKS_TOTAL_COUNT,
+    SET_CURRENT_PACK,
     SET_PACKS,
     SET_PACKS_MAX_CARDS_COUNT,
     SET_PACKS_MIN_CARDS_COUNT,
@@ -11,7 +12,8 @@ import {
     SET_PACKS_USER_ID,
     SET_SORT_PACKS,
 } from 'store/actions/constants';
-import { PacksActionType } from 'store/actions/types';
+import { PacksActionsType } from 'store/actions/types';
+import { PackType } from 'store/reducers/types';
 import { PackReducerType } from 'store/reducers/types/PackReducerType';
 
 const initialState: PackReducerType = {
@@ -47,11 +49,12 @@ const initialState: PackReducerType = {
         },
         { id: 5, title: 'Actions', search: null, isSorted: false, direction: 'asc' },
     ],
+    currentPack: {} as PackType,
 };
 
 export const packReducer = (
     state = initialState,
-    action: PacksActionType,
+    action: PacksActionsType,
 ): PackReducerType => {
     switch (action.type) {
         case SET_PACKS:
@@ -81,6 +84,8 @@ export const packReducer = (
             return { ...state, max: action.payload.max };
         case SET_PACKS_PAGE:
             return { ...state, page: action.payload.page };
+        case SET_CURRENT_PACK:
+            return { ...state, currentPack: action.payload.pack };
         default:
             return state;
     }

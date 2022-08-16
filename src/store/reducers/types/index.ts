@@ -4,3 +4,6 @@ export type { PackReducerType } from './PackReducerType';
 export type { PackType } from 'store/reducers/types/PackType';
 export type { PacksSortType } from './PacksSortType';
 export type { PacksSearchParamsType } from './PacksSearchParamsType';
+export type { CardType } from './CardType';
+export type { TableDataType } from './TableDataType';
+export type { CardsReducerType } from './CardsReducerType';

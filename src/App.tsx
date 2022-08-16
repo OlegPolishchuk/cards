@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { Header, Links } from 'components';
+import { Cards } from 'components/cards/Cards';
 import { Progress } from 'components/common/circularProgress/Progress';
 import { SnackBar } from 'components/common/snackBar/SnackBar';
 import { SetNewPassword } from 'components/setNewPassword/SetNewPassword';
@@ -34,7 +35,7 @@ const App = (): ReturnComponentType => {
                     <Route path="password_recovery/:token" element={<SetNewPassword />} />
                     <Route path="enter_new_password" element={<ForgotPassword />} />
                     <Route path="packs" element={<Packs />} />
-                    <Route path="packs/:pack_id" element={<div>cards</div>} />
+                    <Route path="packs/:pack_id" element={<Cards />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Container>

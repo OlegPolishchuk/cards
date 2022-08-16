@@ -8,21 +8,27 @@ import { useNavigate } from 'react-router-dom';
 
 import s from 'components/common/commonTable/CommonTable.module.scss';
 import { CommonTableBodyType } from 'components/common/commonTable/commonTableBody/types';
-import { useTypedSelector } from 'hooks';
+import { useAppDispatch, useTypedSelector } from 'hooks';
+import { setCurrentPuckAC } from 'store/actions/setCurrentPuckAC';
+import { PackType } from 'store/reducers/types';
 import { selectUserID } from 'store/selectors/auth';
 import { ReturnComponentType } from 'types';
 
 export const CommonTableBody = ({ rows }: CommonTableBodyType): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
     const navigate = useNavigate();
 
     const userId = useTypedSelector(selectUserID);
 
     const handleRowClick = (
         e: React.MouseEvent<HTMLTableRowElement>,
-        pack_id: string,
+        pack: PackType,
     ): void => {
         e.stopPropagation();
-        navigate(`${pack_id}`);
+        dispatch(setCurrentPuckAC(pack));
+
+        navigate(`${pack._id}`);
     };
 
     const handleIconClick = (e: React.MouseEvent<SVGSVGElement>): void => {
@@ -37,7 +43,7 @@ export const CommonTableBody = ({ rows }: CommonTableBodyType): ReturnComponentT
                     key={`${row.name}${row.created}`}
                     hover
                     className={s.row}
-                    onClick={e => handleRowClick(e, row._id)}
+                    onClick={e => handleRowClick(e, row)}
                 >
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.cardsCount}</TableCell>

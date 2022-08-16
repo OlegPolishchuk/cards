@@ -17,4 +17,5 @@ export type PackReducerType = {
     sortPacks: PacksSortType;
     user_id: string;
     tableData: TableDataType[];
+    currentPack: PackType;
 };

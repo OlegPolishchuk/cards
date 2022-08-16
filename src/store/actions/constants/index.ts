@@ -17,3 +17,7 @@ export const SET_PACKS_MIN_CARDS_COUNT = 'packs/SET_PACK_MIN_CARDS_COUNT';
 export const SET_PACKS_MAX_CARDS_COUNT = 'packs/SET_PACKS_MAX_CARDS_COUNT';
 export const SET_CARD_PACKS_TOTAL_COUNT = 'packs/SET_CARD_PACKS_TOTAL_COUNT';
 export const SET_PACKS_PAGE = 'packs/SET_PACKS_PAGE';
+export const SET_CARDS = 'cards/SET_CARDS';
+export const SET_CARDS_PACK_ID = 'cards/SET_CARDS_PACK_ID';
+export const SET_CURRENT_PACK = 'packs/SET_CURRENT_PACK';
+export const SET_CARDS_SEARCH_PARAMS = 'cards/SET_CARDS_SEARCH_PARAMS';

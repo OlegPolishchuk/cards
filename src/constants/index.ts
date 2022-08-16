@@ -5,3 +5,4 @@ export { DEFAULT_PAGE_COUNT } from './packsSearchParams/defaultPageCount/default
 export { MIN_NUMBER_OF_PAGE } from './packsSearchParams/minNumberOfPage/minNumberOfPage';
 export { USE_DEBOUNCE_TIMER } from './useDebounceTimer/useDebounceTymer';
 export { MIN_CARDS_COUNT, MAX_CARDS_COUNT } from './cardsCount/cardsCountSlider';
+export { CARDS_PAGE_COUNT } from './cardsSearchParams/cardsPageCount';
