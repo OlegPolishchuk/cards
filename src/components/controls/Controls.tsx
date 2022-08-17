@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import s from './Controls.module.scss';
 
-import { RangeSlider } from 'components/rangeSlider/RangeSlider';
+import { RangeSlider } from 'components/common/rangeSlider/RangeSlider';
 import { USE_DEBOUNCE_TIMER } from 'constants/useDebounceTimer/useDebounceTymer';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { useDebounce } from 'hooks/useDebounce/useDebounce';

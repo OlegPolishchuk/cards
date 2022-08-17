@@ -43,3 +43,30 @@
   letter-spacing: 0.01em;
   text-transform: none;
 }
+
+@mixin modalForm() {
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .fieldBox {
+      display: flex;
+      flex-direction: column;
+
+      margin-bottom: 20px;
+    }
+
+    .fieldTitle {
+      color: $tooltipColor;
+    }
+
+    .error {
+      @include error-text;
+    }
+
+    .btnGroup {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+}

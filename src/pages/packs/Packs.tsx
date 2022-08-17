@@ -1,6 +1,5 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-import { Button } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
 import s from './Packs.module.scss';
@@ -9,6 +8,10 @@ import { CustomPagination, CustomTable } from 'components/common';
 import { CustomModal } from 'components/common/modals/CustomModal';
 import { Controls } from 'components/controls/Controls';
 import { StyledButton } from 'components/header/styles';
+import {
+    AddNewPack,
+    AddNewPackFieldType,
+} from 'components/modalsStates/addNewPack/AddNewPack';
 import { Title } from 'components/title/Title';
 import { DEFAULT_PAGE_COUNT } from 'constants/packsSearchParams/defaultPageCount/defaultPageCount';
 import { MAX_CARD_COUNT } from 'constants/packsSearchParams/maxCardCount/maxCardCount';
@@ -17,6 +20,7 @@ import { setPacksSearchParamsAC } from 'store/actions';
 import { setIsModalOpenAC } from 'store/actions/setIsModalOpenAC';
 import { setPacksPageAC } from 'store/actions/setPacksPageAC';
 import { setPacksPageCountAC } from 'store/actions/setPacksPageCountAC';
+import { createPackTC } from 'store/middlewares/packs/createPackTC';
 import { fetchPackTC } from 'store/middlewares/packs/fetchPackTC';
 import { PacksSortType } from 'store/reducers/types';
 import {
@@ -105,11 +109,19 @@ export const Packs = (): ReturnComponentType => {
         user_idParam,
     ]);
 
-    const footerChildren: ReactNode = (
-        <Button type="button" variant="contained" color="error">
-            Delete
-        </Button>
-    );
+    // const footerChildren: ReactNode = (
+    //     <div>
+    //         <Button type="submit" variant="contained" color="primary">
+    //             Add pack
+    //         </Button>
+    //     </div>
+    // );
+
+    const handleAddNewPack = (fields: AddNewPackFieldType): void => {
+        dispatch(createPackTC(fields));
+
+        dispatch(setIsModalOpenAC(false));
+    };
 
     return (
         <>
@@ -142,9 +154,7 @@ export const Packs = (): ReturnComponentType => {
             </section>
             <CustomModal
                 title="test Modal"
-                mainChildren={<p>Mid children</p>}
-                footerChildren={footerChildren}
-                isCanselBtn
+                mainChildren={<AddNewPack callback={handleAddNewPack} />}
             />
         </>
     );

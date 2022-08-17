@@ -55,6 +55,18 @@ export const CustomModal = ({
         window.addEventListener('click', close);
     }, []);
 
+    useEffect(() => {
+        const close = (e: MouseEvent): void => {
+            const element = e.target as HTMLElement;
+
+            if (element.dataset.action === 'close') {
+                handleClose();
+            }
+        };
+
+        window.addEventListener('click', close);
+    }, []);
+
     return ReactDOM.createPortal(
         <div className={`${s.container} ${showModalClass}`} id="modal_container">
             {isModalOpen && (

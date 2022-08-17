@@ -1,0 +1,27 @@
+@import "src/common/style/mixins";
+@import "src/common/style/variables";
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .fieldBox {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 20px;
+  }
+
+  .fieldTitle {
+    color: $tooltipColor;
+  }
+
+  .error {
+    @include error-text;
+  }
+
+  .btnGroup {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
