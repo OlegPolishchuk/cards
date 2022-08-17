@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import s from './Cards.module.scss';
 
 import { BreadCrumbs, CustomPagination, CustomTable } from 'components/common';
+import { CustomModal } from 'components/common/modals/CustomModal';
 import { StyledButton } from 'components/header/styles';
+import {
+    AddEditCardModal,
+    AddEditModalFieldsType,
+} from 'components/modalsStates/cards/addEditCardModal/AddEditCardModal';
 import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCardsPageAC } from 'store/actions/setCardsPageAC';
 import { setCardsPageCountAC } from 'store/actions/setCardsPageCountAC';
+import { addNewCardTC } from 'store/middlewares/cards/addNewCardTC';
 import { fetchCardsData } from 'store/middlewares/cards/fetchCardsData';
 import {
     selectCards,
@@ -24,6 +30,8 @@ export const Cards = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const [searchParams, setSearchParams] = useSearchParams();
+
+    const [showAddModal, setShowModal] = useState(false);
 
     const { pack_id } = useParams<{ pack_id: string }>();
 
@@ -55,6 +63,16 @@ export const Cards = (): ReturnComponentType => {
         setSearchParams(searchParams);
     };
 
+    const handleShowAddModal = (): void => {
+        setShowModal(true);
+    };
+
+    const handleAddNewCard = (data: AddEditModalFieldsType): void => {
+        console.log(data);
+        dispatch(addNewCardTC(data));
+        setShowModal(false);
+    };
+
     useEffect(() => {
         if (isUserAuth) {
             if (pack_id) {
@@ -75,6 +93,7 @@ export const Cards = (): ReturnComponentType => {
                     variant="contained"
                     color="primary"
                     disabled={userId !== packUserId}
+                    onClick={handleShowAddModal}
                 >
                     Add new card
                 </StyledButton>
@@ -90,6 +109,9 @@ export const Cards = (): ReturnComponentType => {
                 selectValues={selectValues}
                 selectChangeCallback={handleSelectChange}
             />
+            <CustomModal open={showAddModal} close={setShowModal} title="Add new card">
+                <AddEditCardModal callback={handleAddNewCard} />
+            </CustomModal>
         </section>
     );
 };

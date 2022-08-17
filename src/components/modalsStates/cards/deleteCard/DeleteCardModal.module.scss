@@ -1,0 +1,15 @@
+@import "../../../../common/style/mixins";
+
+.container {
+  @include deleteModal();
+
+  .btnGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+  }
+
+  .deleteBtn {
+    align-items: flex-end;
+  }
+}

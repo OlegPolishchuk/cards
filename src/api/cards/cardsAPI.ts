@@ -1,4 +1,9 @@
-import { CardsSearchParamsType, GetCardsResponseType } from 'api/cards/types';
+import {
+    CardsSearchParamsType,
+    CreateNewCardType,
+    GetCardsResponseType,
+    UpdateCardType,
+} from 'api/cards/types';
 import { instance } from 'api/config';
 
 export const cardsAPI = {
@@ -22,5 +27,16 @@ export const cardsAPI = {
                 pageCount,
             },
         });
+    },
+    createCard: (data: CreateNewCardType) => {
+        return instance.post('cards/card', {
+            card: { ...data },
+        });
+    },
+    editCard: (data: UpdateCardType) => {
+        return instance.put('cards/card', { card: { ...data } });
+    },
+    deleteCard: (id: string) => {
+        return instance.delete('cards/card', { params: { id } });
     },
 };

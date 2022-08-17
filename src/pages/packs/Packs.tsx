@@ -76,7 +76,12 @@ export const Packs = (): ReturnComponentType => {
 
     const handleShowModal = (): void => {
         setShowAddCardModal(true);
-        // dispatch(setIsModalOpenAC(true));
+    };
+
+    const handleAddNewPack = (fields: AddNewPackFieldType): void => {
+        dispatch(createPackTC(fields));
+
+        setShowAddCardModal(false);
     };
 
     useEffect(() => {
@@ -110,12 +115,6 @@ export const Packs = (): ReturnComponentType => {
         pageCountParam,
         user_idParam,
     ]);
-
-    const handleAddNewPack = (fields: AddNewPackFieldType): void => {
-        dispatch(createPackTC(fields));
-
-        setShowAddCardModal(false);
-    };
 
     return (
         <section className={s.packs}>

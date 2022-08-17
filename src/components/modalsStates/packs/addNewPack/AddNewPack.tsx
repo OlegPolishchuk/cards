@@ -24,7 +24,6 @@ export const AddNewPack = ({ callback }: AddNewPackType): ReturnComponentType =>
     } = useForm<AddNewPackFieldType>({ mode: 'onSubmit' });
 
     const submit: SubmitHandler<AddNewPackFieldType> = data => {
-        console.log(data);
         callback(data);
         reset();
     };

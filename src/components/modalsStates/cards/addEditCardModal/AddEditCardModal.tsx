@@ -74,7 +74,7 @@ export const AddEditCardModal = ({
                 <span className={s.error}>{errors.answer && 'Required'}</span>
             </div>
             <div className={s.btnGroup}>
-                <Button type="submit" variant="outlined">
+                <Button type="button" variant="outlined" data-action="close">
                     Cansel
                 </Button>
                 <Button type="submit" variant="contained" color="primary">

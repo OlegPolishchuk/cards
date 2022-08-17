@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -7,9 +7,51 @@ import { Rating, TableBody, TableCell, TableRow } from '@mui/material';
 
 import { CardsTableBodyType } from 'components/common/commonTable/cardsTableBody/types';
 import s from 'components/common/commonTable/CustomTable.module.scss';
+import { CustomModal } from 'components/common/modals/CustomModal';
+import {
+    AddEditCardModal,
+    AddEditModalFieldsType,
+} from 'components/modalsStates/cards/addEditCardModal/AddEditCardModal';
+import { DeleteCardModal } from 'components/modalsStates/cards/deleteCard/DeleteCardModal';
+import { useAppDispatch, useTypedSelector } from 'hooks';
+import { deleteCardTC } from 'store/middlewares/cards/deleteCardTC';
+import { editCardTC } from 'store/middlewares/cards/editCardTC';
+import { CardType } from 'store/reducers/types';
+import { selectUserID } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
+    const [currentCard, setCurrentCard] = useState({} as CardType);
+
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const userId = useTypedSelector(selectUserID);
+
+    const handleShowEditModal = (card: CardType): void => {
+        setCurrentCard(card);
+        setShowEditModal(true);
+    };
+
+    const handleEditCard = (data: AddEditModalFieldsType): void => {
+        const newData = { ...data, _id: currentCard._id };
+
+        dispatch(editCardTC(newData));
+        setShowEditModal(false);
+    };
+
+    const handleShowDeleteCard = (card: CardType): void => {
+        setCurrentCard(card);
+        setShowDeleteModal(true);
+    };
+
+    const handleDeleteCard = (): void => {
+        dispatch(deleteCardTC(currentCard._id));
+        setShowDeleteModal(false);
+    };
+
     if (rows.length === 0) {
         return (
             <TableBody>
@@ -26,7 +68,7 @@ export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentTyp
                 <TableRow
                     key={`${row._id}${row.created}`}
                     hover
-                    className={s.row}
+                    className={`${s.row} ${s.cardsRow}`}
                     onClick={() => {}}
                 >
                     <TableCell>{row.question}</TableCell>
@@ -36,12 +78,39 @@ export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentTyp
                         <Rating value={row.grade} precision={0.1} readOnly />
                     </TableCell>
                     <TableCell>
-                        <EditOutlinedIcon className={s.icon} />
-                        <DeleteOutlineOutlinedIcon className={s.icon} />
+                        {userId === row.user_id && (
+                            <>
+                                <EditOutlinedIcon
+                                    className={s.icon}
+                                    onClick={() => handleShowEditModal(row)}
+                                />
+                                <DeleteOutlineOutlinedIcon
+                                    className={s.icon}
+                                    onClick={() => handleShowDeleteCard(row)}
+                                />
+                            </>
+                        )}
                         <SchoolOutlinedIcon className={s.icon} onClick={() => {}} />
                     </TableCell>
                 </TableRow>
             ))}
+            <CustomModal open={showEditModal} close={setShowEditModal} title="Edit card">
+                <AddEditCardModal
+                    callback={handleEditCard}
+                    fields={{
+                        question: currentCard.question,
+                        answer: currentCard.answer,
+                        questionType: currentCard.question,
+                    }}
+                />
+            </CustomModal>
+            <CustomModal
+                open={showDeleteModal}
+                close={setShowDeleteModal}
+                title="Delete card"
+            >
+                <DeleteCardModal callback={handleDeleteCard} />
+            </CustomModal>
         </TableBody>
     );
 };

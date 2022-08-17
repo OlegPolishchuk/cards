@@ -33,7 +33,7 @@ export const packsAPI = {
             cardsPack: {
                 name,
                 deckCover,
-                privet: isPrivate,
+                private: isPrivate,
             },
         });
     },

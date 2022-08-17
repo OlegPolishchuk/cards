@@ -46,7 +46,6 @@ export const Controls = (): ReturnComponentType => {
         setSearchParams(searchParams);
     };
 
-    console.log(searchParams.get('user_id'));
     useEffect(() => {
         dispatch(setPacksNameAC(debouncedValue));
         searchParams.set('packName', debouncedValue);
