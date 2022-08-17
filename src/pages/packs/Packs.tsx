@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
@@ -17,7 +17,6 @@ import { DEFAULT_PAGE_COUNT } from 'constants/packsSearchParams/defaultPageCount
 import { MAX_CARD_COUNT } from 'constants/packsSearchParams/maxCardCount/maxCardCount';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setPacksSearchParamsAC } from 'store/actions';
-import { setIsModalOpenAC } from 'store/actions/setIsModalOpenAC';
 import { setPacksPageAC } from 'store/actions/setPacksPageAC';
 import { setPacksPageCountAC } from 'store/actions/setPacksPageCountAC';
 import { createPackTC } from 'store/middlewares/packs/createPackTC';
@@ -49,6 +48,8 @@ export const Packs = (): ReturnComponentType => {
 
     const selectValues = useTypedSelector(selectPacksSelectValues);
 
+    const [showAddCardModal, setShowAddCardModal] = useState(false);
+
     const packNameParam = searchParams.get('packName') || '';
     const minParam = Number(searchParams.get('min')) || 0;
     const maxParam = Number(searchParams.get('max')) || MAX_CARD_COUNT;
@@ -74,7 +75,8 @@ export const Packs = (): ReturnComponentType => {
     };
 
     const handleShowModal = (): void => {
-        dispatch(setIsModalOpenAC(true));
+        setShowAddCardModal(true);
+        // dispatch(setIsModalOpenAC(true));
     };
 
     useEffect(() => {
@@ -109,53 +111,46 @@ export const Packs = (): ReturnComponentType => {
         user_idParam,
     ]);
 
-    // const footerChildren: ReactNode = (
-    //     <div>
-    //         <Button type="submit" variant="contained" color="primary">
-    //             Add pack
-    //         </Button>
-    //     </div>
-    // );
-
     const handleAddNewPack = (fields: AddNewPackFieldType): void => {
         dispatch(createPackTC(fields));
 
-        dispatch(setIsModalOpenAC(false));
+        setShowAddCardModal(false);
     };
 
     return (
-        <>
-            <section className={s.packs}>
-                <div className={s.container}>
-                    <div className={s.header}>
-                        <Title title="Pack list" />
-                        <StyledButton
-                            className={s.mainAddBtn}
-                            variant="contained"
-                            color="primary"
-                            onClick={handleShowModal}
-                        >
-                            Add new pack
-                        </StyledButton>
-                    </div>
-                    <Controls />
-                    <div className={s.table}>
-                        <CustomTable packs={packs} tableHeadData={tableHeadData} />
-                    </div>
-                    <CustomPagination
-                        page={page}
-                        pageCount={pageCount}
-                        itemsTotalCount={cardsPackTotalCount}
-                        paginationChangeCallback={handlePaginationChange}
-                        selectValues={selectValues}
-                        selectChangeCallback={handleSelectChange}
-                    />
+        <section className={s.packs}>
+            <div className={s.container}>
+                <div className={s.header}>
+                    <Title title="Pack list" />
+                    <StyledButton
+                        className={s.mainAddBtn}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleShowModal}
+                    >
+                        Add new pack
+                    </StyledButton>
                 </div>
-            </section>
+                <Controls />
+                <div className={s.table}>
+                    <CustomTable packs={packs} tableHeadData={tableHeadData} />
+                </div>
+                <CustomPagination
+                    page={page}
+                    pageCount={pageCount}
+                    itemsTotalCount={cardsPackTotalCount}
+                    paginationChangeCallback={handlePaginationChange}
+                    selectValues={selectValues}
+                    selectChangeCallback={handleSelectChange}
+                />
+            </div>
             <CustomModal
+                open={showAddCardModal}
+                close={() => setShowAddCardModal(false)}
                 title="test Modal"
-                mainChildren={<AddNewPack callback={handleAddNewPack} />}
-            />
-        </>
+            >
+                <AddNewPack callback={handleAddNewPack} />
+            </CustomModal>
+        </section>
     );
 };

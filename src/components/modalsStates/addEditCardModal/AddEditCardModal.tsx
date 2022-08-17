@@ -26,7 +26,7 @@ export const AddEditCardModal = ({
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<AddEditModalFieldsType>({ mode: 'onBlur' });
+    } = useForm<AddEditModalFieldsType>({ mode: 'onSubmit' });
 
     const submit: SubmitHandler<AddEditModalFieldsType> = data => {
         callback(data);

@@ -6,34 +6,32 @@ import ReactDOM from 'react-dom';
 
 import s from './CustomModal.module.scss';
 
-import { useAppDispatch, useTypedSelector } from 'hooks';
-import { setIsModalOpenAC } from 'store/actions/setIsModalOpenAC';
-import { selectIsModalOpen } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 const MODALS_ID = document.getElementById('modal') as HTMLElement;
 
 export type CustomModalType = {
+    open: boolean;
+    close: (open: boolean) => void;
     title: string;
-    mainChildren: ReactNode;
-    footerChildren?: ReactNode;
+    children?: ReactNode;
     isCanselBtn?: boolean;
+    footerChildren?: ReactNode;
 };
 
 export const CustomModal = ({
     title,
-    mainChildren,
-    footerChildren,
+    children,
     isCanselBtn,
+    open,
+    close,
+    footerChildren,
 }: CustomModalType): ReturnComponentType => {
-    const dispatch = useAppDispatch();
-    const isModalOpen = useTypedSelector(selectIsModalOpen);
-
     const handleClose = (): void => {
-        dispatch(setIsModalOpenAC(false));
+        close(false);
     };
 
-    const showModalClass = isModalOpen ? s.open : s.close;
+    const showModalClass = open ? s.open : s.close;
 
     useEffect(() => {
         const close = (e: KeyboardEvent): void => {
@@ -69,13 +67,13 @@ export const CustomModal = ({
 
     return ReactDOM.createPortal(
         <div className={`${s.container} ${showModalClass}`} id="modal_container">
-            {isModalOpen && (
+            {open && (
                 <div className={s.modal}>
                     <header className={s.header}>
                         <h3 className={s.title}>{title}</h3>
                         <CloseOutlinedIcon className={s.closeBtn} onClick={handleClose} />
                     </header>
-                    <main className={s.main}>{mainChildren}</main>
+                    <main className={s.main}>{children}</main>
                     {footerChildren && (
                         <footer className={s.footer}>
                             {isCanselBtn && (
