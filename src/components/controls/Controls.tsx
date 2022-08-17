@@ -21,7 +21,7 @@ export const Controls = (): ReturnComponentType => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const [activeBtnAll, setActiveBtnAll] = useState(true);
+    const [activeBtnAll, setActiveBtnAll] = useState(!searchParams.get('user_id'));
 
     const [value, setValue] = useState(searchParams.get('packName') || '');
     const debouncedValue = useDebounce<string>(value, USE_DEBOUNCE_TIMER);
@@ -46,6 +46,7 @@ export const Controls = (): ReturnComponentType => {
         setSearchParams(searchParams);
     };
 
+    console.log(searchParams.get('user_id'));
     useEffect(() => {
         dispatch(setPacksNameAC(debouncedValue));
         searchParams.set('packName', debouncedValue);
