@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
+import { Button } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
 import s from './Packs.module.scss';
 
 import { CustomPagination, CustomTable } from 'components/common';
+import { CustomModal } from 'components/common/modals/CustomModal';
 import { Controls } from 'components/controls/Controls';
 import { StyledButton } from 'components/header/styles';
 import { Title } from 'components/title/Title';
@@ -12,6 +14,7 @@ import { DEFAULT_PAGE_COUNT } from 'constants/packsSearchParams/defaultPageCount
 import { MAX_CARD_COUNT } from 'constants/packsSearchParams/maxCardCount/maxCardCount';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setPacksSearchParamsAC } from 'store/actions';
+import { setIsModalOpenAC } from 'store/actions/setIsModalOpenAC';
 import { setPacksPageAC } from 'store/actions/setPacksPageAC';
 import { setPacksPageCountAC } from 'store/actions/setPacksPageCountAC';
 import { fetchPackTC } from 'store/middlewares/packs/fetchPackTC';
@@ -66,6 +69,10 @@ export const Packs = (): ReturnComponentType => {
         setSearchParams(searchParams);
     };
 
+    const handleShowModal = (): void => {
+        dispatch(setIsModalOpenAC(true));
+    };
+
     useEffect(() => {
         const searchParams = {
             packName: packNameParam,
@@ -98,32 +105,47 @@ export const Packs = (): ReturnComponentType => {
         user_idParam,
     ]);
 
+    const footerChildren: ReactNode = (
+        <Button type="button" variant="contained" color="error">
+            Delete
+        </Button>
+    );
+
     return (
-        <section className={s.packs}>
-            <div className={s.container}>
-                <div className={s.header}>
-                    <Title title="Pack list" />
-                    <StyledButton
-                        className={s.mainAddBtn}
-                        variant="contained"
-                        color="primary"
-                    >
-                        Add new pack
-                    </StyledButton>
+        <>
+            <section className={s.packs}>
+                <div className={s.container}>
+                    <div className={s.header}>
+                        <Title title="Pack list" />
+                        <StyledButton
+                            className={s.mainAddBtn}
+                            variant="contained"
+                            color="primary"
+                            onClick={handleShowModal}
+                        >
+                            Add new pack
+                        </StyledButton>
+                    </div>
+                    <Controls />
+                    <div className={s.table}>
+                        <CustomTable packs={packs} tableHeadData={tableHeadData} />
+                    </div>
+                    <CustomPagination
+                        page={page}
+                        pageCount={pageCount}
+                        itemsTotalCount={cardsPackTotalCount}
+                        paginationChangeCallback={handlePaginationChange}
+                        selectValues={selectValues}
+                        selectChangeCallback={handleSelectChange}
+                    />
                 </div>
-                <Controls />
-                <div className={s.table}>
-                    <CustomTable packs={packs} tableHeadData={tableHeadData} />
-                </div>
-                <CustomPagination
-                    page={page}
-                    pageCount={pageCount}
-                    itemsTotalCount={cardsPackTotalCount}
-                    paginationChangeCallback={handlePaginationChange}
-                    selectValues={selectValues}
-                    selectChangeCallback={handleSelectChange}
-                />
-            </div>
-        </section>
+            </section>
+            <CustomModal
+                title="test Modal"
+                mainChildren={<p>Mid children</p>}
+                footerChildren={footerChildren}
+                isCanselBtn
+            />
+        </>
     );
 };

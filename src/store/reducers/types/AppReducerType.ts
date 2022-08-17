@@ -4,4 +4,5 @@ export type AppStateType = {
     isInitialized: boolean;
     status: REQUEST_STATUS;
     error: null | string;
+    isModalOpen: boolean;
 };

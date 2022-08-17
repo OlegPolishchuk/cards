@@ -24,3 +24,4 @@ export const SET_CARDS_SEARCH_PARAMS = 'cards/SET_CARDS_SEARCH_PARAMS';
 export const SET_CARDS_PAGE = 'cards/SET_CARDS_PAGE';
 export const SET_CARDS_PAGE_COUNT = 'cards/SET_CARDS_PAGE_COUNT';
 export const SET_PACKS_PAGE_COUNT = 'packs/SET_PACKS_PAGE_COUNT';
+export const SET_IS_MODAL_OPEN = 'app/SET_IS_MODAL_OPEN';

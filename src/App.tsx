@@ -13,11 +13,12 @@ import { useAppDispatch, useTypedSelector } from 'hooks';
 import { ForgotPassword, NotFound, Profile, Registration, SignIn } from 'pages';
 import { Packs } from 'pages/packs/Packs';
 import { initializeAppTC } from 'store/middlewares/app/initializeAppTC';
+import { selectAppStatus } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
-    const status = useTypedSelector(state => state.app.status);
+    const status = useTypedSelector(selectAppStatus);
 
     useEffect(() => {
         dispatch(initializeAppTC());

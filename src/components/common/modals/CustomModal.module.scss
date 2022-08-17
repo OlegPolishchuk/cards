@@ -1,0 +1,76 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,.8);
+
+  transition: opacity .3s ease, visibility .5s ease;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.close {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.modal {
+  background: #fff;
+  border-radius: 5px;
+
+  min-width: 380px;
+
+
+  .main {
+    padding: 20px;
+  }
+
+  .closeBtn {
+    margin-left: 30px;
+    cursor: pointer;
+
+    transition: all .2s ease;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  .header, .footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px;
+  }
+
+  .header {
+    border-bottom: 1px solid $tableHeadBackground;
+
+    .title {
+      margin: 0;
+    }
+  }
+
+  .footer {
+    padding-bottom: 20px;
+  }
+
+
+  button {
+    @include commonBtn();
+  }
+}
+

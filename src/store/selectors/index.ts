@@ -18,4 +18,6 @@ export {
     selectPacksSelectValues,
 } from './packs';
 
+export { selectAppStatus, selectIsModalOpen } from './app';
+
 export { selectCards, selectCardsTableHeadData } from './cards';
