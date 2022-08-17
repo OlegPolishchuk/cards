@@ -11,7 +11,7 @@ import { StyledButton } from 'components/header/styles';
 import {
     AddNewPack,
     AddNewPackFieldType,
-} from 'components/modalsStates/addNewPack/AddNewPack';
+} from 'components/modalsStates/packs/addNewPack/AddNewPack';
 import { Title } from 'components/title/Title';
 import { DEFAULT_PAGE_COUNT } from 'constants/packsSearchParams/defaultPageCount/defaultPageCount';
 import { MAX_CARD_COUNT } from 'constants/packsSearchParams/maxCardCount/maxCardCount';

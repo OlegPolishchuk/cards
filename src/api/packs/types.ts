@@ -16,3 +16,9 @@ export type GetPacksResponseType = {
     token: string;
     tokenDeathTime: number;
 };
+
+export type UpdatePackDataType = {
+    _id: string;
+    name?: string;
+    isPrivate?: boolean;
+};

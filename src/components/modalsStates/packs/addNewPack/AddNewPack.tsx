@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import s from 'components/modalsStates/addEditCardModal/AddEditCardModal.module.scss';
+import s from 'components/modalsStates/cards/addEditCardModal/AddEditCardModal.module.scss';
 import { ReturnComponentType } from 'types';
 
 export type AddNewPackType = {

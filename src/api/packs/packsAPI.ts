@@ -1,5 +1,9 @@
 import { instance } from 'api/config';
-import { createNewPackType, GetPacksResponseType } from 'api/packs/types';
+import {
+    createNewPackType,
+    GetPacksResponseType,
+    UpdatePackDataType,
+} from 'api/packs/types';
 import { PacksSearchParamsType } from 'store/reducers/types';
 
 export const packsAPI = {
@@ -38,10 +42,13 @@ export const packsAPI = {
             params: { id },
         });
     },
-    updatePack: (_id: string, name: string = '') => {
+    updatePack: ({ _id, name, isPrivate }: UpdatePackDataType) => {
         return instance.put('cards/pack', {
-            _id,
-            name,
+            cardsPack: {
+                _id,
+                name,
+                private: isPrivate,
+            },
         });
     },
 };

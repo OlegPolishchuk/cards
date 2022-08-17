@@ -3,15 +3,19 @@ import React, { useState } from 'react';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
-import { Button, TableBody, TableCell, TableRow } from '@mui/material';
+import { TableBody, TableCell, TableRow } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import s from 'components/common/commonTable/CustomTable.module.scss';
 import { PacksTableBodyType } from 'components/common/commonTable/packsTableBody/types';
 import { CustomModal } from 'components/common/modals/CustomModal';
+import { AddNewPackFieldType } from 'components/modalsStates/packs/addNewPack/AddNewPack';
+import { DeletePackModal } from 'components/modalsStates/packs/deletePackModal/DeletePackModal';
+import { EditPackModal } from 'components/modalsStates/packs/editPackModal/EditPackModal';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCurrentPuckAC } from 'store/actions/setCurrentPuckAC';
 import { deletePackTC } from 'store/middlewares/packs/deletePackTC';
+import { updatePackTC } from 'store/middlewares/packs/updatePackTC';
 import { PackType } from 'store/reducers/types';
 import { selectUserID } from 'store/selectors/auth';
 import { ReturnComponentType } from 'types';
@@ -22,6 +26,8 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
     const navigate = useNavigate();
 
     const [shoeDeleteModal, setShowDeleteModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+
     const [currentPack, setCurrentPack] = useState<PackType>({} as PackType);
 
     const userId = useTypedSelector(selectUserID);
@@ -36,9 +42,13 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
         navigate(`${pack._id}`);
     };
 
-    const handleIconClick = (e: React.MouseEvent<SVGSVGElement>): void => {
+    const handleShowEditModal = (
+        e: React.MouseEvent<SVGSVGElement>,
+        pack: PackType,
+    ): void => {
         e.stopPropagation();
-        console.log('icon click');
+        setCurrentPack(pack);
+        setShowEditModal(true);
     };
 
     const handleShowDeleteModal = (
@@ -53,6 +63,13 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
     const handleDeletePack = (): void => {
         dispatch(deletePackTC(currentPack._id));
         setShowDeleteModal(false);
+    };
+
+    const handleEditPack = (data: AddNewPackFieldType): void => {
+        const newData = { ...data, _id: currentPack._id };
+
+        dispatch(updatePackTC(newData));
+        setShowEditModal(false);
     };
 
     if (rows.length === 0) {
@@ -81,7 +98,10 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                     <TableCell>
                         {userId === row.user_id && (
                             <>
-                                <EditOutlinedIcon className={s.icon} />
+                                <EditOutlinedIcon
+                                    className={s.icon}
+                                    onClick={e => handleShowEditModal(e, row)}
+                                />
                                 <DeleteOutlineOutlinedIcon
                                     className={s.icon}
                                     onClick={e => handleShowDeleteModal(e, row)}
@@ -89,10 +109,7 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                             </>
                         )}
 
-                        <SchoolOutlinedIcon
-                            className={s.icon}
-                            onClick={e => handleIconClick(e)}
-                        />
+                        <SchoolOutlinedIcon className={s.icon} />
                     </TableCell>
                 </TableRow>
             ))}
@@ -101,21 +118,10 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                 close={setShowDeleteModal}
                 title="delete pack ?"
             >
-                <div>
-                    <p>
-                        Do you really want to remove pack:{' '}
-                        <span className={s.packName}>{currentPack.name}</span> ? All cards
-                        will be deleted?
-                    </p>
-                    <Button
-                        type="button"
-                        variant="contained"
-                        color="error"
-                        onClick={handleDeletePack}
-                    >
-                        Delete
-                    </Button>
-                </div>
+                <DeletePackModal pack={currentPack} callback={handleDeletePack} />
+            </CustomModal>
+            <CustomModal open={showEditModal} close={setShowEditModal} title="Edit pack?">
+                <EditPackModal pack={currentPack} callback={handleEditPack} />
             </CustomModal>
         </TableBody>
     );

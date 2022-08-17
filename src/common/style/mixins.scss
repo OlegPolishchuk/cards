@@ -70,3 +70,11 @@
     }
   }
 }
+
+@mixin deleteModal() {
+
+  .packName {
+    font-weight: bold;
+  }
+
+}
