@@ -4,14 +4,13 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 import s from './Cards.module.scss';
 
+import { CardsHeader } from 'components/cards/cardsHeader/CardsHeader';
 import { BreadCrumbs, CustomPagination, CustomTable } from 'components/common';
 import { CustomModal } from 'components/common/modals/CustomModal';
-import { StyledButton } from 'components/header/styles';
 import {
     AddEditCardModal,
     AddEditModalFieldsType,
 } from 'components/modalsStates/cards/addEditCardModal/AddEditCardModal';
-import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCardsPageAC } from 'store/actions/setCardsPageAC';
 import { setCardsPageCountAC } from 'store/actions/setCardsPageCountAC';
@@ -19,15 +18,12 @@ import { addNewCardTC } from 'store/middlewares/cards/addNewCardTC';
 import { fetchCardsData } from 'store/middlewares/cards/fetchCardsData';
 import {
     selectCards,
-    selectCardsTableHeadData,
-    selectCurrentPuckName,
-    selectIsUserAuth,
-    selectUserID,
-    selectPackUserId,
     selectCardsPage,
     selectCardsPageCount,
-    selectCardsTotalCount,
     selectCardsSelectValues,
+    selectCardsTableHeadData,
+    selectCardsTotalCount,
+    selectIsUserAuth,
 } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
@@ -41,13 +37,9 @@ export const Cards = (): ReturnComponentType => {
     const { pack_id } = useParams<{ pack_id: string }>();
 
     const isUserAuth = useTypedSelector(selectIsUserAuth);
-    const packName = useTypedSelector(selectCurrentPuckName);
 
     const cards = useTypedSelector(selectCards);
     const tableHeadData = useTypedSelector(selectCardsTableHeadData);
-
-    const userId = useTypedSelector(selectUserID);
-    const packUserId = useTypedSelector(selectPackUserId);
 
     const page = useTypedSelector(selectCardsPage);
     const pageCount = useTypedSelector(selectCardsPageCount);
@@ -88,20 +80,7 @@ export const Cards = (): ReturnComponentType => {
     return (
         <section className={s.cards}>
             <BreadCrumbs linkTo="packs" spanText="Back to Packs list" />
-            <div className={s.header}>
-                <Title title={packName} />
-                <StyledButton
-                    className={`${s.mainAddBtn} ${
-                        userId === packUserId ? '' : s.disabled
-                    }`}
-                    variant="contained"
-                    color="primary"
-                    disabled={userId !== packUserId}
-                    onClick={handleShowAddModal}
-                >
-                    Add new card
-                </StyledButton>
-            </div>
+            <CardsHeader handleShowAddModal={handleShowAddModal} />
             <div className={s.table}>
                 <CustomTable cards={cards} tableHeadData={tableHeadData} />
             </div>

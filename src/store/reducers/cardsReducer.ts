@@ -3,6 +3,7 @@ import {
     CARDS_SELECT_VALUES,
 } from 'constants/cardsSelectValues/cardsSelectValues';
 import {
+    SET_CARD_SEARCH_QUESTION,
     SET_CARDS,
     SET_CARDS_PACK_ID,
     SET_CARDS_PAGE,
@@ -98,6 +99,8 @@ export const cardsReducer = (
             };
         case SET_SORT_CARDS:
             return { ...state, sortCards: action.payload.sort };
+        case SET_CARD_SEARCH_QUESTION:
+            return { ...state, cardQuestion: action.payload.question };
         default:
             return state;
     }

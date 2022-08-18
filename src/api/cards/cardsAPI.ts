@@ -8,7 +8,7 @@ import { instance } from 'api/config';
 
 export const cardsAPI = {
     fetchCards: ({
-        cardAnswer,
+        cardQuestion,
         cardsPack_id,
         min,
         max,
@@ -18,7 +18,7 @@ export const cardsAPI = {
     }: CardsSearchParamsType) => {
         return instance.get<GetCardsResponseType>('cards/card', {
             params: {
-                cardAnswer,
+                cardQuestion,
                 cardsPack_id,
                 min,
                 max,

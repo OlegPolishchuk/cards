@@ -14,7 +14,7 @@ export const fetchCardsData =
         try {
             dispatch(setStatusAC(REQUEST_STATUS.LOADING));
 
-            const answerParam = getState().cards.cardAnswer;
+            const questionParam = getState().cards.cardQuestion;
             const cardsPack_idParam = cardsPack_id;
             const sortCardsParam = getState().cards.sortCards;
             const pageParam = getState().cards.page;
@@ -23,7 +23,7 @@ export const fetchCardsData =
             const maxParam = getState().cards.maxGrade;
 
             const res = await cardsAPI.fetchCards({
-                cardAnswer: answerParam,
+                cardQuestion: questionParam,
                 sortCards: sortCardsParam,
                 min: minParam,
                 max: maxParam,

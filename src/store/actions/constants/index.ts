@@ -27,3 +27,4 @@ export const SET_PACKS_PAGE_COUNT = 'packs/SET_PACKS_PAGE_COUNT';
 export const SET_IS_MODAL_OPEN = 'app/SET_IS_MODAL_OPEN';
 export const SET_CARDS_TABLE_DATA = 'cards/SET_CARDS_TABLE_DATA';
 export const SET_SORT_CARDS = 'cards/SET_SORT_CARDS';
+export const SET_CARD_SEARCH_QUESTION = 'cards/SET_CARD_SEARCH_QUESTION';
