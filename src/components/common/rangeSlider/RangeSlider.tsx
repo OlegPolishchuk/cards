@@ -20,7 +20,10 @@ export const RangeSlider = (): ReturnComponentType => {
     const minCount = useTypedSelector(selectMinCardsCount);
     const maxCount = useTypedSelector(selectMaxCardCount);
 
-    const [sliderValue, setSliderValue] = useState([minCount, maxCount]);
+    const minSliderValue = Number(searchParams.get('min')) || minCount;
+    const maxSliderVue = Number(searchParams.get('max')) || maxCount;
+
+    const [sliderValue, setSliderValue] = useState([minSliderValue, maxSliderVue]);
     const debouncedValue = useDebounce(sliderValue, USE_DEBOUNCE_TIMER);
 
     const handleSliderChange = (event: Event, newValue: number | number[]): void => {
