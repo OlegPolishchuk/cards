@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 import s from './Learn.module.scss';
 
 import { BreadCrumbs } from 'components/common';
+import { LearnBody } from 'components/learn/learnBody/LearnBody';
+import { LearnHeader } from 'components/learn/learnHeader/LearnHeader';
 import { Title } from 'components/title/Title';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { fetchCardsData } from 'store/middlewares/cards/fetchCardsData';
@@ -58,7 +60,6 @@ export const Learn = (): ReturnComponentType => {
 
     const handleChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setGrade(e.target.value);
-        console.log(currentCard._id);
     };
 
     const handleNextQuestion = (): void => {
@@ -100,25 +101,14 @@ export const Learn = (): ReturnComponentType => {
             <div className={s.mainContainer}>
                 <Title title={`Learn ${packName}`} />
                 <div className={s.wrapper}>
-                    <h3 className={s.questionTitle}>{currentCard.question}</h3>
-                    <span className={s.tooltip}>Count of shots: {currentCard.shots}</span>
-                    <div className={`${s.answerGroup} ${showAnswers ? s.show : ''}`}>
-                        <RadioGroup
-                            aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="controlled-radio-buttons-group"
-                            value={grade}
-                            onChange={handleChangeAnswer}
-                        >
-                            {ANSWERS.map(answer => (
-                                <FormControlLabel
-                                    key={`${answer}`}
-                                    value={answer}
-                                    control={<Radio />}
-                                    label={answer}
-                                />
-                            ))}
-                        </RadioGroup>
-                    </div>
+                    <LearnHeader card={currentCard} />
+                    <LearnBody
+                        card={currentCard}
+                        showAnswer={showAnswers}
+                        answers={ANSWERS}
+                        handleChangeAnswer={handleChangeAnswer}
+                        grade={grade}
+                    />
                     {showAnswers ? (
                         <Button
                             className={s.btn}
@@ -133,6 +123,7 @@ export const Learn = (): ReturnComponentType => {
                             className={s.btn}
                             type="button"
                             variant="contained"
+                            disabled={cards.length === 0}
                             onClick={() => setShowAnswers(true)}
                         >
                             Show answer
