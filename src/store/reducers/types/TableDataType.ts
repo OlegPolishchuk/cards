@@ -6,4 +6,5 @@ export type TableDataType = {
     isSorted: boolean;
     direction: OrderDirectionType;
     search: string | null;
+    type: string;
 };

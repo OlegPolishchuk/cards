@@ -27,3 +27,5 @@ export type { SetCardsPageType } from './SetCardsPageType';
 export type { SetPacksPageCountType } from './SetPacksPageCountType';
 export type { SetCardsPageCountType } from './SetCardsPageCountType';
 export type { SetIsModalOpenType } from './SetIsModalOpenType';
+export type { SetCardsTableDataType } from './SetCardsTableDataType';
+export type { SetSortCardsType } from 'store/actions/types/SetSortCardsType';

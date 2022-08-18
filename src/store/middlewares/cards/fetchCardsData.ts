@@ -9,7 +9,7 @@ import { AppThunkType } from 'store/types';
 import { errorHandler } from 'utils/errorHandler';
 
 export const fetchCardsData =
-    (cardsPack_id: string): AppThunkType =>
+    (cardsPack_id: string, cardsCount?: number): AppThunkType =>
     async (dispatch, getState) => {
         try {
             dispatch(setStatusAC(REQUEST_STATUS.LOADING));
@@ -18,7 +18,7 @@ export const fetchCardsData =
             const cardsPack_idParam = cardsPack_id;
             const sortCardsParam = getState().cards.sortCards;
             const pageParam = getState().cards.page;
-            const pageCountParam = getState().cards.pageCount;
+            const pageCountParam = cardsCount || getState().cards.pageCount;
             const minParam = getState().cards.minGrade;
             const maxParam = getState().cards.maxGrade;
 

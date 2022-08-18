@@ -4,6 +4,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { Rating, TableBody, TableCell, TableRow } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { CardsTableBodyType } from 'components/common/commonTable/cardsTableBody/types';
 import s from 'components/common/commonTable/CustomTable.module.scss';
@@ -22,6 +23,8 @@ import { ReturnComponentType } from 'types';
 
 export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentType => {
     const dispatch = useAppDispatch();
+
+    const navigate = useNavigate();
 
     const [currentCard, setCurrentCard] = useState({} as CardType);
 
@@ -50,6 +53,10 @@ export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentTyp
     const handleDeleteCard = (): void => {
         dispatch(deleteCardTC(currentCard._id));
         setShowDeleteModal(false);
+    };
+
+    const handleNavigateToLearn = (card: CardType): void => {
+        navigate(`/learn/${card.cardsPack_id}`);
     };
 
     if (rows.length === 0) {
@@ -90,7 +97,10 @@ export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentTyp
                                 />
                             </>
                         )}
-                        <SchoolOutlinedIcon className={s.icon} onClick={() => {}} />
+                        <SchoolOutlinedIcon
+                            className={s.icon}
+                            onClick={() => handleNavigateToLearn(row)}
+                        />
                     </TableCell>
                 </TableRow>
             ))}

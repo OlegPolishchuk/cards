@@ -7,3 +7,4 @@ export type { PacksSearchParamsType } from './PacksSearchParamsType';
 export type { CardType } from './CardType';
 export type { TableDataType } from './TableDataType';
 export type { CardsReducerType } from './CardsReducerType';
+export type { CardsSortType } from './CardSortType';

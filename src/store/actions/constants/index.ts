@@ -25,3 +25,5 @@ export const SET_CARDS_PAGE = 'cards/SET_CARDS_PAGE';
 export const SET_CARDS_PAGE_COUNT = 'cards/SET_CARDS_PAGE_COUNT';
 export const SET_PACKS_PAGE_COUNT = 'packs/SET_PACKS_PAGE_COUNT';
 export const SET_IS_MODAL_OPEN = 'app/SET_IS_MODAL_OPEN';
+export const SET_CARDS_TABLE_DATA = 'cards/SET_CARDS_TABLE_DATA';
+export const SET_SORT_CARDS = 'cards/SET_SORT_CARDS';

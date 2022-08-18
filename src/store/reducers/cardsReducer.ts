@@ -8,6 +8,8 @@ import {
     SET_CARDS_PAGE,
     SET_CARDS_PAGE_COUNT,
     SET_CARDS_SEARCH_PARAMS,
+    SET_CARDS_TABLE_DATA,
+    SET_SORT_CARDS,
 } from 'store/actions/constants';
 import { CardsActionsType } from 'store/actions/types/CardsActionsType';
 import { CardsReducerType, PackType } from 'store/reducers/types';
@@ -23,22 +25,24 @@ const initState: CardsReducerType = {
     cardQuestion: '',
     cardAnswer: '',
     cardsPack_id: '',
-    sortCards: '',
+    sortCards: '0updated',
     currentPack: {} as PackType,
     tableData: [
         {
             id: 1,
             title: 'Question',
-            isSorted: true,
+            isSorted: false,
             direction: 'asc',
-            search: 'cardQuestion',
+            search: null,
+            type: 'card',
         },
         {
             id: 2,
             title: 'Answer',
             isSorted: false,
             direction: 'asc',
-            search: 'cardAnswer',
+            search: null,
+            type: 'card',
         },
         {
             id: 3,
@@ -46,6 +50,7 @@ const initState: CardsReducerType = {
             isSorted: true,
             direction: 'asc',
             search: 'updated',
+            type: 'card',
         },
         {
             id: 4,
@@ -53,8 +58,16 @@ const initState: CardsReducerType = {
             isSorted: true,
             direction: 'asc',
             search: 'grade',
+            type: 'card',
         },
-        { id: 5, title: 'Actions', search: null, isSorted: false, direction: 'asc' },
+        {
+            id: 5,
+            title: 'Actions',
+            type: 'card',
+            search: null,
+            isSorted: false,
+            direction: 'asc',
+        },
     ],
     cardsSelectValues: CARDS_SELECT_VALUES,
 };
@@ -74,6 +87,17 @@ export const cardsReducer = (
             return { ...state, page: action.payload.page };
         case SET_CARDS_PAGE_COUNT:
             return { ...state, pageCount: action.payload.pageCount };
+        case SET_CARDS_TABLE_DATA:
+            return {
+                ...state,
+                tableData: state.tableData.map(el =>
+                    el.id === action.payload.id
+                        ? { ...el, direction: action.payload.direction }
+                        : el,
+                ),
+            };
+        case SET_SORT_CARDS:
+            return { ...state, sortCards: action.payload.sort };
         default:
             return state;
     }

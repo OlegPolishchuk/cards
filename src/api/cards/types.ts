@@ -1,10 +1,11 @@
+import { CardsSortType } from 'store/reducers/types';
 import { CardType } from 'store/reducers/types/CardType';
 
 export type CardsSearchParamsType = {
     cardAnswer: string;
     min: number;
     max: number;
-    sortCards: string;
+    sortCards: CardsSortType;
     page: number;
     pageCount: number;
     cardsPack_id: string;

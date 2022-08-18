@@ -9,8 +9,10 @@ import { CommonTableHeadType } from 'components/common/commonTable/customTableHe
 import { OrderDirectionType } from 'components/common/commonTable/types';
 import { useAppDispatch } from 'hooks';
 import { setSortPacksAC } from 'store/actions';
+import { setCardsTableDataAC } from 'store/actions/setCardsTableDataAC';
 import { setPacksTableDataAC } from 'store/actions/setPacksTableDataAC';
-import { PacksSortType } from 'store/reducers/types';
+import { setSortCardAC } from 'store/actions/setSortCardAC';
+import { CardsSortType, PacksSortType } from 'store/reducers/types';
 import { TableDataType } from 'store/reducers/types/TableDataType';
 import { ReturnComponentType } from 'types';
 
@@ -22,19 +24,26 @@ export const CustomTableHead = ({
     const [searchParams, setSearchParams] = useSearchParams();
 
     const handleClick = (td: TableDataType): void => {
-        const { isSorted, id, direction, search } = td;
+        const { isSorted, id, direction, search, type } = td;
         const searchIndex = direction === 'asc' ? '1' : '0';
 
-        const searchTitle = `${searchIndex}${search}` as PacksSortType;
+        const searchTitle = `${searchIndex}${search}` as PacksSortType & CardsSortType;
 
         if (isSorted) {
             const nextDirection: OrderDirectionType =
                 direction === 'asc' ? 'desc' : 'asc';
 
-            dispatch(setPacksTableDataAC(nextDirection, id));
-            dispatch(setSortPacksAC(searchTitle));
+            if (type === 'pack') {
+                dispatch(setPacksTableDataAC(nextDirection, id));
+                dispatch(setSortPacksAC(searchTitle));
+            }
 
-            searchParams.set('sortPacks', searchTitle);
+            if (type === 'card') {
+                dispatch(setCardsTableDataAC(nextDirection, id));
+                dispatch(setSortCardAC(searchTitle));
+            }
+
+            searchParams.set(type === 'pack' ? 'sortPacks' : 'sortCards', searchTitle);
             setSearchParams(searchParams);
         }
     };
