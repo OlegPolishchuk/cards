@@ -1,0 +1,44 @@
+@import "../../common/style/mixins";
+
+
+
+
+.mainContainer {
+  margin-top: 30px;
+  text-align: center;
+
+  .wrapper {
+    @include auth-wrapper();
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    .tooltip {
+      margin: 8px 0 20px 0;
+    }
+  }
+
+  .btn {
+    @include commonBtn();
+  }
+
+  .answerGroup {
+    margin-bottom: 20px;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all  .2s ease;
+
+  }
+  .show {
+    transition: height .2s ease;
+    height: 210px;
+    opacity: 1;
+  }
+
+  .questionTitle {
+    margin: 0;
+  }
+
+}

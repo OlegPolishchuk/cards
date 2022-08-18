@@ -10,6 +10,8 @@ import { ReturnComponentType } from 'types';
 export const DeleteCardModal = ({
     callback,
 }: DeleteCardModalType): ReturnComponentType => {
+    console.log('delete card modal rendered');
+
     return (
         <div className={s.container}>
             <p>Do you really want to remove this card?</p>

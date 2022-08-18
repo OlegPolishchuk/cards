@@ -20,4 +20,12 @@ export {
 
 export { selectAppStatus, selectIsModalOpen } from './app';
 
-export { selectCards, selectCardsTableHeadData } from './cards';
+export {
+    selectCards,
+    selectCardsTableHeadData,
+    selectPackUserId,
+    selectCardsPage,
+    selectCardsPageCount,
+    selectCardsTotalCount,
+    selectCardsSelectValues,
+} from './cards';

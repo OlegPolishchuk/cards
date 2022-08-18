@@ -11,6 +11,7 @@ import { SetNewPassword } from 'components/setNewPassword/SetNewPassword';
 import { REQUEST_STATUS } from 'enums';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { ForgotPassword, NotFound, Profile, Registration, SignIn } from 'pages';
+import { Learn } from 'pages/learn/Learn';
 import { Packs } from 'pages/packs/Packs';
 import { initializeAppTC } from 'store/middlewares/app/initializeAppTC';
 import { selectAppStatus } from 'store/selectors';
@@ -37,6 +38,7 @@ const App = (): ReturnComponentType => {
                     <Route path="enter_new_password" element={<ForgotPassword />} />
                     <Route path="packs" element={<Packs />} />
                     <Route path="packs/:pack_id" element={<Cards />} />
+                    <Route path="learn/:pack_id" element={<Learn />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Container>

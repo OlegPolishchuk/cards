@@ -72,6 +72,17 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
         setShowEditModal(false);
     };
 
+    const handleRedirectToLearn = (
+        e: React.MouseEvent<SVGSVGElement>,
+        pack: PackType,
+    ): void => {
+        e.stopPropagation();
+
+        dispatch(setCurrentPuckAC(pack));
+
+        navigate(`/learn/${pack._id}`);
+    };
+
     if (rows.length === 0) {
         return (
             <TableBody>
@@ -109,7 +120,10 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                             </>
                         )}
 
-                        <SchoolOutlinedIcon className={s.icon} />
+                        <SchoolOutlinedIcon
+                            className={s.icon}
+                            onClick={e => handleRedirectToLearn(e, row)}
+                        />
                     </TableCell>
                 </TableRow>
             ))}

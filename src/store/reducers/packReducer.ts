@@ -32,6 +32,7 @@ const initialState: PackReducerType = {
     packName: '',
     sortPacks: '0updated',
     user_id: '',
+    isCurrentPackAdded: false,
     tableData: [
         { id: 1, title: 'Name', search: 'name', isSorted: true, direction: 'asc' },
         { id: 2, title: 'Cards', search: 'cardsCount', isSorted: true, direction: 'asc' },
@@ -88,7 +89,11 @@ export const packReducer = (
         case SET_PACKS_PAGE:
             return { ...state, page: action.payload.page };
         case SET_CURRENT_PACK:
-            return { ...state, currentPack: action.payload.pack };
+            return {
+                ...state,
+                currentPack: action.payload.pack,
+                isCurrentPackAdded: true,
+            };
         case SET_PACKS_PAGE_COUNT:
             return { ...state, pageCount: action.payload.pageCount };
         default:

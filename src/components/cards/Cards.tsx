@@ -23,6 +23,11 @@ import {
     selectCurrentPuckName,
     selectIsUserAuth,
     selectUserID,
+    selectPackUserId,
+    selectCardsPage,
+    selectCardsPageCount,
+    selectCardsTotalCount,
+    selectCardsSelectValues,
 } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
@@ -42,12 +47,12 @@ export const Cards = (): ReturnComponentType => {
     const tableHeadData = useTypedSelector(selectCardsTableHeadData);
 
     const userId = useTypedSelector(selectUserID);
-    const packUserId = useTypedSelector(state => state.cards.packUserId);
+    const packUserId = useTypedSelector(selectPackUserId);
 
-    const page = useTypedSelector(state => state.cards.page);
-    const pageCount = useTypedSelector(state => state.cards.pageCount);
-    const cardsTotalCount = useTypedSelector(state => state.cards.cardsTotalCount);
-    const selectValues = useTypedSelector(state => state.cards.cardsSelectValues);
+    const page = useTypedSelector(selectCardsPage);
+    const pageCount = useTypedSelector(selectCardsPageCount);
+    const cardsTotalCount = useTypedSelector(selectCardsTotalCount);
+    const selectValues = useTypedSelector(selectCardsSelectValues);
 
     const handlePaginationChange = (value: number): void => {
         dispatch(setCardsPageAC(value));
@@ -68,7 +73,6 @@ export const Cards = (): ReturnComponentType => {
     };
 
     const handleAddNewCard = (data: AddEditModalFieldsType): void => {
-        console.log(data);
         dispatch(addNewCardTC(data));
         setShowModal(false);
     };

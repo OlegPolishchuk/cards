@@ -19,4 +19,5 @@ export type PackReducerType = {
     tableData: TableDataType[];
     currentPack: PackType;
     packsSelectValues: number[];
+    isCurrentPackAdded: boolean;
 };
