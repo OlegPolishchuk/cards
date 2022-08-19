@@ -8,7 +8,24 @@
 
     th {
       font-weight: bold;
+
+      &:first-child{
+        padding-left: 110px;
+      }
     }
+  }
+
+  .deckCoverWrapper {
+    padding-left: 110px;
+    background-repeat: no-repeat;
+    background-size: 100px 56px;
+
+    font-weight: 600;
+  }
+
+  .deckCover {
+    max-width: 100px;
+    margin-right: 10px;
   }
 
   .icon {

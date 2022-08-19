@@ -1,6 +1,6 @@
 export type UserPhotoType = {
-    photo?: string;
+    photo: string;
     variant: 'small' | 'standard';
     isEdit?: boolean;
-    callback?: () => void;
+    callback?: (file: string) => void;
 };

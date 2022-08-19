@@ -4,3 +4,4 @@ export { selectUserEmailForCheck } from './selectUserEmailForCheck/selectUserEma
 export { selectIsPasswordChanged } from './selectIsPasswordChanged/selectIsPasswordChanged';
 export { selectUserName } from './selectUserName/selectUserName';
 export { selectIsUserAuth } from './selectIsUserAuth/selectIsUserAuth';
+export { selectUserEmail } from './selectUserEmail/selectUserEmail';

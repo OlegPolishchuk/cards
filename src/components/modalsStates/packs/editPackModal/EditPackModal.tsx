@@ -15,6 +15,7 @@ export type EditPackType = {
 export type AddNewPackFieldType = {
     name: string;
     isPrivate: boolean;
+    deckCover: string;
 };
 
 export const EditPackModal = ({ callback, pack }: EditPackType): ReturnComponentType => {

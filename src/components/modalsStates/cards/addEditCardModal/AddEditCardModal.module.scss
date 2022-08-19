@@ -12,6 +12,15 @@
     margin-bottom: 20px;
   }
 
+  .addCoverInput {
+    display: none;
+  }
+
+  .addCoverBtnWrapper {
+    flex-direction: row;
+    justify-content: center;
+  }
+
   .fieldTitle {
     color: $tooltipColor;
   }

@@ -15,6 +15,7 @@ import { ReturnComponentType } from 'types';
 export const Header = (): ReturnComponentType => {
     const isUserAuth = useTypedSelector(selectIsUserAuth);
     const userName = useTypedSelector(selectUserName);
+    const userPhoto = useTypedSelector(state => state.auth.userData.avatar);
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -24,7 +25,7 @@ export const Header = (): ReturnComponentType => {
                     {isUserAuth ? (
                         <NavLink to="/profile" className={s.userDescrLink}>
                             <span className={s.userName}>{userName}</span>
-                            <UserPhoto variant="small" />
+                            <UserPhoto photo={userPhoto || ''} variant="small" />
                         </NavLink>
                     ) : (
                         <StyledButton variant="contained">Sign in</StyledButton>

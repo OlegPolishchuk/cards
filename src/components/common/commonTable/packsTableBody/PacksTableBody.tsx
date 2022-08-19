@@ -6,6 +6,7 @@ import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+import defaultDeckCover from 'assets/images/defaultDeckCover.png';
 import s from 'components/common/commonTable/CustomTable.module.scss';
 import { PacksTableBodyType } from 'components/common/commonTable/packsTableBody/types';
 import { CustomModal } from 'components/common/modals/CustomModal';
@@ -102,7 +103,21 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                     className={s.row}
                     onClick={e => handleRowClick(e, row)}
                 >
-                    <TableCell>{row.name}</TableCell>
+                    <TableCell
+                        className={s.deckCoverWrapper}
+                        style={{
+                            backgroundImage: `url(${
+                                row.deckCover ? row.deckCover : defaultDeckCover
+                            })`,
+                        }}
+                    >
+                        {/* <img */}
+                        {/*    src={row.deckCover !== '' ? row.deckCover : defaultDeckCover} */}
+                        {/*    alt="deck cover" */}
+                        {/*    className={s.deckCover} */}
+                        {/* /> */}
+                        {row.name}
+                    </TableCell>
                     <TableCell>{row.cardsCount}</TableCell>
                     <TableCell>{row.updated}</TableCell>
                     <TableCell>{row.user_name}</TableCell>

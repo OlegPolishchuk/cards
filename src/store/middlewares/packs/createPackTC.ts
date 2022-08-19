@@ -15,7 +15,7 @@ export const createPackTC =
             dispatch(setStatusAC(REQUEST_STATUS.LOADING));
 
             // hardcode
-            const newData = { ...data, deckCover: '' };
+            const newData = { ...data };
 
             await packsAPI.createPack(newData);
             dispatch(fetchPackTC());

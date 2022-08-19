@@ -1,7 +1,7 @@
 export type PackType = {
     cardsCount: number;
     created: string;
-    deckCover: null;
+    deckCover: string;
     grade: number;
     more_id: string;
     name: string;

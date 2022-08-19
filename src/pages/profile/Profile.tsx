@@ -12,6 +12,7 @@ import { useAppDispatch, useTypedSelector } from 'hooks';
 import s from 'pages/profile/Profile.module.scss';
 import { logoutTC } from 'store/middlewares/auth/logoutTC';
 import { updateUserTC } from 'store/middlewares/auth/updateUserTC';
+import { selectUserEmail, selectUserName } from 'store/selectors';
 import { selectIsUserAuth } from 'store/selectors/auth/selectIsUserAuth/selectIsUserAuth';
 import { ReturnComponentType } from 'types';
 
@@ -19,20 +20,26 @@ export const Profile = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const isUserAuth = useTypedSelector(selectIsUserAuth);
-    const userName = useTypedSelector(state => state.auth.userData.name);
-    const userEmail = useTypedSelector(state => state.auth.userData.email);
+    const userName = useTypedSelector(selectUserName);
+    const userEmail = useTypedSelector(selectUserEmail);
+    const userPhoto = useTypedSelector(state => state.auth.userData.avatar);
 
     const editUserNameHandler = (newUSerName: string): void => {
         const newUserData = {
             userName: newUSerName,
-            userPhoto: '', // заглушка. Позже доделать добавление фото
+            userPhoto: userPhoto || '',
         };
 
         dispatch(updateUserTC(newUserData));
     };
 
-    const editUserPhotoHandler = (): void => {
-        console.log('some action');
+    const editUserPhotoHandler = (file: string): void => {
+        const newUserData = {
+            userName,
+            userPhoto: file,
+        };
+
+        dispatch(updateUserTC(newUserData));
     };
 
     const logoutHandler = (): void => {
@@ -42,6 +49,7 @@ export const Profile = (): ReturnComponentType => {
     if (!isUserAuth) {
         return <Navigate to="/login" />;
     }
+    console.log(`profile rendered`);
 
     return (
         <>
@@ -50,6 +58,7 @@ export const Profile = (): ReturnComponentType => {
                 <Box className={s.wrapper}>
                     <Title title="Personal information" />
                     <UserPhoto
+                        photo={userPhoto || ''}
                         variant="standard"
                         isEdit
                         callback={editUserPhotoHandler}

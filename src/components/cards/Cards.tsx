@@ -83,6 +83,7 @@ export const Cards = (): ReturnComponentType => {
     };
 
     useEffect(() => {
+        console.log('useEffect => setSearchParams');
         const searchParams = {
             cardQuestion: cardQuestionParam,
             cardsPack_id: cardsPack_idParam,
@@ -101,7 +102,7 @@ export const Cards = (): ReturnComponentType => {
     useEffect(() => {
         if (isUserAuth) {
             if (pack_id) {
-                console.log('fetching cards');
+                console.log('useEffect => fetching cards');
                 dispatch(fetchCardsData(pack_id));
             }
         }
