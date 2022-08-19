@@ -13,14 +13,14 @@ export const CardsSearch = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(searchParams.get('cardQuestion') || '');
 
     const debouncedValue = useDebounce<string>(value, USE_DEBOUNCE_TIMER);
 
     useEffect(() => {
         dispatch(setCardsSearchQuestionAC(value));
         searchParams.set('cardQuestion', value);
-
+        //
         setSearchParams(searchParams);
     }, [debouncedValue]);
 

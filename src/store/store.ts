@@ -9,7 +9,10 @@ import thunk from 'redux-thunk';
 
 import { appReducer, authReducer, cardsReducer, packReducer } from 'store/reducers';
 
-const composedEnhancers = compose(applyMiddleware(thunk), devToolsEnhancer());
+const composedEnhancers = compose(
+    applyMiddleware(thunk),
+    devToolsEnhancer({ trace: true }),
+);
 
 const rootReducer = combineReducers({
     app: appReducer,

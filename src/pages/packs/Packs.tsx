@@ -96,12 +96,14 @@ export const Packs = (): ReturnComponentType => {
         };
 
         if (isUserAuth) {
+            console.log('useEffect with search params inside if');
             dispatch(setPacksSearchParamsAC(searchParams));
         }
     }, [isUserAuth]);
 
     useEffect(() => {
         if (isUserAuth) {
+            console.log('useEffect with fetchPackTC');
             dispatch(fetchPackTC());
         }
     }, [
@@ -115,6 +117,7 @@ export const Packs = (): ReturnComponentType => {
         pageCountParam,
         user_idParam,
     ]);
+    console.log('packs rendered');
 
     return (
         <section className={s.packs}>

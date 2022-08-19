@@ -1,1 +1,1 @@
-export const MAX_CARD_COUNT = 120;
+export const MAX_CARD_COUNT = 110;

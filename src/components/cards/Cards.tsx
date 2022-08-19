@@ -11,11 +11,15 @@ import {
     AddEditCardModal,
     AddEditModalFieldsType,
 } from 'components/modalsStates/cards/addEditCardModal/AddEditCardModal';
+import { MAX_CARDS_COUNT, MIN_CARDS_COUNT } from 'constants/cardsCount/cardsCountSlider';
+import { CARDS_SELECT_VALUE_MIN } from 'constants/cardsSelectValues/cardsSelectValues';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCardsPageAC } from 'store/actions/setCardsPageAC';
 import { setCardsPageCountAC } from 'store/actions/setCardsPageCountAC';
+import { setCardsSearchParamsAC } from 'store/actions/setCardsSearchParamsAC';
 import { addNewCardTC } from 'store/middlewares/cards/addNewCardTC';
 import { fetchCardsData } from 'store/middlewares/cards/fetchCardsData';
+import { CardsSortType } from 'store/reducers/types';
 import {
     selectCards,
     selectCardsPage,
@@ -46,6 +50,15 @@ export const Cards = (): ReturnComponentType => {
     const cardsTotalCount = useTypedSelector(selectCardsTotalCount);
     const selectValues = useTypedSelector(selectCardsSelectValues);
 
+    const cardQuestionParam = searchParams.get('cardQuestion') || '';
+    const sortCardsParam = searchParams.get('sortCards') || '0updated';
+    const pageParam = Number(searchParams.get('page')) || 1;
+    const pageCountParam =
+        Number(searchParams.get('pageCount')) || CARDS_SELECT_VALUE_MIN;
+    const minParam = Number(searchParams.get('min')) || MIN_CARDS_COUNT;
+    const maxParam = Number(searchParams.get('max')) || MAX_CARDS_COUNT;
+    const cardsPack_idParam = pack_id || '';
+
     const handlePaginationChange = (value: number): void => {
         dispatch(setCardsPageAC(value));
         searchParams.set('page', value.toString());
@@ -70,12 +83,39 @@ export const Cards = (): ReturnComponentType => {
     };
 
     useEffect(() => {
+        const searchParams = {
+            cardQuestion: cardQuestionParam,
+            cardsPack_id: cardsPack_idParam,
+            min: minParam,
+            max: maxParam,
+            sortCards: sortCardsParam as CardsSortType,
+            page: pageParam,
+            pageCount: pageCountParam,
+        };
+
+        if (isUserAuth) {
+            dispatch(setCardsSearchParamsAC(searchParams));
+        }
+    }, [isUserAuth]);
+
+    useEffect(() => {
         if (isUserAuth) {
             if (pack_id) {
+                console.log('fetching cards');
                 dispatch(fetchCardsData(pack_id));
             }
         }
-    }, [isUserAuth, pack_id, searchParams]);
+    }, [
+        isUserAuth,
+        pack_id,
+        cardQuestionParam,
+        sortCardsParam,
+        pageParam,
+        pageCountParam,
+        minParam,
+        maxParam,
+    ]);
+    console.log('cards rendered');
 
     return (
         <section className={s.cards}>
