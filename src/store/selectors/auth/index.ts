@@ -5,3 +5,4 @@ export { selectIsPasswordChanged } from './selectIsPasswordChanged/selectIsPassw
 export { selectUserName } from './selectUserName/selectUserName';
 export { selectIsUserAuth } from './selectIsUserAuth/selectIsUserAuth';
 export { selectUserEmail } from './selectUserEmail/selectUserEmail';
+export { selectUserAvatar } from './selectUserAvatar/selectUserAvatar';

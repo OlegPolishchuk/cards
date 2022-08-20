@@ -6,6 +6,7 @@ export {
     selectIsPasswordChanged,
     selectUserID,
     selectUserEmail,
+    selectUserAvatar,
 } from './auth';
 export {
     selectPacks,

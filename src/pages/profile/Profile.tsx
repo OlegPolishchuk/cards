@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Button, Container } from '@mui/material';
@@ -12,7 +12,7 @@ import { useAppDispatch, useTypedSelector } from 'hooks';
 import s from 'pages/profile/Profile.module.scss';
 import { logoutTC } from 'store/middlewares/auth/logoutTC';
 import { updateUserTC } from 'store/middlewares/auth/updateUserTC';
-import { selectUserEmail, selectUserName } from 'store/selectors';
+import { selectUserAvatar, selectUserEmail, selectUserName } from 'store/selectors';
 import { selectIsUserAuth } from 'store/selectors/auth/selectIsUserAuth/selectIsUserAuth';
 import { ReturnComponentType } from 'types';
 
@@ -22,25 +22,31 @@ export const Profile = (): ReturnComponentType => {
     const isUserAuth = useTypedSelector(selectIsUserAuth);
     const userName = useTypedSelector(selectUserName);
     const userEmail = useTypedSelector(selectUserEmail);
-    const userPhoto = useTypedSelector(state => state.auth.userData.avatar);
+    const userPhoto = useTypedSelector(selectUserAvatar);
 
-    const editUserNameHandler = (newUSerName: string): void => {
-        const newUserData = {
-            userName: newUSerName,
-            userPhoto: userPhoto || '',
-        };
+    const editUserNameHandler = useCallback(
+        (newUSerName: string): void => {
+            const newUserData = {
+                userName: newUSerName,
+                userPhoto: userPhoto || '',
+            };
 
-        dispatch(updateUserTC(newUserData));
-    };
+            dispatch(updateUserTC(newUserData));
+        },
+        [userPhoto],
+    );
 
-    const editUserPhotoHandler = (file: string): void => {
-        const newUserData = {
-            userName,
-            userPhoto: file,
-        };
+    const editUserPhotoHandler = useCallback(
+        (file: string): void => {
+            const newUserData = {
+                userName,
+                userPhoto: file,
+            };
 
-        dispatch(updateUserTC(newUserData));
-    };
+            dispatch(updateUserTC(newUserData));
+        },
+        [userName],
+    );
 
     const logoutHandler = (): void => {
         dispatch(logoutTC());
@@ -49,7 +55,6 @@ export const Profile = (): ReturnComponentType => {
     if (!isUserAuth) {
         return <Navigate to="/login" />;
     }
-    console.log(`profile rendered`);
 
     return (
         <>
