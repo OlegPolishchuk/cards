@@ -13,8 +13,6 @@ export const createPackTC =
     async dispatch => {
         try {
             dispatch(setStatusAC(REQUEST_STATUS.LOADING));
-
-            // hardcode
             const newData = { ...data };
 
             await packsAPI.createPack(newData);

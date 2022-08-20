@@ -31,6 +31,8 @@ export const EditPackModal = ({ callback, pack }: EditPackType): ReturnComponent
         reset();
     };
 
+    console.log(pack.private);
+
     return (
         <form className={s.form} onSubmit={handleSubmit(submit)}>
             <div className={s.fieldBox}>
@@ -46,8 +48,12 @@ export const EditPackModal = ({ callback, pack }: EditPackType): ReturnComponent
             </div>
             <div className={s.fieldBox}>
                 <FormControlLabel
-                    defaultChecked={pack.private}
-                    control={<Checkbox {...register('isPrivate')} />}
+                    control={
+                        <Checkbox
+                            {...register('isPrivate')}
+                            defaultChecked={pack.private}
+                        />
+                    }
                     label="Private pack"
                 />
             </div>

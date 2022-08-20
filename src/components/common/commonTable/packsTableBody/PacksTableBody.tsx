@@ -111,11 +111,6 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                             })`,
                         }}
                     >
-                        {/* <img */}
-                        {/*    src={row.deckCover !== '' ? row.deckCover : defaultDeckCover} */}
-                        {/*    alt="deck cover" */}
-                        {/*    className={s.deckCover} */}
-                        {/* /> */}
                         {row.name}
                     </TableCell>
                     <TableCell>{row.cardsCount}</TableCell>

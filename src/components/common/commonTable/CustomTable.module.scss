@@ -14,13 +14,22 @@
       }
     }
   }
-
+  // td
   .deckCoverWrapper {
     padding-left: 110px;
     background-repeat: no-repeat;
     background-size: 100px 56px;
 
     font-weight: 600;
+  }
+  ////
+
+  .addCoverInput {
+    display: none;
+  }
+
+  .deckCoverBtn {
+
   }
 
   .deckCover {

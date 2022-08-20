@@ -149,7 +149,7 @@ export const Packs = (): ReturnComponentType => {
             <CustomModal
                 open={showAddCardModal}
                 close={() => setShowAddCardModal(false)}
-                title="test Modal"
+                title="Add new pack"
             >
                 <AddNewPack callback={handleAddNewPack} />
             </CustomModal>

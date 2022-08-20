@@ -4,6 +4,7 @@ import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import defaultCover from 'assets/images/defaultDeckCover.png';
 import s from 'components/modalsStates/cards/addEditCardModal/AddEditCardModal.module.scss';
 import { useAppDispatch } from 'hooks';
 import { ReturnComponentType } from 'types';
@@ -23,7 +24,7 @@ export type AddNewPackFieldType = {
 export const AddNewPack = ({ callback }: AddNewPackType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
-    const [deckCover, setDeckCover] = useState('');
+    const [deckCover, setDeckCover] = useState(defaultCover);
 
     const {
         register,
@@ -54,6 +55,22 @@ export const AddNewPack = ({ callback }: AddNewPackType): ReturnComponentType =>
 
     return (
         <form className={s.form} onSubmit={handleSubmit(submit)}>
+            <div className={`${s.fieldBox} ${s.addCoverBtnWrapper}`}>
+                <label htmlFor="add-pack-cover">
+                    <span className={s.addCoverBtn}>
+                        Change deck cover
+                        <CloudDownloadOutlinedIcon className={s.coverBtnIcon} />
+                    </span>
+                    <input
+                        className={s.addCoverInput}
+                        type="file"
+                        accept={'image/*'}
+                        id="add-pack-cover"
+                        onChange={handleUpload}
+                    />
+                </label>
+                <img className={s.deckCoverImg} src={defaultCover} alt="deck cover" />
+            </div>
             <div className={s.fieldBox}>
                 <span className={s.fieldTitle}>Pack name</span>
                 <TextField
@@ -63,26 +80,6 @@ export const AddNewPack = ({ callback }: AddNewPackType): ReturnComponentType =>
                     {...register('name', { required: true })}
                 />
                 <span className={s.error}>{errors.name && 'Required'}</span>
-            </div>
-            <div className={`${s.fieldBox} ${s.addCoverBtnWrapper}`}>
-                <label htmlFor="add-pack-cover">
-                    <input
-                        className={s.addCoverInput}
-                        type="file"
-                        accept={'image/*'}
-                        id="add-pack-cover"
-                        onChange={handleUpload}
-                        style={{ display: 'none' }}
-                    />
-                    <Button
-                        className={s.addCoverBtn}
-                        variant="contained"
-                        component="span"
-                        endIcon={<CloudDownloadOutlinedIcon />}
-                    >
-                        Download pack cover
-                    </Button>
-                </label>
             </div>
             <div className={s.fieldBox}>
                 <FormControlLabel

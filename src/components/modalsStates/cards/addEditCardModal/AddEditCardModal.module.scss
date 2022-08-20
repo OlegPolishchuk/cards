@@ -10,16 +10,37 @@
     flex-direction: column;
 
     margin-bottom: 20px;
-  }
 
+    &:nth-child(2) {
+      margin: 0;
+    }
+  }
   .addCoverInput {
     display: none;
   }
 
-  .addCoverBtnWrapper {
-    flex-direction: row;
-    justify-content: center;
+  .addCoverBtn {
+    color: $themeColor;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 8px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
+
+  .coverBtnIcon {
+    margin-left: 15px;
+  }
+
+  .addCoverBtnWrapper {
+    flex-direction: column;
+  }
+
 
   .fieldTitle {
     color: $tooltipColor;
