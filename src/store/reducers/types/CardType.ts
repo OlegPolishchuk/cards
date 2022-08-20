@@ -1,6 +1,7 @@
 export type CardType = {
     answer: string;
     question: string;
+    questionImg: string;
     cardsPack_id: string;
     grade: number;
     rating: number;

@@ -21,4 +21,5 @@ export type UpdatePackDataType = {
     _id: string;
     name?: string;
     isPrivate?: boolean;
+    deckCover: string;
 };

@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
+import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined';
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import defaultCover from 'assets/images/defaultDeckCover.png';
 import s from 'components/modalsStates/cards/addEditCardModal/AddEditCardModal.module.scss';
+import { useAppDispatch } from 'hooks';
 import { PackType } from 'store/reducers/types';
 import { ReturnComponentType } from 'types';
+import { convertFileToBase64 } from 'utils/convertFileToBase64';
+import { errorHandler } from 'utils/errorHandler';
 
 export type EditPackType = {
     pack: PackType;
     callback: (data: AddNewPackFieldType) => void;
+    btnTitle: string;
 };
 
 export type AddNewPackFieldType = {
@@ -18,7 +24,16 @@ export type AddNewPackFieldType = {
     deckCover: string;
 };
 
-export const EditPackModal = ({ callback, pack }: EditPackType): ReturnComponentType => {
+export const EditPackModal = ({
+    callback,
+    pack,
+    btnTitle,
+}: EditPackType): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
+    const [deckCover, setDeckCover] = useState(
+        pack.deckCover ? pack.deckCover : defaultCover,
+    );
     const {
         register,
         handleSubmit,
@@ -27,14 +42,45 @@ export const EditPackModal = ({ callback, pack }: EditPackType): ReturnComponent
     } = useForm<AddNewPackFieldType>({ mode: 'onSubmit' });
 
     const submit: SubmitHandler<AddNewPackFieldType> = data => {
-        callback(data);
+        const newData = {
+            ...data,
+            deckCover,
+        };
+
+        callback(newData);
         reset();
     };
 
-    console.log(pack.private);
+    const handleUpload = (e: ChangeEvent<HTMLInputElement>): void => {
+        try {
+            convertFileToBase64(e, (file64: string) => {
+                setDeckCover(file64);
+            });
+        } catch (e) {
+            errorHandler(e as Error, dispatch);
+        }
+    };
+
+    console.log(pack);
 
     return (
         <form className={s.form} onSubmit={handleSubmit(submit)}>
+            <div className={`${s.fieldBox} ${s.addCoverBtnWrapper}`}>
+                <label htmlFor="add-pack-cover">
+                    <span className={s.addCoverBtn}>
+                        Change deck cover
+                        <CloudDownloadOutlinedIcon className={s.coverBtnIcon} />
+                    </span>
+                    <input
+                        className={s.addCoverInput}
+                        type="file"
+                        accept={'image/*'}
+                        id="add-pack-cover"
+                        onChange={handleUpload}
+                    />
+                </label>
+                <img className={s.deckCoverImg} src={deckCover} alt="deck cover" />
+            </div>
             <div className={s.fieldBox}>
                 <span className={s.fieldTitle}>Pack name</span>
                 <TextField
@@ -62,7 +108,7 @@ export const EditPackModal = ({ callback, pack }: EditPackType): ReturnComponent
                     Cansel
                 </Button>
                 <Button type="submit" variant="contained" color="primary">
-                    Add pack
+                    {btnTitle}
                 </Button>
             </div>
         </form>

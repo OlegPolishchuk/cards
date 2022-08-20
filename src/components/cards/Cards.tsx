@@ -134,7 +134,7 @@ export const Cards = (): ReturnComponentType => {
                 selectChangeCallback={handleSelectChange}
             />
             <CustomModal open={showAddModal} close={setShowModal} title="Add new card">
-                <AddEditCardModal callback={handleAddNewCard} />
+                <AddEditCardModal btnTitle="Add new card" callback={handleAddNewCard} />
             </CustomModal>
         </section>
     );

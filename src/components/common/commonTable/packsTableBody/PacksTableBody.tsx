@@ -103,14 +103,13 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                     className={s.row}
                     onClick={e => handleRowClick(e, row)}
                 >
-                    <TableCell
-                        className={s.deckCoverWrapper}
-                        style={{
-                            backgroundImage: `url(${
-                                row.deckCover ? row.deckCover : defaultDeckCover
-                            })`,
-                        }}
-                    >
+                    <TableCell className={s.deckCoverWrapper}>
+                        <img
+                            src={row.deckCover ? row.deckCover : defaultDeckCover}
+                            alt="deck cover"
+                            className={s.questionImg}
+                        />
+
                         {row.name}
                     </TableCell>
                     <TableCell>{row.cardsCount}</TableCell>
@@ -145,7 +144,11 @@ export const PacksTableBody = ({ rows }: PacksTableBodyType): ReturnComponentTyp
                 <DeletePackModal pack={currentPack} callback={handleDeletePack} />
             </CustomModal>
             <CustomModal open={showEditModal} close={setShowEditModal} title="Edit pack?">
-                <EditPackModal pack={currentPack} callback={handleEditPack} />
+                <EditPackModal
+                    btnTitle="Save"
+                    pack={currentPack}
+                    callback={handleEditPack}
+                />
             </CustomModal>
         </TableBody>
     );

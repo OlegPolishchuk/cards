@@ -36,7 +36,7 @@ export const AddNewPack = ({ callback }: AddNewPackType): ReturnComponentType =>
     const submit: SubmitHandler<AddNewPackFieldType> = data => {
         const newData = {
             ...data,
-            deckCover,
+            deckCover: deckCover === defaultCover ? '' : deckCover,
         };
 
         callback(newData);

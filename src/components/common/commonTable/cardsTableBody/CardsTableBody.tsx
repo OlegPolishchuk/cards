@@ -78,7 +78,17 @@ export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentTyp
                     className={`${s.row} ${s.cardsRow}`}
                     onClick={() => {}}
                 >
-                    <TableCell>{row.question}</TableCell>
+                    <TableCell>
+                        {row.questionImg ? (
+                            <img
+                                src={row.questionImg}
+                                alt="question"
+                                className={s.questionImg}
+                            />
+                        ) : (
+                            <span>{row.question}</span>
+                        )}
+                    </TableCell>
                     <TableCell>{row.answer}</TableCell>
                     <TableCell>{row.updated}</TableCell>
                     <TableCell>
@@ -107,10 +117,11 @@ export const CardsTableBody = ({ rows }: CardsTableBodyType): ReturnComponentTyp
             <CustomModal open={showEditModal} close={setShowEditModal} title="Edit card">
                 <AddEditCardModal
                     callback={handleEditCard}
+                    btnTitle="Save"
                     fields={{
                         question: currentCard.question,
                         answer: currentCard.answer,
-                        questionType: currentCard.question,
+                        questionImg: currentCard.questionImg,
                     }}
                 />
             </CustomModal>

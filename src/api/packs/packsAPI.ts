@@ -42,12 +42,13 @@ export const packsAPI = {
             params: { id },
         });
     },
-    updatePack: ({ _id, name, isPrivate }: UpdatePackDataType) => {
+    updatePack: ({ _id, name, isPrivate, deckCover }: UpdatePackDataType) => {
         return instance.put('cards/pack', {
             cardsPack: {
                 _id,
                 name,
                 private: isPrivate,
+                deckCover,
             },
         });
     },

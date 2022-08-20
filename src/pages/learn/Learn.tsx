@@ -48,6 +48,7 @@ export const Learn = (): ReturnComponentType => {
         cardsPack_id: '',
         answer: '',
         question: '',
+        questionImg: '',
         grade: 0,
         shots: 0,
         type: '',
