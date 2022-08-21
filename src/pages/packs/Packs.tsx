@@ -48,6 +48,17 @@ export const Packs = (): ReturnComponentType => {
 
     const selectValues = useTypedSelector(selectPacksSelectValues);
 
+    console.log('///////////////');
+    console.log('Packs rendered');
+    console.log(`packs = ${packs}`);
+    console.log(`isUserAuth = ${isUserAuth}`);
+    console.log(`tableHeadData = ${tableHeadData}`);
+    console.log(`page = ${page}`);
+    console.log(`pageCount = ${pageCount}`);
+    console.log(`cardsPackTotalCount = ${cardsPackTotalCount}`);
+    console.log(`selectValues = ${selectValues}`);
+    console.log('///////////////');
+
     const [showAddCardModal, setShowAddCardModal] = useState(false);
 
     const packNameParam = searchParams.get('packName') || '';
@@ -117,7 +128,6 @@ export const Packs = (): ReturnComponentType => {
         pageCountParam,
         user_idParam,
     ]);
-    console.log('packs rendered');
 
     return (
         <section className={s.packs}>
